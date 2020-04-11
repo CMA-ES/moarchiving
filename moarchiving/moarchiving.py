@@ -71,7 +71,6 @@ class BiobjectiveNondominatedSortedList(list):
     TODO (discarded): currently, points beyond the reference point (which do not contribute
     to the hypervolume) are discarded. We may want to keep them, for simplicity
     in a separate list?
-
 """
     # Default Values for respective instance attributes
     make_expensive_asserts = False
@@ -90,8 +89,8 @@ class BiobjectiveNondominatedSortedList(list):
         f-pairs beyond the `reference_point` are pruned away. The
         `reference_point` is also used to compute the hypervolume.
 
-        ``sort=lambda x: x`` will prevent a sort, which
-        can be useful if the list is already sorted.
+        `sort` is a sorting function and ``sort=None`` will prevent a sort,
+        which can be useful if the `list_of_f_pairs` is already sorted.
 
         CAVEAT: the interface, in particular the positional interface
         may change in future versions.
@@ -109,7 +108,7 @@ class BiobjectiveNondominatedSortedList(list):
             if len(list_of_f_pairs[0]) != 2:
                 raise ValueError("need elements of len 2, got %s"
                                  " as first element" % str(list_of_f_pairs[0]))
-            list.__init__(self, sort(list_of_f_pairs))
+            list.__init__(self, sort(list_of_f_pairs) if sort else list_of_f_pairs)
             # super(BiobjectiveNondominatedSortedList, self).__init__(sort(list_of_f_pairs))
         if reference_point is not None:
             self.reference_point = list(reference_point)

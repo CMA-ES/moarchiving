@@ -34,9 +34,9 @@ setup(name="moarchiving",
                   "and uncrowded hypervolume improvement computation "
                   "",
       author="Nikolaus Hansen",
-      author_email="authors firstname.lastname at inria dot fr",
-      maintainer="Nikolaus Hansen",
-      maintainer_email="authors_firstname.lastname@inria.fr",
+      author_email="authors_firstname.lastname@inria.fr",
+      # maintainer="Nikolaus Hansen",
+      # maintainer_email="authors_firstname.lastname@inria.fr",
       url="https://github.com/cma-es/moarchiving",
       license="BSD",
       classifiers = [

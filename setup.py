@@ -1,5 +1,6 @@
 # from distutils.core import setup
 from setuptools import setup
+import warnings
 from moarchiving import __version__
 from moarchiving import __doc__ as long_description
 
@@ -15,13 +16,19 @@ except LookupError:
 # packages = ['cma'],  # indicates a multi-file module and that we have a cma folder and cma/__init__.py file
 
 try:
-    with open('README.txt') as file:
-        long_description = file.read()  # now assign long_description=long_description below
+    with open('README.md') as file_:
+        long_description = file_.read()  # now assign long_description=long_description below
 except IOError:  # file not found
-    pass
+    warnings.warn("README.md file not found")
+    # long_description = ""
+else:
+    long_description = long_description.split("## Testing")[0]
+    with open('README.txt', 'w') as file_:
+        file_.write(long_description)
 
 setup(name="moarchiving",
       long_description=long_description,  # __doc__, # can be used in the cma.py file
+      long_description_content_type='text/markdown',
       version=__version__.split()[0],
       description="Biobjective Archive class with hypervolume indicator "
                   "and uncrowded hypervolume improvement computation "
@@ -30,7 +37,7 @@ setup(name="moarchiving",
       author_email="authors firstname.lastname at inria dot fr",
       maintainer="Nikolaus Hansen",
       maintainer_email="authors_firstname.lastname@inria.fr",
-      url="https://github.com/xxxx/moarchiving",
+      url="https://github.com/cma-es/moarchiving",
       license="BSD",
       classifiers = [
           "Intended Audience :: Science/Research",
@@ -48,9 +55,9 @@ setup(name="moarchiving",
       ],
       keywords=["optimization", "multi-objective",],
       packages=["moarchiving"],
-      install_requires=["bisect"],
+      # install_requires=["bisect"],
       extras_require={
             "arbitrary-precision": ["fraction"],
       },
-      package_data={'': ['LICENSE']},  # i.e. moarchiving/LICENSE
+      package_data={'': ['LICENSE', ]},  # i.e. moarchiving/LICENSE
       )

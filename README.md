@@ -15,15 +15,15 @@ or simply via
 ```
 pip install moarchiving
 ```
-The [`moarchiving.py`](https://github.com/CMA-ES/moarchiving/moarchiving.py) file (from the `moarchiving/` folder) can also be used by itself when copied in the current folder or in a path visible for Python (e.g. a path contained in `sys.path`).
+The single file [`moarchiving.py`](https://github.com/CMA-ES/moarchiving/moarchiving/moarchiving.py) (from the `moarchiving/` folder) can also be directly used by itself when copied in the current folder or in a path visible to Python (e.g. a path contained in `sys.path`).
 
 
 ## Links
 
 - [Code on Github](https://github.com/CMA-ES/moarchiving)
 - Documentation (possibly slighly outdated) in
-  - [apidocs format](https://cma-es.github.io/morachiving/moarchiving-apidocs/index.html)
-  - [epydocs format](https://cma-es.github.io/morachiving/moarchiving-epydocs/index.html)
+  - [apidocs format](https://cma-es.github.io/moarchiving/moarchiving-apidocs/index.html)
+  - [epydocs format](https://cma-es.github.io/moarchiving/moarchiving-epydocs/index.html)
 
 
 ## Testing and timing of `moarchiving.BiobjectiveNondominatedSortedList`

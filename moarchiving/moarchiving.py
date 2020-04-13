@@ -11,10 +11,12 @@ __license__ = "BSD 3-clause"
 __version__ = "0.5.2"
 del division, print_function, unicode_literals
 
+import warnings as _warnings
 # from collections import deque  # does not support deletion of slices!?
 import bisect as _bisect # to find the insertion index efficiently
-import fractions
-import warnings as _warnings
+try: import fractions
+except ImportError: _warnings.warn(
+    '`fractions` module not installed, arbitrary precision hypervolume computation not available')
 inf = float('inf')
 
 class BiobjectiveNondominatedSortedList(list):
@@ -74,10 +76,12 @@ class BiobjectiveNondominatedSortedList(list):
 """
     # Default Values for respective instance attributes
     make_expensive_asserts = False
-    hypervolume_final_float_type = fractions.Fraction  # HV computation takes three times longer, precision may be more relevant here
-    hypervolume_computation_float_type = fractions.Fraction  # HV computation takes three times longer, precision may be less relevant here
-    # hypervolume_final_float_type = float  # lambda x: x is marginally faster
-    # hypervolume_computation_float_type = float  # may be a good compromise
+    try:
+        hypervolume_final_float_type = fractions.Fraction  # HV computation takes three times longer, precision may be more relevant here
+        hypervolume_computation_float_type = fractions.Fraction  # HV computation takes three times longer, precision may be less relevant here
+    except:
+        hypervolume_final_float_type = float  # lambda x: x is marginally faster
+        hypervolume_computation_float_type = float  # may be a good compromise
     maintain_contributing_hypervolumes = False
 
     def __init__(self,
@@ -255,6 +259,8 @@ class BiobjectiveNondominatedSortedList(list):
         `add_list`. The `discarded` property is not consistent with the
         overall merge.
         """
+        raise NotImplementedError()
+        """
         # _warnings.warn("merge was never thoroughly tested, use `add_list`")
         for f_pair in list_of_f_pairs:
             if not self.in_domain(f_pair):
@@ -265,6 +271,7 @@ class BiobjectiveNondominatedSortedList(list):
                 continue
             self._add_at(idx, f_pair)
         self.make_expensive_asserts and self._asserts()
+        """
 
     def copy(self):
         """return a "deep" copy of `self`"""
@@ -679,8 +686,8 @@ class BiobjectiveNondominatedSortedList(list):
                 x = self[idx + 1][0]
             dHV -= (Fc(x) - Fc(self[idx][0])) * (Fc(y) - Fc(self[idx][1]))
         assert dHV <= 0  # and without loss of precision strictly smaller
-        if (Ff is not fractions.Fraction or not isinstance(self._hypervolume, Ff)) \
-                and self._hypervolume and abs(dHV) / self._hypervolume < 1e-9:
+        if ((Ff in (float, int) or isinstance(self._hypervolume, (float, int)))
+                and self._hypervolume != 0 and abs(dHV) / self._hypervolume < 1e-9):
             _warnings.warn("_subtract_HV: %f + %f loses many digits of precision"
                           % (dHV, self._hypervolume))
         self._hypervolume += Ff(dHV)
@@ -711,7 +718,7 @@ class BiobjectiveNondominatedSortedList(list):
             return None
         Ff = self.hypervolume_final_float_type
         if self._hypervolume and (
-                        Ff is not fractions.Fraction or not isinstance(self._hypervolume, Ff)) \
+                        Ff in (float, int) or isinstance(self._hypervolume, (float, int))) \
                 and dHV / self._hypervolume < 1e-9:
             _warnings.warn("_subtract_HV: %f + %f loses many digits of precision"
                           % (dHV, self._hypervolume))

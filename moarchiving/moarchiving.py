@@ -890,4 +890,5 @@ class BiobjectiveNondominatedSortedList(list):
 
 if __name__ == "__main__":
     import doctest
-    doctest.testmod()
+    print('doctest.testmod() in moarchiving.py')
+    print(doctest.testmod())

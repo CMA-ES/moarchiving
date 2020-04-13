@@ -1,21 +1,30 @@
 
 # Introduction
 
-The [Python](https://www.python.org/) `class` `moarchiving.BiobjectiveNondominatedSortedList` implements a bi-objective non-dominated archive with `list` as parent class. It is heavily based on the [`bisect`](https://docs.python.org/2/library/bisect.html) module. It provides easy and fast access to the overall hypervolume, the contributing hypervolume of each element, and to the [uncrowded hypervolume improvement](https://arxiv.org/abs/1904.08823) of any given point in objective space.
+The [Python](https://www.python.org/) `class` `moarchiving.BiobjectiveNondominatedSortedList` implements a bi-objective non-dominated archive with `list` as parent class. It is heavily based on the [`bisect`](https://docs.python.org/3/library/bisect.html) module. It provides easy and fast access to the overall hypervolume, the contributing hypervolume of each element, and to the [uncrowded hypervolume improvement](https://arxiv.org/abs/1904.08823) of any given point in objective space.
 
-Documentation (possibly slighly outdated) is available [here](https://cma-es.github.io/morachiving/moarchiving-apidocs/index.html) or [here](https://cma-es.github.io/morachiving/moarchiving-epydocs/index.html).
+## Installation
 
-Installation via
-
+Either via
 ```
 pip install git+https://github.com/CMA-ES/moarchiving.git@master
 ```
 
-or (soon) simply via
+or simply via
 
 ```
 pip install moarchiving
 ```
+The [`moarchiving.py`](https://github.com/CMA-ES/moarchiving/moarchiving.py) file (from the `moarchiving/` folder) can also be used by itself when copied in the current folder or in a path visible for Python (e.g. a path contained in `sys.path`).
+
+
+## Links
+
+- [Code on Github](https://github.com/CMA-ES/moarchiving)
+- Documentation (possibly slighly outdated) in
+  - [apidocs format](https://cma-es.github.io/morachiving/moarchiving-apidocs/index.html)
+  - [epydocs format](https://cma-es.github.io/morachiving/moarchiving-epydocs/index.html)
+
 
 ## Testing and timing of `moarchiving.BiobjectiveNondominatedSortedList`
 
@@ -23,16 +32,15 @@ pip install moarchiving
 ```python
 import doctest
 import moarchiving
-# reload(moarchiving)
 NA = moarchiving.BiobjectiveNondominatedSortedList
-doctest.testmod(moarchiving)
+doctest.testmod(moarchiving.moarchiving)
 # NA.make_expensive_asserts = True
 ```
 
 
 
 
-    TestResults(failed=0, attempted=49)
+    TestResults(failed=0, attempted=66)
 
 
 
@@ -58,7 +66,7 @@ rg = np.arange(0.1, 1000)
 %timeit [id_(i) for i in rg]  # expect 120mics
 ```
 
-    10000 loops, best of 3: 123 µs per loop
+    100 µs ± 456 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 
 
 
@@ -66,7 +74,7 @@ rg = np.arange(0.1, 1000)
 %timeit [float(i) for i in rg]  # expect 170mics
 ```
 
-    10000 loops, best of 3: 175 µs per loop
+    130 µs ± 4.55 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 
 
 
@@ -74,7 +82,7 @@ rg = np.arange(0.1, 1000)
 %timeit [fractions.Fraction(i) for i in rg]  # expect 2.7ms
 ```
 
-    100 loops, best of 3: 2.9 ms per loop
+    1.59 ms ± 123 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 
 
 ### Various
@@ -188,17 +196,16 @@ a._asserts()
 
 
 ```python
+NA.merge = NA.add_list  # merge disappeared
 b = NA(a)
-print(b.merge([[-1.2, 1]]))
-print(a.add_list([[-1.2, 1]]))
+b.merge([[-1.2, 1]])
+# print(b)
+a.add_list([[-1.2, 1]])
+# print(a)
 assert b == a
-print(a.merge(b))
+a.merge(b)
+assert b == a
 ```
-
-    1
-    1
-    0
-
 
 
 ```python
@@ -213,7 +220,7 @@ assert NA(r).add_list(r2) == NA(r).merge(r2)
 a.add_list(r2)
 ```
 
-    1000 loops, best of 3: 388 µs per loop
+    331 µs ± 5.94 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 
 
 
@@ -222,7 +229,7 @@ a.add_list(r2)
 a.merge(r2)
 ```
 
-    1000 loops, best of 3: 290 µs per loop
+    338 µs ± 4.27 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 
 
 ## Timing of initialization
@@ -234,10 +241,9 @@ a.merge(r2)
 %timeit nondom_arch(100_000)  # just checking baseline, expect 16ms
 ```
 
-    The slowest run took 5.09 times longer than the fastest. This could mean that an intermediate result is being cached.
-    10000 loops, best of 3: 122 µs per loop
-    1000 loops, best of 3: 1.02 ms per loop
-    10 loops, best of 3: 18.5 ms per loop
+    96.6 µs ± 1.06 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+    761 µs ± 12.2 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+    10.4 ms ± 1.2 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
 
 
 
@@ -247,9 +253,9 @@ a.merge(r2)
 %timeit NA(nondom_arch(100_000))  # expect 112ms, nondom_arch itself takes about 25%
 ```
 
-    1000 loops, best of 3: 1.47 ms per loop
-    10 loops, best of 3: 15.6 ms per loop
-    1 loop, best of 3: 223 ms per loop
+    964 µs ± 8.49 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+    9.34 ms ± 186 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+    95.3 ms ± 873 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 
 
@@ -263,7 +269,7 @@ len(NA(nondom_arch(100_000))), len(NA(randars[100_000]))
 
 
 
-    (100000, 16)
+    (100000, 13)
 
 
 
@@ -274,9 +280,9 @@ len(NA(nondom_arch(100_000))), len(NA(randars[100_000]))
 %timeit NA(randars[100_000])  # expect 180 ms
 ```
 
-    1000 loops, best of 3: 767 µs per loop
-    100 loops, best of 3: 10.6 ms per loop
-    10 loops, best of 3: 206 ms per loop
+    535 µs ± 2.8 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+    7.16 ms ± 68.6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+    129 ms ± 5.62 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 
 
@@ -286,9 +292,9 @@ len(NA(nondom_arch(100_000))), len(NA(randars[100_000]))
 %timeit sorted(nondom_arch(100_000)) # expect 21ms
 ```
 
-    10000 loops, best of 3: 139 µs per loop
-    1000 loops, best of 3: 1.33 ms per loop
-    10 loops, best of 3: 21.4 ms per loop
+    126 µs ± 977 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+    1.08 ms ± 17.3 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+    14.8 ms ± 298 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 
 
 
@@ -298,9 +304,9 @@ len(NA(nondom_arch(100_000))), len(NA(randars[100_000]))
 %timeit sorted(randars[100_000])  # expect 110ms
 ```
 
-    1000 loops, best of 3: 319 µs per loop
-    100 loops, best of 3: 5.8 ms per loop
-    10 loops, best of 3: 132 ms per loop
+    288 µs ± 10.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+    4.43 ms ± 86.6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+    76.2 ms ± 5.69 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 
 
@@ -310,14 +316,12 @@ len(NA(nondom_arch(100_000))), len(NA(randars[100_000]))
 %timeit list(randars[100_000])  # expect 1ms
 ```
 
-    The slowest run took 4.29 times longer than the fastest. This could mean that an intermediate result is being cached.
-    100000 loops, best of 3: 2.58 µs per loop
-    10000 loops, best of 3: 33.8 µs per loop
-    The slowest run took 4.59 times longer than the fastest. This could mean that an intermediate result is being cached.
-    100 loops, best of 3: 841 µs per loop
+    2.13 µs ± 37.6 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+    33 µs ± 685 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+    407 µs ± 12.3 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 
 
-### Summary with 1e5 data
+### Summary with 1e5 data (outdated)
 ```
    1 ms `list` 
   22 ms `sorted` on sorted list
@@ -336,7 +340,7 @@ for i in range(1000):
 len(a)
 ```
 
-    100 loops, best of 3: 9.98 ms per loop
+    24.6 ms ± 982 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 
 
@@ -347,7 +351,7 @@ for i in range(1000):
 len(a)
 ```
 
-    100 loops, best of 3: 10.4 ms per loop
+    25.1 ms ± 744 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 
 
@@ -358,7 +362,7 @@ for i in range(1000):
 len(a)  # deletion kicks in and makes it 20 times slower if implemented with pop
 ```
 
-    100 loops, best of 3: 12.2 ms per loop
+    35 ms ± 1.29 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 
 
@@ -369,7 +373,7 @@ for i in range(1000):
 len(a) # no deletion has taken place
 ```
 
-    100 loops, best of 3: 15.1 ms per loop
+    25.2 ms ± 472 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 
 
@@ -380,7 +384,7 @@ for i in range(1000):
 len(a)  # deletion kicks in
 ```
 
-    1 loop, best of 3: 326 ms per loop
+    97.4 ms ± 3.52 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 
 
@@ -391,7 +395,7 @@ for i in range(1000):
 len(a)
 ```
 
-    10 loops, best of 3: 45.6 ms per loop
+    27.9 ms ± 1.36 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 
 ## Timing of Hypervolume computation
@@ -401,7 +405,7 @@ len(a)
 %timeit a = NA(nondom_arch(1_000), [5, 5])  # expect 28ms, takes 4 or 40x longer than without hypervolume computation
 ```
 
-    10 loops, best of 3: 32.9 ms per loop
+    19.7 ms ± 281 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 
 
@@ -409,7 +413,7 @@ len(a)
 %timeit a = NA(nondom_arch(10_000), [5, 5])  # expect 300ms
 ```
 
-    1 loop, best of 3: 321 ms per loop
+    196 ms ± 2.04 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 
 
 
@@ -417,7 +421,7 @@ len(a)
 %timeit a = NA(nondom_arch(100_000), [5, 5])  # expect 3s, takes 3x longer than without hypervolume computation
 ```
 
-    1 loop, best of 3: 3.13 s per loop
+    2.11 s ± 130 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 
 
 
@@ -426,8 +430,7 @@ len(a)
 a.hypervolume
 ```
 
-    The slowest run took 19.04 times longer than the fastest. This could mean that an intermediate result is being cached.
-    1000000 loops, best of 3: 222 ns per loop
+    137 ns ± 1.13 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
 
 
 
@@ -436,8 +439,7 @@ a.hypervolume
 a.hypervolume
 ```
 
-    The slowest run took 87.97 times longer than the fastest. This could mean that an intermediate result is being cached.
-    1000000 loops, best of 3: 217 ns per loop
+    140 ns ± 1.07 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
 
 
 
@@ -446,8 +448,7 @@ a.hypervolume
 a.hypervolume
 ```
 
-    The slowest run took 12.86 times longer than the fastest. This could mean that an intermediate result is being cached.
-    1000000 loops, best of 3: 225 ns per loop
+    142 ns ± 5.18 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
 
 
 
@@ -460,7 +461,7 @@ NA.hypervolume_computation_float_type = float
 %timeit a = NA(nondom_arch(1_000), [5, 5])  # expect 11ms, takes 4 or 40x longer than without hypervolume computation
 ```
 
-    100 loops, best of 3: 11.2 ms per loop
+    7.73 ms ± 176 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 
 
 
@@ -474,5 +475,5 @@ NA.hypervolume_computation_float_type = float
 %timeit a = NA(nondom_arch(1_000), [5, 5])  # expect 3.8ms, takes 4 or 40x longer than without hypervolume computation
 ```
 
-    100 loops, best of 3: 4.8 ms per loop
+    2.9 ms ± 70.9 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 

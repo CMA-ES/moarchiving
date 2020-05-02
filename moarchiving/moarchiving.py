@@ -199,14 +199,19 @@ class BiobjectiveNondominatedSortedList(list):
         >>> if f_pair in nda:
         ...     nda.remove(f_pair)
         >>> nda = BiobjectiveNondominatedSortedList._random_archive(p_ref_point=1)
-        >>> for pair in list(nda):
-        ...     len_ = len(nda)
-        ...     state = nda._state()
-        ...     nda.remove(pair)
-        ...     assert len(nda) == len_ - 1
-        ...     if 100 * pair[0] - int(100 * pair[0]) < 0.7:
-        ...         res = nda.add(pair)
-        ...         assert all(state[i] == nda._state()[i] for i in [0, 2, 3])
+        >>> for t in [None, float]:
+        ...     if t:
+        ...         nda.hypervolume_final_float_type = t
+        ...         nda.hypervolume_computation_float_type = t
+        ...     for pair in list(nda):
+        ...         len_ = len(nda)
+        ...         state = nda._state()
+        ...         nda.remove(pair)
+        ...         assert len(nda) == len_ - 1
+        ...         if 100 * pair[0] - int(100 * pair[0]) < 0.7:
+        ...             res = nda.add(pair)
+        ...             assert all(state[i] == nda._state()[i] for i in (
+        ...                [0, 3] if nda.hypervolume_final_float_type is float else [0, 2, 3]))
 
         Return `None` (like `list.remove`).
         """
@@ -601,7 +606,9 @@ class BiobjectiveNondominatedSortedList(list):
         if add_back:
             self.add_list(add_back)
         self._removed = removed
-        assert state == self._state()
+        if self.hypervolume_computation_float_type is not float and (
+            self.hypervolume_final_float_type is not float):
+            assert state == self._state()
         return self.hypervolume_computation_float_type(hv1) - self.hypervolume
 
     def _set_HV(self):

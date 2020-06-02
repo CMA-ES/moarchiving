@@ -38,6 +38,11 @@ class BiobjectiveNondominatedSortedList(list):
     in a consistent state. If a reference point was given on initialization,
     also the hypervolume of the archive is computed and updated.
 
+    The `contributing_hypervolume` and `hypervolume_improvement` methods
+    give the uncrowded hypervolume improvement, with or without removing
+    the input from the archive before the computation, respectively, see
+    https://arxiv.org/abs/1904.08823
+
     Removing elements with `pop` or `del` keeps the archive sorted and
     non-dominated but does not update the hypervolume, which hence
     becomes inconsistent.
@@ -62,18 +67,19 @@ class BiobjectiveNondominatedSortedList(list):
     https://code.activestate.com/recipes/577197-sortedcollection/
     https://pythontips.com/2016/04/24/python-sorted-collections/
 
-    DONE: implement large-precision hypervolume computation.
-    DONE (method remove): implement a `delete` method that also updates the hypervolume.
-    TODO (DONE): implement a copy method
-    TODO: compute a hypervolume also without a reference point. Using the
-          two extreme points as reference should just work fine also for
-          hypervolume improvement, as making them more extreme improves
-          the volume. This is not equivalent with putting the reference
-          to infty, as the contribution from a new extreme could be small.
-    TODO (discarded): currently, points beyond the reference point (which do not contribute
-    to the hypervolume) are discarded. We may want to keep them, for simplicity
-    in a separate list?
 """
+    # DONE: implement large-precision hypervolume computation.
+    # DONE (method remove): implement a `delete` method that also updates the hypervolume.
+    # TODO (DONE): implement a copy method
+    # TODO: compute a hypervolume also without a reference point. Using the
+    # two extreme points as reference should just work fine also for
+    # hypervolume improvement, as making them more extreme improves
+    # the volume. This is not equivalent with putting the reference
+    # to infty, as the contribution from a new extreme could be small.
+    # TODO (discarded): currently, points beyond the reference point (which do not contribute
+    # to the hypervolume) are discarded. We may want to keep them, for simplicity
+    # in a separate list?
+
     # Default Values for respective instance attributes
     make_expensive_asserts = False
     try:
@@ -583,12 +589,15 @@ class BiobjectiveNondominatedSortedList(list):
                if self.reference_point else 0
 
     def hypervolume_improvement(self, f_pair):
-        """return how much `f_pair` would improve the hypervolumen.
+        """return how much `f_pair` would improve the hypervolume.
 
         If dominated, return the distance to the empirical pareto front
         multiplied by -1.
         Else if not in domain, return distance to the reference point
         dominating area times -1.
+
+        Overall this amounts to the uncrowded hypervolume improvement,
+        see https://arxiv.org/abs/1904.08823
         """
         dist = self.distance_to_pareto_front(f_pair)
         if dist:

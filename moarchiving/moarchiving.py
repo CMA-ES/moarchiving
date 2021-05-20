@@ -8,7 +8,7 @@ update in logarithmic time.
 from __future__ import division, print_function, unicode_literals
 __author__ = "Nikolaus Hansen"
 __license__ = "BSD 3-clause"
-__version__ = "0.5.3"
+__version__ = "0.6.0"
 del division, print_function, unicode_literals
 
 import warnings as _warnings
@@ -124,6 +124,7 @@ class BiobjectiveNondominatedSortedList(list):
             self.reference_point = list(reference_point)
         else:
             self.reference_point = reference_point
+        self._infos = None
         self.prune()  # remove dominated entries, uses in_domain, hence ref-point
         if self.maintain_contributing_hypervolumes:
             self._contributing_hypervolumes = self.contributing_hypervolumes
@@ -133,7 +134,7 @@ class BiobjectiveNondominatedSortedList(list):
         self._set_HV()
         self.make_expensive_asserts and self._asserts()
 
-    def add(self, f_pair):
+    def add(self, f_pair, info=None):
         """insert `f_pair` in `self` if it is not (weakly) dominated.
 
         Return index at which the insertion took place or `None`. The
@@ -143,8 +144,28 @@ class BiobjectiveNondominatedSortedList(list):
         means that some or many or even all of its present elements may
         be removed.
 
+        `info` is added to the `infos` `list`. It can be an arbitrary object,
+        e.g. a list or dictionary. It can in particular contain (or be) the
+        solution ``x`` such that ``f_pair == fun(info['x'])``.
+
         Implementation detail: For performance reasons, `insert` is
         avoided in favor of `__setitem__`, if possible.
+
+        >>> from moarchiving import BiobjectiveNondominatedSortedList
+        >>> arch = BiobjectiveNondominatedSortedList()
+        >>> len(arch.infos) == len(arch) == 0
+        True
+        >>> len(arch), arch.add([2, 2]), len(arch), arch.infos
+        (0, 0, 1, [None])
+        >>> arch.add([3, 1], info={'x': [-1, 2, 3], 'note': 'rocks'})
+        1
+        >>> len(arch.infos) == len(arch) == 2
+        True
+        >>> arch.infos[0], sorted(arch.infos[1].items())
+        (None, [('note', 'rocks'), ('x', [-1, 2, 3])])
+        >>> arch.infos[arch.index([3, 1])]['x']
+        [-1, 2, 3]
+
         """
         f_pair = list(f_pair)  # convert array to list
         if len(f_pair) != 2:
@@ -160,19 +181,23 @@ class BiobjectiveNondominatedSortedList(list):
             return None
         assert idx == len(self) or not f_pair == self[idx]
         # here f_pair now is non-dominated
-        self._add_at(idx, f_pair)
+        self._add_at(idx, f_pair, info)
         # self.make_expensive_asserts and self._asserts()
         return idx
 
-    def _add_at(self, idx, f_pair):
+    def _add_at(self, idx, f_pair, info=None):
         """add `f_pair` at position `idx` and remove dominated elements.
 
         This method assumes that `f_pair` is not weakly dominated by
         `self` and that `idx` is the correct insertion place e.g.
         acquired by `bisect_left`.
         """
+        if self._infos is None and info is not None:  # prepare for inserting info
+            self._infos = len(self) * [None]  # `_infos` and `self` are in a consistent state now
         if idx == len(self) or f_pair[1] > self[idx][1]:
             self.insert(idx, f_pair)
+            if self._infos is not None:  # if the list exists it needs to be updated
+                self._infos.insert(idx, info)  # also insert None, otherwise lists get out of sync
             self._add_HV(idx)
             # self.make_expensive_asserts and self._asserts()
             return
@@ -186,9 +211,16 @@ class BiobjectiveNondominatedSortedList(list):
         self._subtract_HV(idx, idx2)
         self._removed = self[idx:idx2]
         self[idx] = f_pair  # on long lists [.] is much cheaper than insert
+        if self._infos is not None:  # if the list exists it needs to be updated
+            self._infos[idx] = info
         del self[idx + 1:idx2]  # can make `add` 20x faster
+        if self._infos: del self._infos[idx + 1:idx2]
         self._add_HV(idx)
         assert len(self) >= 1
+        assert self._infos is None or len(self) == len(self.infos) == len(self._infos), (
+            self._infos, len(self._infos), len(self.infos))
+        # assert len(self) == len(self.infos), (self._infos, self.infos, len(self.infos), len(self))
+        # caveat: len(self.infos) creates a list if self._infos is None
         # self.make_expensive_asserts and self._asserts()
 
     def remove(self, f_pair):
@@ -225,6 +257,7 @@ class BiobjectiveNondominatedSortedList(list):
         self._subtract_HV(idx)
         self._removed = [self[idx]]
         del self[idx]  # == list.remove(self, f_pair)
+        if self._infos: del self._infos[idx]
 
     def add_list(self, list_of_f_pairs):
         """insert a list of f-pairs which doesn't need to be sorted.
@@ -243,6 +276,8 @@ class BiobjectiveNondominatedSortedList(list):
         True
         >>> arch.compute_hypervolume([3, 4]) == 5.0
         True
+        >>> arch.infos  # to have infos use `add` instead
+        [None, None]
 
         Return `None`.
 
@@ -420,6 +455,11 @@ class BiobjectiveNondominatedSortedList(list):
             f_pair[1] >= reference_point[1]):
             return False
         return True
+
+    @property
+    def infos(self):
+        """`list` of complementary information corresponding to each archive entry"""
+        return self._infos or len(self) * [None]  # tuple is slower for len >= 1000
 
     @property
     def hypervolume(self):
@@ -764,6 +804,7 @@ class BiobjectiveNondominatedSortedList(list):
             i += 1
         removed += self[0:i]
         del self[0:i]
+        if self._infos: del self._infos[0:i]
         i = 1
         while i < len(self):
             i0 = i
@@ -788,6 +829,7 @@ class BiobjectiveNondominatedSortedList(list):
                         break
             removed += self[i0r:ir]
             del self[i0:i]
+            if self._infos: del self._infos[i0:i]
             i = i0 + 1
         self._removed = removed  # [p for p in removed if p not in self]
         if self.maintain_contributing_hypervolumes:
@@ -850,9 +892,14 @@ class BiobjectiveNondominatedSortedList(list):
         >>> assert all(map(lambda x, y: x - 1e-9 < y < x + 1e-9,
         ...               a.contributing_hypervolumes,
         ...               [4.01367, 11.587422]))
-        >>> for p in list(a):
+        >>> len(a), a.add([-0.8, -1], info={'solution': None}), len(a)
+        (2, 1, 3)
+        >>> len(a) == len(a.infos) == 3
+        True
+        >>> for i, p in enumerate(list(a)):
         ...     a.remove(p)
-        >>> assert len(a) == 0
+        ...     assert len(a) == len(a.infos) == 2 - i
+        >>> assert len(a) == len(a.infos) == 0
         >>> try: a.remove([0, 0])
         ... except ValueError: pass
         ... else: raise AssertionError("remove did not raise ValueError")
@@ -892,6 +939,11 @@ class BiobjectiveNondominatedSortedList(list):
             tmp, self.make_expensive_asserts = self.make_expensive_asserts, False
             self.hypervolume_improvement([0, 0])  # does state assert
             self.make_expensive_asserts = tmp
+
+        assert self._infos is None or len(self._infos) == len(self.infos) == len(self), (
+            self._infos, len(self._infos), len(self))
+        # assert len(self.infos) == len(self), (len(self.infos), len(self), self.infos, self._infos)
+        # caveat: len(self.infos) creates a list if self._infos is None
 
         # asserts using numpy for convenience
         try:

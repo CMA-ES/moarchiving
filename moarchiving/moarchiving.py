@@ -259,7 +259,7 @@ class BiobjectiveNondominatedSortedList(list):
         self.make_expensive_asserts and self._asserts()
 
     def merge(self, list_of_f_pairs):
-        """merge in a sorted list of f-pairs.
+        """obsolete and replaced by `add_list`. merge in a sorted list of f-pairs.
 
         The list can contain dominated pairs, which are discarded during
         the merge.

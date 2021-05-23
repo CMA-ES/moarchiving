@@ -4,8 +4,8 @@
 
 Final final changes to version numbers and such::
 
-    __init__.py  # edit version number
-    tools/conda.recipe/meta.yaml  # edit version number
+    morachiving.py  # edit version number
+    # not applicable: tools/conda.recipe/meta.yaml  # edit version number
     README.md  # add release description
 
 To prepare a distribution from a (usual) dirty code folder::

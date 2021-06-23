@@ -236,6 +236,10 @@ class BiobjectiveNondominatedSortedList(list):
         >>> assert [2, 3] in nda and f_pair not in nda
         >>> if f_pair in nda:
         ...     nda.remove(f_pair)
+        >>> nda = BiobjectiveNondominatedSortedList()
+        >>> nda.add_list([[6, 6], [5, 7], [4, 8], [3, 9]])
+        >>> nda.remove(nda[-1])
+        >>> _ = nda.add([2, 10])
         >>> nda = BiobjectiveNondominatedSortedList._random_archive(p_ref_point=1)
         >>> for t in [None, float]:
         ...     if t:

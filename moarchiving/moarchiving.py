@@ -759,7 +759,6 @@ class BiobjectiveNondominatedSortedList(list):
 
         TODO: also update list of contributing hypervolumes in case.
         """
-        dHV = self.contributing_hypervolume(idx)
         if self.maintain_contributing_hypervolumes:
             """Exerimental code:
             self._contributing_hypervolumes.insert(idx, dHV)
@@ -772,6 +771,7 @@ class BiobjectiveNondominatedSortedList(list):
             raise NotImplementedError("update list of hypervolumes")
         if self.reference_point is None:
             return None
+        dHV = self.contributing_hypervolume(idx)
         Ff = self.hypervolume_final_float_type
         if self._hypervolume and (
                         Ff in (float, int) or isinstance(self._hypervolume, (float, int))) \

@@ -632,8 +632,8 @@ class BiobjectiveNondominatedSortedList(list):
                 + max((0, f_pair[1] - self.reference_point[1]))**2)**0.5 \
                if self.reference_point else 0
 
-    def hypervolume_improvement(self, f_pair):
-        """return how much `f_pair` would improve the hypervolume.
+    def _hypervolume_improvement0(self, f_pair):
+        """deprecated and only used for testing: return how much `f_pair` would improve the hypervolume.
 
         If dominated, return the distance to the empirical pareto front
         multiplied by -1.
@@ -667,6 +667,40 @@ class BiobjectiveNondominatedSortedList(list):
             _warnings.warn("HV changed from %f to %f while computing hypervolume_improvement" %
                            (hv0, self.hypervolume))
         return self.hypervolume_computation_float_type(hv1) - self.hypervolume
+
+    def hypervolume_improvement(self, f_pair):
+        """return how much `f_pair` would improve the hypervolume.
+
+        If dominated, return the distance to the empirical pareto front
+        multiplied by -1.
+        Else if not in domain, return distance to the reference point
+        dominating area times -1.
+
+        Overall this amounts to the uncrowded hypervolume improvement,
+        see https://arxiv.org/abs/1904.08823
+
+        Details: this method extracts a sublist first and thereby tries
+        to circumentvent to compute large hypervolume differences.
+        """
+        dist = self.distance_to_pareto_front(f_pair)
+        if dist:
+            return -dist
+        # find sublist that suffices to get the contributing volume
+        i0 = self.bisect_left(f_pair)
+        i1 = i0
+        while i1 < len(self) and f_pair[1] <= self[i1][1]:
+            # f_pair also dominates self[i1]
+            i1 += 1
+        r0 = self[i1][0] if i1 < len(self) else self.reference_point[0]
+        r1 = self[i0-1][1] if i0 > 0 else self.reference_point[1]
+        assaved = BiobjectiveNondominatedSortedList.make_expensive_asserts
+        BiobjectiveNondominatedSortedList.make_expensive_asserts = False  # prevent infinite recursion
+        sub = BiobjectiveNondominatedSortedList(self[i0:i1], reference_point=[r0, r1], sort=None)
+        BiobjectiveNondominatedSortedList.make_expensive_asserts = assaved
+        hv0 = sub.hypervolume
+        sub.add(f_pair)
+        # print(sub.hypervolume_computation_float_type(sub.hypervolume) - hv0, self._hypervolume_improvement0(f_pair))
+        return sub.hypervolume_computation_float_type(sub.hypervolume) - hv0
 
     def _set_HV(self):
         """set current hypervolume value using `self.reference_point`.
@@ -912,14 +946,15 @@ class BiobjectiveNondominatedSortedList(list):
         ... except ValueError: pass
         ... else: raise AssertionError("remove did not raise ValueError")
 
-        >>> from numpy.random import rand
+        >>> from numpy.random import randn
         >>> for _ in range(120):
         ...     a = moarchiving.BiobjectiveNondominatedSortedList._random_archive()
         ...     a.make_expensive_asserts = True
         ...     if a.reference_point:
-        ...         for f_pair in rand(10, 2):
+        ...         for f_pair in randn(10, 2) + 0.5:
         ...             h0 = a.hypervolume
         ...             hi = a.hypervolume_improvement(list(f_pair))
+        ...             assert hi == a._hypervolume_improvement0(list(f_pair))  # didn't raise with rand instead of randn
         ...             assert a.hypervolume == h0  # works OK with Fraction
 
 

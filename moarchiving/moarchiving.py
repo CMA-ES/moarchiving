@@ -646,6 +646,7 @@ class BiobjectiveNondominatedSortedList(list):
         dist = self.distance_to_pareto_front(f_pair)
         if dist:
             return -dist
+        hv0 = self.hypervolume
         state = self._state()
         removed = self.discarded  # to get back previous state
         added = self.add(f_pair) is not None
@@ -662,6 +663,9 @@ class BiobjectiveNondominatedSortedList(list):
         if self.hypervolume_computation_float_type is not float and (
             self.hypervolume_final_float_type is not float):
             assert state == self._state()
+        if hv0 != self.hypervolume:
+            _warnings.warn("HV changed from %f to %f while computing hypervolume_improvement" %
+                           (hv0, self.hypervolume))
         return self.hypervolume_computation_float_type(hv1) - self.hypervolume
 
     def _set_HV(self):

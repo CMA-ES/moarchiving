@@ -679,12 +679,20 @@ class BiobjectiveNondominatedSortedList(list):
         Overall this amounts to the uncrowded hypervolume improvement,
         see https://arxiv.org/abs/1904.08823
 
-        Details: this method extracts a sublist first and thereby tries
-        to circumentvent to compute large hypervolume differences.
+        Details: when ``self.reference_point is None`` and `f_pair` is
+        a new extreme point, the returned hypervolume improvement is
+        ``float('inf')``.
+
+        This method extracts a sublist first and thereby tries
+        to circumentvent to compute small differences between large
+        hypervolumes.
         """
         dist = self.distance_to_pareto_front(f_pair)
         if dist:
             return -dist
+        if self.reference_point is None:
+            if f_pair[0] < self[0][0] or f_pair[1] < self[-1][1]:
+                return inf
         # find sublist that suffices to get the contributing volume
         i0 = self.bisect_left(f_pair)
         i1 = i0
@@ -699,8 +707,11 @@ class BiobjectiveNondominatedSortedList(list):
         BiobjectiveNondominatedSortedList.make_expensive_asserts = assaved
         hv0 = sub.hypervolume
         sub.add(f_pair)
-        # print(sub.hypervolume_computation_float_type(sub.hypervolume) - hv0, self._hypervolume_improvement0(f_pair))
-        return sub.hypervolume_computation_float_type(sub.hypervolume) - hv0
+        res = self.hypervolume_computation_float_type(sub.hypervolume) - hv0
+        if BiobjectiveNondominatedSortedList.make_expensive_asserts:
+            assert abs(res - self._hypervolume_improvement0(f_pair)) < 1e-9 * (0.1 + res), (
+                        res, self._hypervolume_improvement0(f_pair))
+        return res
 
     def _set_HV(self):
         """set current hypervolume value using `self.reference_point`.
@@ -951,11 +962,15 @@ class BiobjectiveNondominatedSortedList(list):
         ...     a = moarchiving.BiobjectiveNondominatedSortedList._random_archive()
         ...     a.make_expensive_asserts = True
         ...     if a.reference_point:
-        ...         for f_pair in randn(10, 2) + 0.5:
+        ...         for i, f_pair in enumerate([randn(2) + [i, -i] for i in range(10)] +
+        ...                                    [randn(2) / randn(2) + [i, -i] for i in range(10)]):
+        ...             if i % 4 == 1:
+        ...                 _ = a.add(f_pair)
         ...             h0 = a.hypervolume
         ...             hi = a.hypervolume_improvement(list(f_pair))
         ...             assert hi == a._hypervolume_improvement0(list(f_pair))  # didn't raise with rand instead of randn
         ...             assert a.hypervolume == h0  # works OK with Fraction
+        ...             a._asserts()
 
 
         """

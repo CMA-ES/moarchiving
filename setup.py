@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 """setup for moarchiving module.
 
+Testing::
+
+    python -m moarchiving.test
+
 Final final changes to version numbers and such::
 
     morachiving.py  # edit version number
@@ -10,22 +14,22 @@ Final final changes to version numbers and such::
 
 To prepare a distribution from a (usual) dirty code folder::
 
-    backup cma --move    # backup is a homebrew minitool
-    git checkout -- cma
+    backup morachiving --move    # backup is a homebrew minitool
+    git checkout -- morachiving
     python setup.py check
-    python setup.py sdist bdist_wheel --universal > dist_call_output.txt ; less dist_call_output.txt  # bdist_wininst
-    # twdiff cma build/lib/cma/  # just checking
+    python -m build > dist_call_output.txt ; less dist_call_output.txt  # bdist_wininst was: python setup.py
+    # twdiff morachiving build/lib/morachiving/  # just checking
     backup --recover  # recover above moved folder (and backup current, just in case)
 
 Check distribution and project description:
 
-    tree build  # check that the build folders are clean
+    ./check-dist.py dist/moarchiving-0.6.2.tar.gz  # check that the distribution folders are clean
     twine check dist/*
     # python setup.py --long-description | rst2html.py > long-description.html ; open long-description.html
 
 Finally upload the distribution::
 
-    twine upload dist/*3.x.x*  # to not upload outdated stuff
+    twine upload dist/*0.6.x*  # to not upload outdated stuff
 
 """
 # from distutils.core import setup

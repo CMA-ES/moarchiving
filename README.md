@@ -53,6 +53,7 @@ precision.
 
 ## Releases
 
+- 0.7.0 reimplementation of `BiobjectiveNondominatedSortedList.hypervolume_improvement` by extracting a sublist first.
 - 0.6.0 the `infos` attribute is a `list` with corresponding (arbitrary) information, e.g. for keeping the respective solutions.
 - 0.5.3 fixed assertion error when not using `fractions.Fraction`
 - 0.5.2 first published version

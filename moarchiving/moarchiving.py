@@ -827,13 +827,21 @@ class BiobjectiveNondominatedSortedList(list):
         assert dHV <= 0  # and without loss of precision strictly smaller
         if ((Ff in (float, int) or isinstance(self._hypervolume, (float, int)))
                 and self._hypervolume != 0 and abs(dHV) / self._hypervolume < 1e-9):
-            _warnings.warn("_subtract_HV: %f + %f loses many digits of precision"
-                          % (dHV, self._hypervolume))
+            _warnings.warn("_subtract_HV: subtracting {:.16e} from {:.16e} loses many digits of precision"
+                          "\nSelf info: {}\nTraceback: {}".format(
+                               -dHV,
+                               self._hypervolume,
+                               self._debug_info(),
+                               _debug_trace()))
         self._hypervolume += Ff(dHV)
         if self._hypervolume < 0:
-            _warnings.warn("adding %.16e to the hypervolume lead to a"
-                          " negative hypervolume value of %.16e" %
-                          (dHV, self._hypervolume))
+            _warnings.warn("subtracting {:.16e} from the hypervolume lead to a"
+                          " negative hypervolume value of {:.16e}"
+                          "\nSelf info: {}\nTraceback: {}".format(
+                               -dHV,
+                               self._hypervolume,
+                               self._debug_info(),
+                               _debug_trace()))
         # assert self._hypervolume >= 0
         return dHV
 
@@ -858,9 +866,13 @@ class BiobjectiveNondominatedSortedList(list):
         Ff = self.hypervolume_final_float_type
         if self._hypervolume and (
                         Ff in (float, int) or isinstance(self._hypervolume, (float, int))) \
-                and dHV / self._hypervolume < 1e-9:
-            _warnings.warn("_subtract_HV: %f + %f loses many digits of precision"
-                          % (dHV, self._hypervolume))
+                and abs(dHV) / self._hypervolume < 1e-9:
+            _warnings.warn("_add_HV: adding {} to HV={} loses many digits of precision"
+                           "\nSelf info: {}\nTraceback: {}".format(
+                               dHV,
+                               self._hypervolume,
+                               self._debug_info(),
+                               _debug_trace()))
         self._hypervolume += Ff(dHV)
         return dHV
 

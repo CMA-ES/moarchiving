@@ -780,6 +780,11 @@ class BiobjectiveNondominatedSortedList(list):
             return None
         if idx1 is None:
             idx1 = idx0 + 1
+        if idx1 - idx0 == len(self):  # subtract HV of all points
+            assert idx0 == 0
+            dHV = -self._hypervolume
+            self._hypervolume *= 0  # keep type
+            return dHV
         if idx0 == 0:
             y = self.reference_point[1]
         else:

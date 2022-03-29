@@ -19,6 +19,16 @@ except ImportError: _warnings.warn(
     '`fractions` module not installed, arbitrary precision hypervolume computation not available')
 inf = float('inf')
 
+def _debug_trace(*args, **kwargs):
+    """return a string like printing the calling trace stack"""
+    try:
+        import traceback
+    except:
+        s = ''
+    else:
+        s = ''.join(traceback.format_stack(*args, **kwargs))
+    return s
+
 class BiobjectiveNondominatedSortedList(list):
     """A sorted list of non-dominated unique objective-pairs.
 
@@ -133,6 +143,21 @@ class BiobjectiveNondominatedSortedList(list):
             self._contributing_hypervolumes = []
         self._set_HV()
         self.make_expensive_asserts and self._asserts()
+
+    def _debug_info(self):
+        """return debug info as a list of (key, value) tuples"""
+        def cut_list(l, n=100):
+            n2 = int(n/2) - 2
+            try:
+                if len(l) > n:
+                    return l[:n2] + ['...'] + [l[int(len(l) / 2)]] + ['...'] + l[-n2:]
+            except:
+                pass
+            return l
+        return [('len', len(self)),
+                ('attributes', dict((k, cut_list(v)) for k, v in self.__dict__.items())),
+                ('self', cut_list(self)),
+               ]
 
     def add(self, f_pair, info=None):
         """insert `f_pair` in `self` if it is not (weakly) dominated.

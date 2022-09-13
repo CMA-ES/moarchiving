@@ -120,22 +120,28 @@ class BiobjectiveNondominatedSortedList(list):
         self.hypervolume_computation_float_type = BiobjectiveNondominatedSortedList.hypervolume_computation_float_type
         self.maintain_contributing_hypervolumes = BiobjectiveNondominatedSortedList.maintain_contributing_hypervolumes
 
-        if list_of_f_pairs is not None and len(list_of_f_pairs):
-            try:
+        if reference_point is not None:
+            self.reference_point = list(reference_point)
+        else:
+            self.reference_point = reference_point
+        self._removed = []  # should not be necessary but is needed for some tests
+        if list_of_f_pairs is not None and len(list_of_f_pairs) > 0:
+            try:  # prevent `sorted` to bail when `list_of_f_pairs` is an np.array
                 list_of_f_pairs = list_of_f_pairs.tolist()
             except:
                 pass
             if len(list_of_f_pairs[0]) != 2:
                 raise ValueError("need elements of len 2, got %s"
                                  " as first element" % str(list_of_f_pairs[0]))
-            list.__init__(self, sort(list_of_f_pairs) if sort else list_of_f_pairs)
-            # super(BiobjectiveNondominatedSortedList, self).__init__(sort(list_of_f_pairs))
-        if reference_point is not None:
-            self.reference_point = list(reference_point)
-        else:
-            self.reference_point = reference_point
+            for f_pair in sort(list_of_f_pairs) if sort else list_of_f_pairs:
+                if not isinstance(f_pair, list):
+                    f_pair = list(f_pair)
+                if self.in_domain(f_pair) and not self.dominates_with(len(self) - 1,
+                                                                      f_pair):
+                    self.append(f_pair)  # this is O(1) whereas prune is O(n) for each pruned element
+                else:
+                    self._removed.append(f_pair)
         self._infos = None
-        self.prune()  # remove dominated entries, uses in_domain, hence ref-point
         if self.maintain_contributing_hypervolumes:
             self._contributing_hypervolumes = self.contributing_hypervolumes
             raise NotImplementedError('update of _contributing_hypervolumes in _add_HV and _subtract_HV not implemented')
@@ -942,18 +948,16 @@ class BiobjectiveNondominatedSortedList(list):
         """`list` of f-pairs discarded in the last relevant method call.
 
         Methods covered are `__init__`, `prune`, `add`, and `add_list`.
-        Removed duplicates are not element of the discarded list.
-        When not inserted and not already in `self` also the input
-        argument(s) show(s) up in `discarded`.
+        Removed duplicates are not element of the discarded list except with
+        `__init__`. When not inserted and not already in `self` also the
+        input argument(s) show(s) up in `discarded`.
 
         Example to create a list of rank-k-non-dominated fronts:
 
         >>> from moarchiving import BiobjectiveNondominatedSortedList as NDA
         >>> all_ = [[0.1, 1], [-2, 3], [-4, 5], [-4, 5], [-4, 4.9]]
-        >>> nda_list = [NDA(all_)]  # rank-0-non-dominated
-        >>> while nda_list[-1].discarded:
-        ...     nda_list += [NDA(nda_list[-1].discarded)]
-        >>> assert [len(p) for p in nda_list] == [3, 1]
+        >>> nda_list = NDA(all_)  # rank-0-non-dominated
+        >>> assert nda_list.discarded == [[-4, 5], [-4, 5]]
 
         """
         try:

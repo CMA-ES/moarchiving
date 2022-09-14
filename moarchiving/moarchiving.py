@@ -8,7 +8,7 @@ update in logarithmic time.
 from __future__ import division, print_function, unicode_literals
 __author__ = "Nikolaus Hansen"
 __license__ = "BSD 3-clause"
-__version__ = "0.7.0"
+__version__ = "0.7.1"
 del division, print_function, unicode_literals
 
 import warnings as _warnings

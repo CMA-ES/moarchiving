@@ -29,6 +29,24 @@ def _debug_trace(*args, **kwargs):
         s = ''.join(traceback.format_stack(*args, **kwargs))
     return s
 
+def true_fraction(val, copy=False):
+    """return a `fractions.Fraction` object from `val`.
+
+    Fixes the issue that `Fraction` does not convert an `np.intc` or
+    `np.int32` type to infinite representation `int`.
+    """
+    try:
+        fractions.Fraction
+    except NameError:
+        return val
+    if isinstance(val, fractions.Fraction):
+        if copy:  # Fraction(.) is almost 20 times slower than float(.)
+            return fractions.Fraction(val)
+        return val
+    if not isinstance(val, (int, float)):
+        val = float(val)
+    return fractions.Fraction(val)
+
 class BiobjectiveNondominatedSortedList(list):
     """A sorted list of non-dominated unique objective-pairs.
 
@@ -90,14 +108,25 @@ class BiobjectiveNondominatedSortedList(list):
     # to the hypervolume) are discarded. We may want to keep them, for simplicity
     # in a separate list?
 
-    # Default Values for respective instance attributes
+    # Default Values for meta control attributes
     make_expensive_asserts = False
-    try:
-        hypervolume_final_float_type = fractions.Fraction  # HV computation takes three times longer, precision may be more relevant here
-        hypervolume_computation_float_type = fractions.Fraction  # HV computation takes three times longer, precision may be less relevant here
-    except:
-        hypervolume_final_float_type = float  # lambda x: x is marginally faster
-        hypervolume_computation_float_type = float  # may be a good compromise
+
+    hypervolume_final_float_type = true_fraction
+    """HV computation takes increasingly longer with increasing precision (number of iterations).
+
+        Set ``BiobjectiveNondominatedSortedList.hypervolume_final_float_type = float``
+        when speed is an issue.
+        """ # lambda x: x is marginally faster than float
+    hypervolume_computation_float_type = true_fraction
+    """HV computation takes increasingly longer with increasing precision (number of iterations).
+
+        Precision may be less relevant here than for
+        `hypervolume_final_float_type`.
+
+        Set ``BiobjectiveNondominatedSortedList.hypervolume_computation_float_type = float``
+        here first when speed is an issue.
+        """
+
     maintain_contributing_hypervolumes = False
 
     def __init__(self,
@@ -363,7 +392,7 @@ class BiobjectiveNondominatedSortedList(list):
         # now fix all mutable references as a true copy
         list.__init__(nda, self)
         nda.reference_point = [xi for xi in self.reference_point]
-        nda._hypervolume = self.hypervolume_final_float_type(self._hypervolume)  # with Fraction not necessary
+        nda._hypervolume = self.hypervolume_final_float_type(self._hypervolume, copy=True)  # with Fraction not necessary
         nda._contributing_hypervolumes = [hv for hv in self._contributing_hypervolumes]
         return nda
 

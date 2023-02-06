@@ -1003,7 +1003,8 @@ class BiobjectiveNondominatedSortedList(list):
         ... except ValueError: pass
         ... else: raise AssertionError("remove did not raise ValueError")
 
-        >>> from numpy.random import randn
+        >>> import numpy as np
+        >>> randn = np.random.randn
         >>> for _ in range(120):
         ...     a = moarchiving.BiobjectiveNondominatedSortedList._random_archive()
         ...     a.make_expensive_asserts = True
@@ -1014,10 +1015,10 @@ class BiobjectiveNondominatedSortedList(list):
         ...                 _ = a.add(f_pair)
         ...             h0 = a.hypervolume
         ...             hi = a.hypervolume_improvement(list(f_pair))
-        ...             assert hi == a._hypervolume_improvement0(list(f_pair))  # didn't raise with rand instead of randn
-        ...             assert a.hypervolume == h0  # works OK with Fraction
+        ...             hi_org = a._hypervolume_improvement0(list(f_pair))
+        ...             assert hi == hi_org  # didn't raise with rand instead of randn
+        ...             assert a.hypervolume == h0, (a.hypervolume, h0)  # works OK with Fraction
         ...             a._asserts()
-
 
         """
         assert sorted(self) == self

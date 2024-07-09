@@ -86,8 +86,5 @@ setup(name="moarchiving",
       keywords=["optimization", "multi-objective",],
       packages=["moarchiving"],
       # install_requires=["bisect"],
-      extras_require={
-            "arbitrary-precision": ["fraction"],
-      },
       package_data={'': ['LICENSE', ]},  # i.e. moarchiving/LICENSE
       )

@@ -410,7 +410,12 @@ class BiobjectiveNondominatedSortedList(list):
         try:
             return _bisect.bisect_left(self, f_pair, lowest_index)
         except Exception:
-            return _bisect.bisect_left(self, list(f_pair), lowest_index)
+            pass
+        try:
+            f_pair = f_pair.tolist()
+        except Exception:
+            f_pair = list(f_pair)
+        return _bisect.bisect_left(self, f_pair, lowest_index)
 
     def dominates(self, f_pair):
         """return `True` if any element of `self` dominates or is equal to `f_pair`.

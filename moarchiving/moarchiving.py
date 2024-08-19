@@ -384,13 +384,17 @@ class BiobjectiveNondominatedSortedList(list):
         """
 
     def copy(self):
-        """return a "deep" copy of `self`"""
+        """return a shallow copy of `self`, which should be good enough
+
+        because elements of `self` should never (be) change(d).
+
+        CAVEAT: this code has never been tested.
+        """
         _warnings.warn('BiobjectiveNondominatedSortedList.copy has never been tested')
         nda = BiobjectiveNondominatedSortedList()
         for d in self.__dict__:
             nda[d] = self[d]
-        # now fix all mutable references as a true copy
-        list.__init__(nda, self)
+        list.__init__(nda, self)  # (nda, (p[:] for p in self)) would make the copy deep, see issue #12
         nda.reference_point = [xi for xi in self.reference_point]
         nda._hypervolume = self.hypervolume_final_float_type(self._hypervolume, copy=True)  # with Fraction not necessary
         nda._contributing_hypervolumes = [hv for hv in self._contributing_hypervolumes]

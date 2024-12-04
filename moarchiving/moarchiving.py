@@ -604,7 +604,8 @@ class BiobjectiveNondominatedSortedList(list):
 
         If `idx` is an `f_pair`, return contributing hypervolume of element
         with value `f_pair`. If `f_pair` is not in `self`, return
-        `hypervolume_improvement(f_pair)`.
+        `hypervolume_improvement(f_pair)`, i.e., its uncrowded contributing
+        hypervolume (which can be negative).
 
         The return type is ``self.hypervolume_computation_float_type` and
         by default `fractions.Fraction`, which can be converted to `float`

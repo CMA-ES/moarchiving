@@ -7538,7 +7538,8 @@ unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromModule(&lt;modu
 ----------------------------------------------------------------------
 Ran 7 tests in 0.001s
 </code></pre>
-<h2 id="Details">Details<a class="anchor-link" href="#Details">¶</a></h2><p><code>moarchiving</code> uses the <a href="https://docs.python.org/3/library/fractions.html"><code>fractions.Fraction</code></a> type to avoid rounding errors when computing hypervolume differences, but its usage can also easily switched off by assigning the respective class attributes <code>hypervolume_computation_float_type</code> and <code>hypervolume_final_float_type</code>.</p>
+<h2 id="Details">Details<a class="anchor-link" href="#Details">¶</a></h2><p><code>moarchiving</code> uses the <a href="https://docs.python.org/3/library/fractions.html"><code>fractions.Fraction</code></a> type to avoid rounding errors when computing hypervolume differences, but its usage can also be easily switched off by assigning the respective class attributes <code>hypervolume_computation_float_type</code> and <code>hypervolume_final_float_type</code>.</p>
+<p>Implementation of two-dimensional archive is heavily based on the <a href="https://docs.python.org/3/library/bisect.html"><code>bisect</code></a> module, while in three and four dimensions it is based on the <a href="https://pypi.org/project/sortedcontainers/"><code>sortedcontainers</code></a> module.</p>
 <h2 id="Links">Links<a class="anchor-link" href="#Links">¶</a></h2><ul>
 <li><a href="https://github.com/CMA-ES/moarchiving">Code on Github</a></li>
 <li>Documentation (possibly slighly outdated) in<ul>

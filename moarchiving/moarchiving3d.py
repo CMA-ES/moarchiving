@@ -5,7 +5,7 @@ and efficiently calculating hypervolume with respect to the given reference poin
 """
 
 
-from moarchiving.moarchiving2d import BiobjectiveNondominatedSortedList as MOArchive2D
+from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2D
 from moarchiving.moarchiving_utils import (DLNode, MySortedList, compute_area_simple, remove_from_z,
                                            restart_list_y, lexicographic_less, one_contribution_3d)
 from moarchiving.moarchiving_parent import MOArchiveParent

@@ -2,7 +2,7 @@
 
 from moarchiving.moarchiving3d import MOArchive3d
 from moarchiving.moarchiving4d import MOArchive4d
-from moarchiving.moarchiving2d import BiobjectiveNondominatedSortedList as MOArchive2D
+from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2D
 from moarchiving.tests.point_sampling import (get_non_dominated_points, get_stacked_points,
                                               get_random_points, permute_points)
 

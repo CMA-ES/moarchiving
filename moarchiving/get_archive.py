@@ -1,7 +1,7 @@
 """ This module contains the factory functions for creating MOArchive objects
 of the appropriate dimensionality, for both constrained and unconstrained problems. """
 
-from moarchiving.moarchiving2d import BiobjectiveNondominatedSortedList as MOArchive2d
+from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2d
 from moarchiving.moarchiving3d import MOArchive3d
 from moarchiving.moarchiving4d import MOArchive4d
 from moarchiving.constrained_moarchive import CMOArchive

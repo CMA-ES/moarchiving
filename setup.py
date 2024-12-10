@@ -64,10 +64,9 @@ setup(name="moarchiving",
       long_description=long_description,  # __doc__, # can be used in the cma.py file
       long_description_content_type='text/markdown',
       version=__version__.split()[0],
-      description="Biobjective Archive class with hypervolume indicator "
-                  "and uncrowded hypervolume improvement computation "
-                  "",
-      author="Nikolaus Hansen",
+      description="This package implements a multi-objective (2, 3 and 4 objectives are supported) "
+                  "non-dominated archive ",
+      author="Nikolaus Hansen, Nace Sever, Mila Nedic, Tea Tusar",
       author_email="authors_firstname.lastname@inria.fr",
       # maintainer="Nikolaus Hansen",
       # maintainer_email="authors_firstname.lastname@inria.fr",

@@ -56,7 +56,7 @@ Implementation of two-dimensional archive is heavily based on the [`bisect`](htt
   - [epydocs format](https://cma-es.github.io/moarchiving/moarchiving-epydocs/index.html)
 
 ## Releases
-- 0.8.0 addition of MOArchive classes for 3 and 4 dimensions, as well as a class for handling solutions to constrained problems
+- 1.0.0 addition of MOArchive classes for 3 and 4 dimensions, as well as a class for handling solutions to constrained problems
 - 0.7.0 reimplementation of `BiobjectiveNondominatedSortedList.hypervolume_improvement` by extracting a sublist first.
 - 0.6.0 the `infos` attribute is a `list` with corresponding (arbitrary) information, e.g. for keeping the respective solutions.
 - 0.5.3 fixed assertion error when not using `fractions.Fraction`
@@ -82,7 +82,7 @@ The MOArchive object can be created using the `get_archive` function by providin
 
 
 ```python
-from moarchiving.get_archive import get_mo_archive
+from moarchiving import get_mo_archive
 
 moa2d = get_mo_archive([[1, 5], [2, 3], [4, 5], [5, 0]], reference_point=[10, 10], infos=["a", "b", "c", "d"])
 moa3d = get_mo_archive([[1, 2, 3], [3, 2, 1], [3, 3, 0], [2, 2, 1]], [10, 10, 10], ["a", "b", "c", "d"])
@@ -114,7 +114,7 @@ Constrained MOArchive supports all the functionalities of a non-constrained MOAr
 
 
 ```python
-from moarchiving.get_archive import get_cmo_archive
+from moarchiving import get_cmo_archive
 
 cmoa = get_cmo_archive([[1, 2, 3], [1, 3, 4], [4, 3, 2], [1, 3, 0]], [[3, 0], [0, 0], [0, 0], [0, 1]], 
                        reference_point=[5, 5, 5], infos=["a", "b", "c", "d"])
@@ -374,7 +374,6 @@ plt.show()
 ```python
 import time
 from moarchiving.tests.point_sampling import get_non_dominated_points
-import matplotlib.pyplot as plt
 test_archive_sizes = [0] + [2 ** i for i in range(21)]
 
 get_mo_archive.hypervolume_computation_float_type = fractions.Fraction
@@ -422,9 +421,9 @@ plt.show()
 ```
 
     Testing 2 objectives
-    ...............
+    ..............
     Testing 3 objectives
-    ............
+    .............
     Testing 4 objectives
     .........
     
@@ -482,7 +481,7 @@ plt.show()
     Testing 2 objectives
     ......................
     Testing 3 objectives
-    .................
+    ................
     Testing 4 objectives
     ...........
     

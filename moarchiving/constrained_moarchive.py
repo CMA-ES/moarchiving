@@ -46,30 +46,6 @@ class CMOArchive:
         hypervolume_computation_float_type = CMOArchive.hypervolume_computation_float_type \
             if hypervolume_computation_float_type is None else hypervolume_computation_float_type
 
-        # Do multiple checks to make sure the object is initialized correctly
-        assert ((list_of_f_vals is not None and len(list_of_f_vals) > 0)
-                or n_obj is not None or reference_point is not None), \
-            "At least one of `list_of_f_vals`, `reference_point` or `n_obj` must be provided"
-
-        if n_obj is None:
-            if list_of_f_vals is not None and len(list_of_f_vals) > 0:
-                n_obj = len(list_of_f_vals[0])
-            else:
-                n_obj = len(reference_point)
-
-        if list_of_f_vals is not None and len(list_of_f_vals) > 0:
-            assert len(list_of_f_vals[0]) == n_obj, \
-                "The number of objectives in list_of_f_vals must match n_obj"
-
-        if list_of_f_vals is not None:
-            assert len(list_of_f_vals) == len(list_of_g_vals), \
-                "The length of list_of_f_vals and list_of_g_vals must be the same"
-            assert infos is None or len(list_of_f_vals) == len(infos), \
-                "The length of list_of_f_vals and infos must be the same"
-
-        if reference_point is not None:
-            assert len(reference_point) == n_obj, \
-                "The number of objectives in reference_point must match n_obj"
         if n_obj == 2:
             self.archive = MOArchive2d(
                 reference_point=reference_point,
@@ -126,7 +102,7 @@ class CMOArchive:
                 self._icmop = -(constraint_violation + self.tau)
             return
         self.archive.add(f_vals, info)
-        self._icmop = max(self.archive.hypervolume_plus, -self.tau)
+        self._icmop = max(self.archive._hypervolume_plus, -self.tau)
 
     def add_list(self, list_of_f_vals, list_of_g_vals, infos=None):
         """ Add a list of objective vectors f_vals with corresponding constraints vectors g_vals
@@ -156,12 +132,12 @@ class CMOArchive:
         else:
             if infos is None:
                 infos = [None] * len(list_of_f_vals)
-            list_of_f_vals, infos = list(zip(*[(f_vals, info) for f_vals, info, g_vals in
-                                               zip(list_of_f_vals, infos, list_of_g_vals)
-                                               if g_vals == 0]))
+
+            list_of_f_vals = [f_vals for f_vals, g_vals in zip(list_of_f_vals, list_of_g_vals) if g_vals == 0]
+            infos = [info for info, g_vals in zip(infos, list_of_g_vals) if g_vals == 0]
 
             self.archive.add_list(list(list_of_f_vals), list(infos))
-            self._icmop = self.archive.hypervolume_plus
+            self._icmop = self.archive._hypervolume_plus
 
     def remove(self, f_vals):
         """ Remove a feasible point with objective vector f_vals from the archive.
@@ -175,7 +151,7 @@ class CMOArchive:
         [[1, 4], [4, 1]]
         """
         info = self.archive.remove(f_vals)
-        self._icmop = self.archive.hypervolume_plus
+        self._icmop = self.archive._hypervolume_plus
         return info
 
     @property

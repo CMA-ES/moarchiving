@@ -127,7 +127,7 @@ class MOArchive3d(MOArchiveParent):
         if len(f_vals) != self.n_obj:
             raise ValueError(f"argument `f_vals` must be of length {self.n_obj}, was ``{f_vals}``")
 
-        if self.hypervolume_plus is not None:
+        if self.reference_point is not None and self.hypervolume_plus is not None:
             dist_to_hv_area = self.distance_to_hypervolume_area(f_vals)
             if -dist_to_hv_area > self._hypervolume_plus:
                 self._hypervolume_plus = -dist_to_hv_area

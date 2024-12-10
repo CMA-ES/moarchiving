@@ -615,7 +615,7 @@ class BiobjectiveNondominatedSortedList(list):
 
         Raise `ValueError` when no reference point was given initially.
 
-        >>> from moarchiving.moarchiving2d import BiobjectiveNondominatedSortedList as NDA
+        >>> from moarchiving import BiobjectiveNondominatedSortedList as NDA
         >>> a = NDA(reference_point=[1, 1])
         >>> a.hypervolume_plus
         -inf

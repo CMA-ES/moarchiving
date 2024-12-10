@@ -10,7 +10,7 @@ tmp = moarchiving.BiobjectiveNondominatedSortedList.make_expensive_asserts
 moarchiving.BiobjectiveNondominatedSortedList.make_expensive_asserts = True
 # print(moarchiving.moarchiving.BiobjectiveNondominatedSortedList.make_expensive_asserts)
 
-for doctest_suite in [moarchiving.moarchiving2d, moarchiving.moarchiving3d,
+for doctest_suite in [moarchiving.moarchiving, moarchiving.moarchiving3d,
                       moarchiving.moarchiving4d, moarchiving.moarchiving_parent]:
     print(f'doctest.testmod({doctest_suite})')
     print(doctest.testmod(doctest_suite))

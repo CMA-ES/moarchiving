@@ -1,6 +1,6 @@
 """ Test the BiobjectiveNondominatedSortedList class """
 
-from moarchiving.moarchiving2d import BiobjectiveNondominatedSortedList
+from moarchiving.moarchiving import BiobjectiveNondominatedSortedList
 
 import unittest
 import random

@@ -1,8 +1,8 @@
-""" Test the MOArchive3d class """
+""" Test the MOArchive3obj class """
 
-from moarchiving.moarchiving3d import MOArchive3d
+from moarchiving.moarchiving3obj import MOArchive3obj
 from moarchiving.moarchiving_utils import DLNode, my_lexsort
-from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2D
+from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2obj
 from moarchiving.tests.point_sampling import (get_non_dominated_points, get_random_points,
                                               get_stacked_points)
 
@@ -15,11 +15,11 @@ def list_to_set(lst):
     return set([tuple(p) for p in lst])
 
 
-class TestMOArchiving3d(unittest.TestCase):
+class TestMOArchiving3obj(unittest.TestCase):
     def test_hypervolume_easy(self):
         """ test the hypervolume calculation for a simple case """
         points = [[1, 2, 3], [2, 3, 1], [3, 1, 2]]
-        moa = MOArchive3d(points, reference_point=[4, 4, 4], infos=["A", "B", "C"])
+        moa = MOArchive3obj(points, reference_point=[4, 4, 4], infos=["A", "B", "C"])
         self.assertEqual(moa.hypervolume, 13)
 
     def test_infos_non_dominated(self):
@@ -33,7 +33,7 @@ class TestMOArchiving3d(unittest.TestCase):
         ]
         infos = [str(p) for p in points]
 
-        moa = MOArchive3d(points, [6, 6, 6], infos)
+        moa = MOArchive3obj(points, [6, 6, 6], infos)
         # assert that the infos are stored in the same order as the points
         self.assertEqual([str(p[:3]) for p in moa], moa.infos)
         # assert that all the points in the archive are non dominated and thus have the same info
@@ -49,14 +49,14 @@ class TestMOArchiving3d(unittest.TestCase):
         ]
         infos = ["A", "B", "C", "D"]
 
-        moa = MOArchive3d(points, [6, 6, 6], infos)
+        moa = MOArchive3obj(points, [6, 6, 6], infos)
         # assert that only points A and D are stored in the archive
         self.assertSetEqual({"A", "D"}, set(moa.infos))
 
     def test_in_domain(self):
         """ test if the in_domain function works correctly """
         ref_point = [6, 6, 6]
-        moa = MOArchive3d([[1, 1, 1]], ref_point)
+        moa = MOArchive3obj([[1, 1, 1]], ref_point)
 
         # test if the points are in the domain
         self.assertTrue(moa.in_domain([1, 2, 3]))
@@ -70,7 +70,7 @@ class TestMOArchiving3d(unittest.TestCase):
         """ test if the add_points function works correctly """
         ref_point = [6, 6, 6]
         start_points = [[1, 2, 5], [3, 5, 1], [5, 1, 4]]
-        moa = MOArchive3d(start_points, ref_point)
+        moa = MOArchive3obj(start_points, ref_point)
 
         # add point that is not dominated and does not dominate any other point
         u1 = [2, 3, 3]
@@ -97,14 +97,14 @@ class TestMOArchiving3d(unittest.TestCase):
         points = get_non_dominated_points(pop_size * n_gen)
 
         for gen in range(1, n_gen + 1):
-            moa_true = MOArchive3d(points[:(gen * pop_size)], ref_point)
+            moa_true = MOArchive3obj(points[:(gen * pop_size)], ref_point)
             true_hv = moa_true.hypervolume
 
-            moa_add = MOArchive3d([], ref_point)
+            moa_add = MOArchive3obj([], ref_point)
             for i in range(gen * pop_size):
                 moa_add.add(points[i])
 
-            moa_add_gen = MOArchive3d([], ref_point)
+            moa_add_gen = MOArchive3obj([], ref_point)
             for i in range(gen):
                 moa_add_gen.add_list(points[(i * pop_size):((i + 1) * pop_size)])
 
@@ -119,7 +119,7 @@ class TestMOArchiving3d(unittest.TestCase):
 
         n_points_add = 100
         points = get_stacked_points(n_points_add, ['random', 'random', 'random'])
-        moa = MOArchive3d([], ref_point)
+        moa = MOArchive3obj([], ref_point)
 
         # add points one by one
         for point in points:
@@ -136,7 +136,7 @@ class TestMOArchiving3d(unittest.TestCase):
         """ Test the dominates function """
         ref_point = [6, 6, 6]
         points = [[1, 3, 5], [5, 3, 1], [4, 4, 4]]
-        moa = MOArchive3d(points, ref_point)
+        moa = MOArchive3obj(points, ref_point)
 
         # test that the points that are already in the archive are dominated
         for p in points:
@@ -155,7 +155,7 @@ class TestMOArchiving3d(unittest.TestCase):
         """ Test the dominators function """
         ref_point = [6, 6, 6]
         points = [[1, 2, 3], [3, 1, 2], [2, 3, 1], [3, 2, 1], [2, 1, 3], [1, 3, 2]]
-        moa = MOArchive3d(points, ref_point)
+        moa = MOArchive3obj(points, ref_point)
 
         # test that the points that are already in the archive are dominated by itself
         for p in points:
@@ -177,7 +177,7 @@ class TestMOArchiving3d(unittest.TestCase):
         """ Test the distance_to_hypervolume_area function first for a case where the
         reference point is not set, then for points in and outside the hypervolume area
         """
-        moa = MOArchive3d()
+        moa = MOArchive3obj()
         self.assertEqual(0, moa.distance_to_hypervolume_area([1, 1, 1]))
 
         moa.reference_point = [2, 2, 2]
@@ -201,7 +201,7 @@ class TestMOArchiving3d(unittest.TestCase):
     def test_distance_to_pareto_front_simple(self):
         """ Test the distance_to_pareto_front function by comparing it to hand calculated values """
         points = [[1, 2, 3], [2, 3, 1], [3, 1, 2]]
-        moa = MOArchive3d(points, reference_point=[6, 6, 6])
+        moa = MOArchive3obj(points, reference_point=[6, 6, 6])
 
         self.assertEqual(0, moa.distance_to_pareto_front([1, 1, 1]))
         self.assertEqual(3 ** 0.5, moa.distance_to_pareto_front([4, 4, 4]))
@@ -210,19 +210,19 @@ class TestMOArchiving3d(unittest.TestCase):
         self.assertEqual(0, moa.distance_to_pareto_front([3, 2, 4]))
         self.assertEqual(1, moa.distance_to_pareto_front([3, 3, 4]))
 
-    def test_distance_to_pareto_front_compare_2d(self):
-        """ Test the distance_to_pareto_front function by comparing it to the 2D version """
+    def test_distance_to_pareto_front_compare_2obj(self):
+        """ Test the distance_to_pareto_front function by comparing it to the 2obj version """
         n_points = 100
         n_test_points = 100
         points = get_stacked_points(n_points, ['random', 'random', 0])
 
-        moa3d = MOArchive3d(points, reference_point=[1, 1, 1])
-        moa2d = MOArchive2D([[p[0], p[1]] for p in points], reference_point=[1, 1])
+        moa3obj = MOArchive3obj(points, reference_point=[1, 1, 1])
+        moa2obj = MOArchive2obj([[p[0], p[1]] for p in points], reference_point=[1, 1])
 
         new_points = get_stacked_points(n_test_points, ['random', 'random', 1])
         for point in new_points:
-            d2 = moa2d.distance_to_pareto_front(point[:2])
-            d3 = moa3d.distance_to_pareto_front(point)
+            d2 = moa2obj.distance_to_pareto_front(point[:2])
+            d3 = moa3obj.distance_to_pareto_front(point)
             self.assertAlmostEqual(d2, d3, places=8)
 
     def test_copy_DLNode(self):
@@ -244,9 +244,9 @@ class TestMOArchiving3d(unittest.TestCase):
         self.assertEqual(n2_copy.x[0], -1)
 
     def test_copy_MOArchive(self):
-        """ Test the copy function of the MOArchive3d class """
+        """ Test the copy function of the MOArchive3obj class """
         points = [[1, 2, 3], [2, 3, 1], [3, 1, 2]]
-        moa = MOArchive3d(points, reference_point=[6, 6, 6])
+        moa = MOArchive3obj(points, reference_point=[6, 6, 6])
         moa_copy = moa.copy()
 
         self.assertEqual(moa.hypervolume, moa_copy.hypervolume)
@@ -262,24 +262,24 @@ class TestMOArchiving3d(unittest.TestCase):
         """ Test the remove function, by comparing the archive with 100 points added and then
         50 removed, to the with only the other 50 points added """
         points = [[1, 2, 3], [2, 3, 1], [3, 1, 2]]
-        moa_remove = MOArchive3d(points, reference_point=[6, 6, 6])
+        moa_remove = MOArchive3obj(points, reference_point=[6, 6, 6])
         moa_remove.remove([1, 2, 3])
         self.assertEqual(len(moa_remove), 2)
         self.assertSetEqual(list_to_set(list(moa_remove)), list_to_set(points[1:]))
         self.assertEqual(moa_remove.hypervolume,
-                         MOArchive3d(points[1:], reference_point=[6, 6, 6]).hypervolume)
+                         MOArchive3obj(points[1:], reference_point=[6, 6, 6]).hypervolume)
 
         points = get_non_dominated_points(n_points)
 
         remove_idx = list(range(n_points_remove))
         keep_idx = [i for i in range(n_points) if i not in remove_idx]
 
-        moa_true = MOArchive3d([points[i] for i in keep_idx], reference_point=[1, 1, 1])
-        moa_remove = MOArchive3d(points, reference_point=[1, 1, 1])
+        moa_true = MOArchive3obj([points[i] for i in keep_idx], reference_point=[1, 1, 1])
+        moa_remove = MOArchive3obj(points, reference_point=[1, 1, 1])
         for i in remove_idx:
             moa_remove.remove(points[i])
             self.assertEqual(len(moa_remove), len(list(moa_remove)))
-        moa_add = MOArchive3d([], reference_point=[1, 1, 1])
+        moa_add = MOArchive3obj([], reference_point=[1, 1, 1])
         for i in keep_idx:
             moa_add.add(points[i])
 
@@ -293,37 +293,37 @@ class TestMOArchiving3d(unittest.TestCase):
         self.assertEqual(moa_remove.hypervolume, moa_true.hypervolume)
         self.assertEqual(moa_add.hypervolume, moa_true.hypervolume)
 
-        moa = MOArchive3d([[1, 2, 3], [2, 3, 1], [3, 1, 2]], reference_point=[6, 6, 6])
+        moa = MOArchive3obj([[1, 2, 3], [2, 3, 1], [3, 1, 2]], reference_point=[6, 6, 6])
         moa.add([1, 1, 1])
         moa.remove([1, 1, 1])
         self.assertEqual(len(moa), 0)
 
     def test_contributing_hypervolume(self):
         """ Test the contributing_hypervolume function first for a simple case, and then
-        compare it to the 2D version, with one dimension set to 0 """
+        compare it to the 2obj version, with one objective set to 0 """
         points = [[1, 2, 3], [2, 3, 1], [3, 1, 2]]
-        moa = MOArchive3d(points, reference_point=[4, 4, 4])
+        moa = MOArchive3obj(points, reference_point=[4, 4, 4])
         self.assertEqual(moa.contributing_hypervolume([1, 2, 3]), 3)
         self.assertEqual(moa.contributing_hypervolume([2, 3, 1]), 3)
         self.assertEqual(moa.contributing_hypervolume([3, 1, 2]), 3)
 
         points = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
-        moa = MOArchive3d(points, reference_point=[4, 4, 4])
+        moa = MOArchive3obj(points, reference_point=[4, 4, 4])
         for p in points:
             self.assertEqual(moa.contributing_hypervolume(list(p)), 1)
 
         points = get_stacked_points(100, ['random', 'random', 0])
-        moa = MOArchive3d(points, reference_point=[1, 1, 1])
-        moa2d = MOArchive2D([[p[0], p[1]] for p in points], reference_point=[1, 1])
-        for p in moa2d:
+        moa = MOArchive3obj(points, reference_point=[1, 1, 1])
+        moa2obj = MOArchive2obj([[p[0], p[1]] for p in points], reference_point=[1, 1])
+        for p in moa2obj:
             self.assertAlmostEqual(moa.contributing_hypervolume(p + [0]),
-                                   moa2d.contributing_hypervolume(p), places=8)
+                                   moa2obj.contributing_hypervolume(p), places=8)
 
     def test_hypervolume_improvement(self):
         """ Test the hypervolume_improvement function first for a simple case, and then
-        compare it to the 2D version, with one dimension set to 0 """
+        compare it to the 2obj version, with one objective set to 0 """
         points = [[1, 2, 3], [2, 3, 1], [3, 1, 2]]
-        moa = MOArchive3d(points, reference_point=[4, 4, 4])
+        moa = MOArchive3obj(points, reference_point=[4, 4, 4])
         self.assertEqual(moa.hypervolume_improvement([1, 2, 3]), 0)
         self.assertEqual(moa.hypervolume_improvement([2, 3, 1]), 0)
         self.assertEqual(moa.hypervolume_improvement([3, 1, 2]), 0)
@@ -333,18 +333,18 @@ class TestMOArchiving3d(unittest.TestCase):
         self.assertEqual(moa.hypervolume_improvement([2, 2, 2]), 1)
 
         points = get_stacked_points(100, ['random', 'random', 0])
-        moa = MOArchive3d(points, reference_point=[1, 1, 1])
-        moa2d = MOArchive2D([[p[0], p[1]] for p in points], reference_point=[1, 1])
+        moa = MOArchive3obj(points, reference_point=[1, 1, 1])
+        moa2obj = MOArchive2obj([[p[0], p[1]] for p in points], reference_point=[1, 1])
 
         new_points = get_random_points(100, 2)
 
         hv_start = moa.hypervolume
         for p in new_points:
-            hv_imp2d = float(moa2d.hypervolume_improvement(p))
-            if hv_imp2d > 0:
-                self.assertAlmostEqual(hv_imp2d, moa.hypervolume_improvement(p + [0]), places=8)
+            hv_imp2obj = float(moa2obj.hypervolume_improvement(p))
+            if hv_imp2obj > 0:
+                self.assertAlmostEqual(hv_imp2obj, moa.hypervolume_improvement(p + [0]), places=8)
             else:
-                self.assertAlmostEqual(hv_imp2d, moa.hypervolume_improvement(p + [1]), places=8)
+                self.assertAlmostEqual(hv_imp2obj, moa.hypervolume_improvement(p + [1]), places=8)
 
         # make sure this doesn't change the hypervolume of the archive
         hv_end = moa.hypervolume
@@ -358,7 +358,7 @@ class TestMOArchiving3d(unittest.TestCase):
         for mode in ['spherical', 'linear']:
             points = get_non_dominated_points(n_points, mode=mode)
             self.assertEqual(len(points), n_points)
-            moa = MOArchive3d(points, reference_point=[1, 1, 1])
+            moa = MOArchive3obj(points, reference_point=[1, 1, 1])
             self.assertEqual(len(moa), n_points)
             self.assertSetEqual(list_to_set(points), list_to_set(moa))
 
@@ -401,7 +401,7 @@ class TestMOArchiving3d(unittest.TestCase):
 
     def test_hypervolume_plus(self):
         """ test the hypervolume_plus indicator """
-        moa = MOArchive3d(reference_point=[1, 1, 1])
+        moa = MOArchive3obj(reference_point=[1, 1, 1])
         self.assertEqual(moa.hypervolume_plus, -float('inf'))
 
         moa.add([2, 2, 2])
@@ -416,7 +416,7 @@ class TestMOArchiving3d(unittest.TestCase):
         moa.add([0.5, 0.5, 0.5])
         self.assertEqual(moa.hypervolume_plus, moa.hypervolume)
 
-        moa = MOArchive3d(reference_point=[1, 1, 1])
+        moa = MOArchive3obj(reference_point=[1, 1, 1])
         prev_hv_plus = moa.hypervolume_plus
         for i in range(1000):
             point = [10 * random.random(), 10 * random.random(), 10 * random.random()]
@@ -439,7 +439,7 @@ class TestMOArchiving3d(unittest.TestCase):
             [0.67, 0.17, 0.54],
             [0.79, 0.72, 0.05]
         ]
-        moa = MOArchive3d(points, reference_point=[1, 1, 1])
+        moa = MOArchive3obj(points, reference_point=[1, 1, 1])
         self.assertAlmostEqual(moa.hypervolume, 0.318694, places=6)
         self.assertEqual(moa.hypervolume_plus, moa.hypervolume)
 
@@ -455,7 +455,7 @@ class TestMOArchiving3d(unittest.TestCase):
             [0.9572130722067812, 0.33659454511262676, 0.09274584338014791],
             [0.09671637683346401, 0.8474943663474598, 0.6037260313668911]
         ]
-        moa = MOArchive3d(points, reference_point=[1, 1, 1])
+        moa = MOArchive3obj(points, reference_point=[1, 1, 1])
         self.assertAlmostEqual(moa.hypervolume, 0.52192086148367, places=6)
         self.assertEqual(moa.hypervolume_plus, moa.hypervolume)
 
@@ -561,11 +561,11 @@ class TestMOArchiving3d(unittest.TestCase):
             [0.7412309083479308, 0.5516804211263913, 0.42768691898067934],
             [0.009669699608339966, 0.07524386007376704, 0.883106393300143]
         ]
-        moa = MOArchive3d(points, reference_point=[1, 1, 1])
+        moa = MOArchive3obj(points, reference_point=[1, 1, 1])
         self.assertAlmostEqual(moa.hypervolume, 0.812479094965706, places=8)
-        moa = MOArchive3d([[p[0]-1, p[1]-1, p[2]-1] for p in points], reference_point=[0, 0, 0])
+        moa = MOArchive3obj([[p[0] - 1, p[1] - 1, p[2] - 1] for p in points], reference_point=[0, 0, 0])
         self.assertAlmostEqual(moa.hypervolume, 0.812479094965706, places=8)
-        moa = MOArchive3d(points, reference_point=[1, 2, 3])
+        moa = MOArchive3obj(points, reference_point=[1, 2, 3])
         self.assertAlmostEqual(moa.hypervolume, 5.61969774713577, places=8)
         self.assertEqual(moa.hypervolume_plus, moa.hypervolume)
 

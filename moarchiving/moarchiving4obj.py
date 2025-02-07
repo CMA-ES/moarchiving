@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-This module contains a MOArchiving4d class for storing a set of non-dominated points in 4D space
-and calculating hypervolume with respect to the given reference point.
+This module contains a MOArchiving4obj class for storing a set of non-dominated points in 4
+objective space and calculating hypervolume with respect to the given reference point.
 """
 
 
 from moarchiving.moarchiving_utils import hv4dplusR, remove_from_z
-from moarchiving.moarchiving3d import MOArchive3d
+from moarchiving.moarchiving3obj import MOArchive3obj
 from moarchiving.moarchiving_parent import MOArchiveParent
 
 import warnings as _warnings
@@ -19,8 +19,8 @@ except ImportError:
 inf = float('inf')
 
 
-class MOArchive4d(MOArchiveParent):
-    """ Class for storing a set of non-dominated points in 4D space and calculating
+class MOArchive4obj(MOArchiveParent):
+    """ Class for storing a set of non-dominated points in 4 objective space and calculating
     hypervolume with respect to the given reference point.
 
     The archive is implemented as a doubly linked list, and can be modified using functions
@@ -59,7 +59,7 @@ class MOArchive4d(MOArchiveParent):
     def __init__(self, list_of_f_vals=None, reference_point=None, infos=None,
                  hypervolume_final_float_type=None,
                  hypervolume_computation_float_type=None):
-        """ Create a new 4D archive object.
+        """ Create a new 4 objective archive object.
 
         Args:
             list_of_f_vals: list of objective vectors
@@ -72,9 +72,9 @@ class MOArchive4d(MOArchiveParent):
                 defaults to fractions.Fraction
 
         """
-        hypervolume_final_float_type = MOArchive4d.hypervolume_final_float_type \
+        hypervolume_final_float_type = MOArchive4obj.hypervolume_final_float_type \
             if hypervolume_final_float_type is None else hypervolume_final_float_type
-        hypervolume_computation_float_type = MOArchive4d.hypervolume_computation_float_type \
+        hypervolume_computation_float_type = MOArchive4obj.hypervolume_computation_float_type \
             if hypervolume_computation_float_type is None else hypervolume_computation_float_type
 
         super().__init__(list_of_f_vals=list_of_f_vals,
@@ -209,14 +209,14 @@ class MOArchive4d(MOArchiveParent):
         >>> list(moa), moa.infos
         ([[4, 3, 2, 1], [1, 2, 3, 4]], ['C', 'A'])
         """
-        return MOArchive4d(list(self), self.reference_point, self.infos)
+        return MOArchive4obj(list(self), self.reference_point, self.infos)
 
     def _get_kink_points(self):
         """ Function that returns the kink points of the archive.
 
          Kink point are calculated by making a sweep of the archive, where the state is one
-         3D archive of all possible kink points found so far, and another 3D archive which stores
-         the non-dominated points so far in the sweep
+         3 objective archive of all possible kink points found so far, and another 3 objective
+         archive which stores the non-dominated points so far in the sweep
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]], reference_point=[5, 5, 5, 5])
@@ -230,9 +230,9 @@ class MOArchive4d(MOArchiveParent):
             ref_point = self.reference_point
 
         # initialize the two states, one for points and another for kink points
-        points_state = MOArchive3d(reference_point=ref_point[:3])
-        kink_candidates = MOArchive3d([ref_point[:3]],
-                                      reference_point=[r + 1 for r in ref_point[:3]])
+        points_state = MOArchive3obj(reference_point=ref_point[:3])
+        kink_candidates = MOArchive3obj([ref_point[:3]],
+                                        reference_point=[r + 1 for r in ref_point[:3]])
         # initialize the point dictionary, which will store the fourth coordinate of the points
         point_dict = {
             tuple(ref_point[:3]): -inf
@@ -294,7 +294,7 @@ class MOArchive4d(MOArchiveParent):
         """
         if reference_point is not None:
             _warnings.warn("Reference point given at the initialization is used "
-                           "in 3D hypervolume computation")
+                           "in 3 objective hypervolume computation")
 
         if self._hypervolume_already_computed:
             return self._hypervolume
@@ -329,5 +329,5 @@ class MOArchive4d(MOArchiveParent):
 
 if __name__ == "__main__":
     import doctest
-    print('doctest.testmod() in moarchiving4d.py')
+    print('doctest.testmod() in moarchiving4obj.py')
     print(doctest.testmod())

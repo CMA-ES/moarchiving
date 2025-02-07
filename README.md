@@ -43,9 +43,9 @@ Ran 7 tests in 0.001s
 ## Details
 
 `moarchiving` uses the [`fractions.Fraction`](https://docs.python.org/3/library/fractions.html) type to avoid rounding errors when computing hypervolume differences, but its usage can also be easily switched off by assigning the respective class attributes `hypervolume_computation_float_type` and `hypervolume_final_float_type`.
-The Fraction type can become prohibitively computationally expensive with increasing precision.
+The Fraction type can become prohibitively computationally expensive with increasing precision. The Fraction type can become prohibitively computationally expensive with increasing precision.
 
-Implementation of two-dimensional archive is heavily based on the [`bisect`](https://docs.python.org/3/library/bisect.html) module, while in three and four dimensions it is based on the [`sortedcontainers`](https://pypi.org/project/sortedcontainers/) module.
+Implementation of two-objective archive is heavily based on the [`bisect`](https://docs.python.org/3/library/bisect.html) module, while for three and four objectives it is based on the [`sortedcontainers`](https://pypi.org/project/sortedcontainers/) module.
 
 
 ## Links
@@ -57,7 +57,7 @@ Implementation of two-dimensional archive is heavily based on the [`bisect`](htt
   - [epydocs format](https://cma-es.github.io/moarchiving/moarchiving-epydocs/index.html)
 
 ## Releases
-- 1.0.0 addition of MOArchive classes for 3 and 4 dimensions, as well as a class for handling solutions to constrained problems
+- 1.0.0 addition of MOArchive classes for 3 and 4 objectives, as well as a class for handling solutions to constrained problems
 - 0.7.0 reimplementation of `BiobjectiveNondominatedSortedList.hypervolume_improvement` by extracting a sublist first.
 - 0.6.0 the `infos` attribute is a `list` with corresponding (arbitrary) information, e.g. for keeping the respective solutions.
 - 0.5.3 fixed assertion error when not using `fractions.Fraction`

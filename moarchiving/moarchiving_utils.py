@@ -286,7 +286,7 @@ def restart_base_setup_z_and_closest(head, new):
     new.next[2] = p
 
 
-def one_contribution_3d(head, new, Fc):
+def one_contribution_3_obj(head, new, Fc):
     """ Computes the contribution of adding a new point to the archive in three dimensions """
     restart_base_setup_z_and_closest(head, new)
     if new.ndomr > 0:
@@ -395,7 +395,7 @@ def hv4dplusU(head, Fc):
     new = head.next[3].next[3]
 
     while new != last:
-        volume += one_contribution_3d(head, new, Fc)
+        volume += one_contribution_3_obj(head, new, Fc)
         add_to_z(new)
         update_links(head, new, new.next[2])
 

@@ -22,9 +22,9 @@ __version__ = "1.0.0"
 
 from .get_archive import get_mo_archive, get_cmo_archive
 from .moarchiving import BiobjectiveNondominatedSortedList
-from .moarchiving3d import MOArchive3d
-from .moarchiving4d import MOArchive4d
+from .moarchiving3obj import MOArchive3obj
+from .moarchiving4obj import MOArchive4obj
 from .moarchiving_parent import MOArchiveParent
 from .constrained_moarchive import CMOArchive
-from moarchiving.tests import (test_moarchiving2d, test_moarchiving3d, test_moarchiving4d,
+from moarchiving.tests import (test_moarchiving2obj, test_moarchiving3obj, test_moarchiving4obj,
                                test_constrained_moarchiving, test_sorted_list)

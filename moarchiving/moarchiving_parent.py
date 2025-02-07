@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-This module contains a parent class to MOArchiving3d and MOArchiving4d,
+This module contains a parent class to MOArchiving3obj and MOArchiving4obj,
 to avoid code duplication.
 """
 
 
 from moarchiving.moarchiving_utils import DLNode, my_lexsort, init_sentinels_new
 
-
 inf = float('inf')
 
 
 class MOArchiveParent:
-    """ Parent class for Moarchiving 3D and 4D classes, to avoid code duplication """
+    """ Parent class for Moarchiving 3 and 4 objective classes, to avoid code duplication """
 
     def __init__(self, list_of_f_vals=None, reference_point=None, infos=None, n_obj=None,
                  hypervolume_final_float_type=None,
@@ -134,15 +133,15 @@ class MOArchiveParent:
         the hypervolume if not dominated by other elements.
 
         >>> from moarchiving.get_archive import get_mo_archive
-        >>> archive3d = get_mo_archive(reference_point=[3, 3, 3])
-        >>> archive3d.in_domain([2, 2, 2])
+        >>> archive3obj = get_mo_archive(reference_point=[3, 3, 3])
+        >>> archive3obj.in_domain([2, 2, 2])
         True
-        >>> archive3d.in_domain([0, 0, 3])
+        >>> archive3obj.in_domain([0, 0, 3])
         False
-        >>> archive4d = get_mo_archive(reference_point=[3, 3, 3, 3])
-        >>> archive4d.in_domain([2, 2, 2, 2])
+        >>> archive4obj = get_mo_archive(reference_point=[3, 3, 3, 3])
+        >>> archive4obj.in_domain([2, 2, 2, 2])
         True
-        >>> archive4d.in_domain([0, 0, 0, 3])
+        >>> archive4obj.in_domain([0, 0, 0, 3])
         False
         """
 

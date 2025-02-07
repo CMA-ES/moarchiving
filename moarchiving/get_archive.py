@@ -1,9 +1,9 @@
 """ This module contains the factory functions for creating MOArchive objects
-of the appropriate dimensionality, for both constrained and unconstrained problems. """
+of the appropriate number of objectives, for both constrained and unconstrained problems. """
 
-from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2d
-from moarchiving.moarchiving3d import MOArchive3d
-from moarchiving.moarchiving4d import MOArchive4d
+from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2obj
+from moarchiving.moarchiving3obj import MOArchive3obj
+from moarchiving.moarchiving4obj import MOArchive4obj
 from moarchiving.constrained_moarchive import CMOArchive
 
 import warnings as _warnings
@@ -15,17 +15,16 @@ except ImportError:
 
 def get_mo_archive(list_of_f_vals=None, reference_point=None, infos=None, n_obj=None):
     """
-    Factory function for creating MOArchive objects of the appropriate dimensionality.
+    Factory function for creating MOArchive objects with the appropriate number of objectives.
 
     Args:
         list_of_f_vals: list of objective vectors
         reference_point: reference point for the archive
         infos: list of additional information for each objective vector
         n_obj: when initializing an empty archive, the number of objectives should be provided
-            to determine the dimensionality of the archive (default is 2)
 
     Returns:
-        MOArchive object of the appropriate dimensionality, based on the number of objectives
+        MOArchive object with the appropriate number of objectives
     """
     if not hasattr(get_mo_archive, "hypervolume_final_float_type"):
         try:
@@ -70,17 +69,17 @@ def get_mo_archive(list_of_f_vals=None, reference_point=None, infos=None, n_obj=
             n_obj = len(reference_point)
 
     if n_obj == 2:
-        return MOArchive2d(list_of_f_vals, reference_point=reference_point, infos=infos,
-                           hypervolume_final_float_type=get_mo_archive.hypervolume_final_float_type,
-                           hypervolume_computation_float_type=get_mo_archive.hypervolume_computation_float_type)
+        return MOArchive2obj(list_of_f_vals, reference_point=reference_point, infos=infos,
+                             hypervolume_final_float_type=get_mo_archive.hypervolume_final_float_type,
+                             hypervolume_computation_float_type=get_mo_archive.hypervolume_computation_float_type)
     elif n_obj == 3:
-        return MOArchive3d(list_of_f_vals, reference_point=reference_point, infos=infos,
-                           hypervolume_final_float_type=get_mo_archive.hypervolume_final_float_type,
-                           hypervolume_computation_float_type=get_mo_archive.hypervolume_computation_float_type)
+        return MOArchive3obj(list_of_f_vals, reference_point=reference_point, infos=infos,
+                             hypervolume_final_float_type=get_mo_archive.hypervolume_final_float_type,
+                             hypervolume_computation_float_type=get_mo_archive.hypervolume_computation_float_type)
     elif n_obj == 4:
-        return MOArchive4d(list_of_f_vals, reference_point=reference_point, infos=infos,
-                           hypervolume_final_float_type=get_mo_archive.hypervolume_final_float_type,
-                           hypervolume_computation_float_type=get_mo_archive.hypervolume_computation_float_type)
+        return MOArchive4obj(list_of_f_vals, reference_point=reference_point, infos=infos,
+                             hypervolume_final_float_type=get_mo_archive.hypervolume_final_float_type,
+                             hypervolume_computation_float_type=get_mo_archive.hypervolume_computation_float_type)
     else:
         raise ValueError(f"Unsupported number of objectives: {n_obj}")
 
@@ -96,10 +95,9 @@ def get_cmo_archive(list_of_f_vals=None, list_of_g_vals=None, reference_point=No
         reference_point: reference point for the archive
         infos: list of additional information for each objective vector
         n_obj: should be provided when initializing an empty archive,
-            to determine the dimensionality of the archive (default is 2)
         tau: threshold that indicates when the indicator reaches feasibility
     Returns:
-        MOArchive object of the appropriate dimensionality, based on the number of objectives
+        MOArchive object with the appropriate number of objectives
     """
 
     if not hasattr(get_cmo_archive, "hypervolume_final_float_type"):

@@ -2,9 +2,9 @@
 """ Module for the CMOArchive class, which provides additional functionality for constrained
 multi-objective optimization to the MOArchive classes, while keeping the same interface. """
 
-from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2d
-from moarchiving.moarchiving3d import MOArchive3d
-from moarchiving.moarchiving4d import MOArchive4d
+from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2obj
+from moarchiving.moarchiving3obj import MOArchive3obj
+from moarchiving.moarchiving4obj import MOArchive4obj
 
 import warnings as _warnings
 try:
@@ -47,17 +47,17 @@ class CMOArchive:
             if hypervolume_computation_float_type is None else hypervolume_computation_float_type
 
         if n_obj == 2:
-            self.archive = MOArchive2d(
+            self.archive = MOArchive2obj(
                 reference_point=reference_point,
                 hypervolume_final_float_type=hypervolume_final_float_type,
                 hypervolume_computation_float_type=hypervolume_computation_float_type)
         elif n_obj == 3:
-            self.archive = MOArchive3d(
+            self.archive = MOArchive3obj(
                 reference_point=reference_point,
                 hypervolume_final_float_type=hypervolume_final_float_type,
                 hypervolume_computation_float_type=hypervolume_computation_float_type)
         elif n_obj == 4:
-            self.archive = MOArchive4d(
+            self.archive = MOArchive4obj(
                 reference_point=reference_point,
                 hypervolume_final_float_type=hypervolume_final_float_type,
                 hypervolume_computation_float_type=hypervolume_computation_float_type)

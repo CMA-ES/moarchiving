@@ -14,7 +14,7 @@ def list_to_set(lst):
     return set([tuple(p) for p in lst])
 
 
-class TestMOArchiving2d(unittest.TestCase):
+class TestMOArchiving2obj(unittest.TestCase):
     """ Tests for the BiobjectiveNondominatedSortedList class """
     def test_hypervolume_easy(self):
         """ test the hypervolume calculation for a simple case """
@@ -87,7 +87,7 @@ class TestMOArchiving2d(unittest.TestCase):
         self.assertSetEqual({"A", "B", "E"}, set(moa.infos))
 
     def test_copy_MOArchive(self):
-        """ Test the copy function of the MOArchive3d class """
+        """ Test the copy function of the MOArchive3obj class """
         points = [[1, 3], [2, 2], [3, 1]]
         moa = BiobjectiveNondominatedSortedList(points, reference_point=[6, 6])
         moa_copy = moa.copy()

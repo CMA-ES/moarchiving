@@ -43,6 +43,7 @@ Ran 7 tests in 0.001s
 ## Details
 
 `moarchiving` uses the [`fractions.Fraction`](https://docs.python.org/3/library/fractions.html) type to avoid rounding errors when computing hypervolume differences, but its usage can also be easily switched off by assigning the respective class attributes `hypervolume_computation_float_type` and `hypervolume_final_float_type`.
+The Fraction type can become prohibitively computationally expensive with increasing precision.
 
 Implementation of two-dimensional archive is heavily based on the [`bisect`](https://docs.python.org/3/library/bisect.html) module, while in three and four dimensions it is based on the [`sortedcontainers`](https://pypi.org/project/sortedcontainers/) module.
 

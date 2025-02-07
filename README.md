@@ -27,7 +27,7 @@ python -m moarchiving.test
 on a system shell should output something like
 
 ```
-doctest.testmod(<module 'moarchiving.moarchiving2d' from '...\\moarchiving\\moarchiving2d.py'>)
+doctest.testmod(<module 'moarchiving.moarchiving2obj' from '...\\moarchiving\\moarchiving2obj.py'>)
 TestResults(failed=0, attempted=90)
 
 ...
@@ -42,10 +42,9 @@ Ran 7 tests in 0.001s
 
 ## Details
 
-`moarchiving` uses the [`fractions.Fraction`](https://docs.python.org/3/library/fractions.html) type to avoid rounding errors when computing hypervolume differences, but its usage can also be easily switched off by assigning the respective class attributes `hypervolume_computation_float_type` and `hypervolume_final_float_type`.
-The Fraction type can become prohibitively computationally expensive with increasing precision. The Fraction type can become prohibitively computationally expensive with increasing precision.
+`moarchiving` uses the [`fractions.Fraction`](https://docs.python.org/3/library/fractions.html) type to avoid rounding errors when computing hypervolume differences, but its usage can also be easily switched off by assigning the respective class attributes `hypervolume_computation_float_type` and `hypervolume_final_float_type`. The Fraction type can become prohibitively computationally expensive with increasing precision.
 
-Implementation of two-objective archive is heavily based on the [`bisect`](https://docs.python.org/3/library/bisect.html) module, while for three and four objectives it is based on the [`sortedcontainers`](https://pypi.org/project/sortedcontainers/) module.
+Implementation of two-objective archive is heavily based on the [`bisect`](https://docs.python.org/3/library/bisect.html) module, while in three and four objectives it is based on the [`sortedcontainers`](https://pypi.org/project/sortedcontainers/) module.
 
 
 ## Links
@@ -85,18 +84,18 @@ The MOArchive object can be created using the `get_archive` function by providin
 ```python
 from moarchiving import get_mo_archive
 
-moa2d = get_mo_archive([[1, 5], [2, 3], [4, 5], [5, 0]], reference_point=[10, 10], infos=["a", "b", "c", "d"])
-moa3d = get_mo_archive([[1, 2, 3], [3, 2, 1], [3, 3, 0], [2, 2, 1]], [10, 10, 10], ["a", "b", "c", "d"])
-moa4d = get_mo_archive([[1, 2, 3, 4], [1, 3, 4, 5], [4, 3, 2, 1], [1, 3, 0, 1]], reference_point=[10, 10, 10, 10], infos=["a", "b", "c", "d"])
+moa2obj = get_mo_archive([[1, 5], [2, 3], [4, 5], [5, 0]], reference_point=[10, 10], infos=["a", "b", "c", "d"])
+moa3obj = get_mo_archive([[1, 2, 3], [3, 2, 1], [3, 3, 0], [2, 2, 1]], [10, 10, 10], ["a", "b", "c", "d"])
+moa4obj = get_mo_archive([[1, 2, 3, 4], [1, 3, 4, 5], [4, 3, 2, 1], [1, 3, 0, 1]], reference_point=[10, 10, 10, 10], infos=["a", "b", "c", "d"])
 
-print("points in the 2d archive:", list(moa2d))
-print("points in the 3d archive:", list(moa3d))
-print("points in the 4d archive:", list(moa4d))
+print("points in the 2 objective archive:", list(moa2obj))
+print("points in the 3 objective archive:", list(moa3obj))
+print("points in the 4 objective archive:", list(moa4obj))
 ```
 
-    points in the 2d archive: [[1, 5], [2, 3], [5, 0]]
-    points in the 3d archive: [[3, 3, 0], [2, 2, 1], [1, 2, 3]]
-    points in the 4d archive: [[1, 3, 0, 1], [1, 2, 3, 4]]
+    points in the 2 objective archive: [[1, 5], [2, 3], [5, 0]]
+    points in the 3 objective archive: [[3, 3, 0], [2, 2, 1], [1, 2, 3]]
+    points in the 4 objective archive: [[1, 3, 0, 1], [1, 2, 3, 4]]
     
 
 MOArchive objects can also be initialized empty.
@@ -173,7 +172,7 @@ print("infos:", cmoa.infos)
     
 
 ### 5. Archive size
-The MOArchive implements some functionality of a list (in the 2D case, it actually extends the `list` class, though this is not the case in 3D and 4D).  In particular, it includes the `len` method to get the number of solutions in the archive as well as the `in` keyword to check if a point is in the archive.
+The MOArchive implements some functionality of a list (in the 2 objective case, it actually extends the `list` class, though this is not the case in 3 and 4 objectives).  In particular, it includes the `len` method to get the number of solutions in the archive as well as the `in` keyword to check if a point is in the archive.
 
 
 ```python
@@ -365,7 +364,7 @@ plt.show()
 
 
     
-![png](readme_files/moarchiving_31_0.png)
+![png](README_files/README_31_0.png)
     
 
 
@@ -422,7 +421,7 @@ plt.show()
 ```
 
     Testing 2 objectives
-    ..............
+    ...............
     Testing 3 objectives
     .............
     Testing 4 objectives
@@ -431,7 +430,7 @@ plt.show()
 
 
     
-![png](readme_files/moarchiving_35_1.png)
+![png](README_files/README_35_1.png)
     
 
 
@@ -482,13 +481,13 @@ plt.show()
     Testing 2 objectives
     ......................
     Testing 3 objectives
-    ................
+    .................
     Testing 4 objectives
     ...........
     
 
 
     
-![png](readme_files/moarchiving_37_1.png)
+![png](README_files/README_37_1.png)
     
 

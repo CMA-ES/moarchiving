@@ -64,8 +64,8 @@ setup(name="moarchiving",
       long_description=long_description,  # __doc__, # can be used in the cma.py file
       long_description_content_type='text/markdown',
       version=__version__.split()[0],
-      description="This package implements a multi-objective (2, 3 and 4 objectives are supported) "
-                  "non-dominated archive with hypervolume indicator and uncrowded hypervolume "
+      description="This package implements a non-dominated archive for 2, 3 or 4 "
+                  "objectives with hypervolume indicator and uncrowded hypervolume "
                   "improvement computation.",
       author="Nikolaus Hansen, Nace Sever, Mila Nedic, Tea Tusar",
       author_email="authors_firstname.lastname@inria.fr",

@@ -229,7 +229,7 @@
         
 
         
-            <div class="itemName"><code><a href="moarchiving.moarchiving2d.html" class="internal-link" title="moarchiving.moarchiving2d">moarchiving2d</a></code>
+            <div class="itemName"><code><a href="moarchiving.moarchiving.html" class="internal-link" title="moarchiving.moarchiving">moarchiving</a></code>
             </div>
         
 
@@ -239,7 +239,7 @@
         
 
         
-            <div class="itemName"><code><a href="moarchiving.moarchiving3d.html" class="internal-link" title="moarchiving.moarchiving3d">moarchiving3d</a></code>
+            <div class="itemName"><code><a href="moarchiving.moarchiving3obj.html" class="internal-link" title="moarchiving.moarchiving3obj">moarchiving3obj</a></code>
             </div>
         
 
@@ -249,7 +249,7 @@
         
 
         
-            <div class="itemName"><code><a href="moarchiving.moarchiving4d.html" class="internal-link" title="moarchiving.moarchiving4d">moarchiving4d</a></code>
+            <div class="itemName"><code><a href="moarchiving.moarchiving4obj.html" class="internal-link" title="moarchiving.moarchiving4obj">moarchiving4obj</a></code>
             </div>
         
 
@@ -315,8 +315,41 @@
         
          
 
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
         
-         
+        
+        
+
+        
+            <div class="itemName"><code><a href="index.html#__author__" class="internal-link" title="moarchiving.__author__">__author__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="index.html#__license__" class="internal-link" title="moarchiving.__license__">__license__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="index.html#__version__" class="internal-link" title="moarchiving.__version__">__version__</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
 
         
          
@@ -356,11 +389,11 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>This module contains the factory functions for creating MOArchive objects of the appropriate dimensionality, for both constrained and unconstrained problems.</p></div>
+          <div><p>This module contains the factory functions for creating MOArchive objects of the appropriate number of objectives, for both constrained and unconstrained problems.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id4">
+          <table class="children sortable" id="id5">
   
   
   <tr class="function">
@@ -372,7 +405,7 @@
     
     <td>Function</td>
     <td><code><a href="#get_mo_archive" class="internal-link" title="moarchiving.get_archive.get_mo_archive">get<wbr></wbr>_mo<wbr></wbr>_archive</a></code></td>
-    <td>Factory function for creating MOArchive objects of the appropriate dimensionality.</td>
+    <td>Factory function for creating MOArchive objects with the appropriate number of objectives.</td>
   </tr>
 </table>
           
@@ -406,14 +439,14 @@
     <div><p class="pre">Function for creating CMOArchive objects, with similar interface as get_mo_archive.
 
 Args:
-    list_of_f_vals: list of objective vectors, can be None if n_obj is provided
+    list_of_f_vals: list of objective vectors
     list_of_g_vals: list of constraint vectors, must be the same length as list_of_f_vals
     reference_point: reference point for the archive
     infos: list of additional information for each objective vector
-    n_obj: must be provided if list_of_f_vals is None
+    n_obj: should be provided when initializing an empty archive,
     tau: threshold that indicates when the indicator reaches feasibility
 Returns:
-    MOArchive object of the appropriate dimensionality, based on the number of objectives</p></div>
+    MOArchive object with the appropriate number of objectives</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -437,16 +470,16 @@ Returns:
   </div>
   <div class="docstring functionBody">
     
-    <div><p class="pre">Factory function for creating MOArchive objects of the appropriate dimensionality.
+    <div><p class="pre">Factory function for creating MOArchive objects with the appropriate number of objectives.
 
 Args:
-    list_of_f_vals: list of objective vectors, can be None if n_obj is provided
+    list_of_f_vals: list of objective vectors
     reference_point: reference point for the archive
     infos: list of additional information for each objective vector
-    n_obj: must be provided if list_of_f_vals is None
+    n_obj: when initializing an empty archive, the number of objectives should be provided
 
 Returns:
-    MOArchive object of the appropriate dimensionality, based on the number of objectives</p></div>
+    MOArchive object with the appropriate number of objectives</p></div>
   </div>
 </div>
         </div>
@@ -460,7 +493,7 @@ Returns:
   <div class="container">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    24.3.3 at 2024-12-03 13:05:45.
+    24.3.3 at 2025-02-07 19:46:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

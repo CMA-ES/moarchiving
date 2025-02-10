@@ -59,18 +59,11 @@ class MOArchive3obj(MOArchiveParent):
     def __init__(self, list_of_f_vals=None, reference_point=None, infos=None,
                  hypervolume_final_float_type=None,
                  hypervolume_computation_float_type=None):
-        """Create a new 3 objective archive object.
+        """ Create a new 3 objective archive object.
 
-        Args:
-            list_of_f_vals: list of objective vectors
-            reference_point: reference point for the archive
-            infos: list of additional information for each objective vector,
-                must be the same length as list_of_f_vals
-            hypervolume_final_float_type: type of the final hypervolume value,
-                defaults to fractions.Fraction
-            hypervolume_computation_float_type: type of the intermediate hypervolume computation,
-                defaults to fractions.Fraction
-
+        f-vals beyond the `reference_point` are pruned away. The `reference_point` is also used
+        to compute the hypervolume.
+        infos are an optional list of additional information about the points in the archive.
         """
         hypervolume_final_float_type = MOArchive3obj.hypervolume_final_float_type \
             if hypervolume_final_float_type is None else hypervolume_final_float_type
@@ -100,12 +93,8 @@ class MOArchive3obj(MOArchiveParent):
     def add(self, f_vals, info=None, update_hypervolume=True):
         """ Adds a new point to the archive, and updates the hypervolume if needed.
 
-        Args:
-            f_vals: the new point to add
-            info: additional information about the point
-            update_hypervolume: whether to update the hypervolume after adding the point
-        Returns:
-            True if the point was added, False if it was dominated by another point in the archive
+        Returns True if the point was added, False if it was dominated
+        by another point in the archive
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive(reference_point=[4, 4, 4])
@@ -230,10 +219,8 @@ class MOArchive3obj(MOArchiveParent):
         """ Removes a point from the archive, and updates the hypervolume.
         If the point is not found, it raises a ValueError.
 
-        Args:
-            f_vals: the point that should be removed
-        Returns:
-            The information of the removed point
+        Returns the info of the removed point.
+
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive([[1, 2, 3], [2, 2, 2], [3, 2, 1]], reference_point=[4, 4, 4],
         ...                   infos=["A", "B", "C"])
@@ -308,10 +295,7 @@ class MOArchive3obj(MOArchiveParent):
     def add_list(self, list_of_f_vals, infos=None, add_method="compare"):
         """ Adds a list of points to the archive, and updates the hypervolume.
 
-        Args:
-            list_of_f_vals: list of points to add
-            infos: additional information about the points
-            add_method: method to use for adding the points, possible values:
+        points are added with the `add_method` method:
             - compare: compares the number of points to add with the number of points in the archive
             and uses the most efficient method based on that
             - one_by_one: adds the points one by one to the archive

@@ -17,14 +17,10 @@ def get_mo_archive(list_of_f_vals=None, reference_point=None, infos=None, n_obj=
     """
     Factory function for creating MOArchive objects with the appropriate number of objectives.
 
-    Args:
-        list_of_f_vals: list of objective vectors
-        reference_point: reference point for the archive
-        infos: list of additional information for each objective vector
-        n_obj: when initializing an empty archive, the number of objectives should be provided
-
-    Returns:
-        MOArchive object with the appropriate number of objectives
+    `list_of_f_vals` is a list of objective vectors with `n_obj` objectives.
+    If `list_of_f_vals` is not provided, `n_obj` should be provided to initialize an empty archive.
+    `reference_point` is used for hypervolume computation and pruning of the archive.
+    A list of additional information for each objective vector can be provided in `infos`.
     """
     if not hasattr(get_mo_archive, "hypervolume_final_float_type"):
         try:
@@ -89,15 +85,11 @@ def get_cmo_archive(list_of_f_vals=None, list_of_g_vals=None, reference_point=No
     """
     Function for creating CMOArchive objects, with similar interface as get_mo_archive.
 
-    Args:
-        list_of_f_vals: list of objective vectors
-        list_of_g_vals: list of constraint vectors, must be the same length as list_of_f_vals
-        reference_point: reference point for the archive
-        infos: list of additional information for each objective vector
-        n_obj: should be provided when initializing an empty archive,
-        tau: threshold that indicates when the indicator reaches feasibility
-    Returns:
-        MOArchive object with the appropriate number of objectives
+    `list_of_f_vals` is a list of objective vectors with `n_obj` objectives,
+    `list_of_g_vals` is a list of constraint violation vectors (or values).
+    If `list_of_f_vals` is not provided, `n_obj` should be provided to initialize an empty archive.
+    `reference_point` is used for hypervolume computation and pruning of the archive.
+    A list of additional information for each objective vector can be provided in `infos`.
     """
 
     if not hasattr(get_cmo_archive, "hypervolume_final_float_type"):

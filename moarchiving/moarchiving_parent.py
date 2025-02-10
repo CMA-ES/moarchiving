@@ -16,15 +16,7 @@ class MOArchiveParent:
     def __init__(self, list_of_f_vals=None, reference_point=None, infos=None, n_obj=None,
                  hypervolume_final_float_type=None,
                  hypervolume_computation_float_type=None):
-        """ Create a new archive object.
-
-        Args:
-            list_of_f_vals: list of objective vectors
-            reference_point: reference point for the hypervolume calculation
-            infos: list of additional information for each objective vector, of the same length as
-            list_of_f_vals
-            n_obj: number of objectives
-        """
+        """ Create a new archive object. """
         self.hypervolume_final_float_type = hypervolume_final_float_type
         self.hypervolume_computation_float_type = hypervolume_computation_float_type
 

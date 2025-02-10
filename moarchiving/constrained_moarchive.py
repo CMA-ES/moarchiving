@@ -30,17 +30,13 @@ class CMOArchive:
                  hypervolume_computation_float_type=None):
         """ Initialize a CMOArchive object.
 
-        Args:
-            - list_of_f_vals: list of objective vectors
-            - list_of_g_vals: list of constraint vectors, must be the same length as list_of_f_vals
-            - reference_point: reference point for the archive
-            - infos: list of additional information for each objective vector,
-            if it is provided it must be the same length as list_of_f_vals
-            - n_obj: number of objectives of the archive
-            - tau: threshold that indicates when the indicator reaches feasibility
-            - hypervolume_final_float_type: type of the final hypervolume value
-            - hypervolume_computation_float_type: type of the hypervolume computation
-         """
+        Additionally to the list of objective values `list_of_f_vals`, also list of constraint
+        vectors `list_of_g_vals` should be provided.
+        The reference point is used for the hypervolume computation and pruning of the archive.
+        The list of additional information `infos` can be used to store additional information
+        for each objective vector.
+        Tau is a threshold that is used for computing the indicator.
+        """
         hypervolume_final_float_type = CMOArchive.hypervolume_final_float_type \
             if hypervolume_final_float_type is None else hypervolume_final_float_type
         hypervolume_computation_float_type = CMOArchive.hypervolume_computation_float_type \
@@ -106,7 +102,7 @@ class CMOArchive:
 
     def add_list(self, list_of_f_vals, list_of_g_vals, infos=None):
         """ Add a list of objective vectors f_vals with corresponding constraints vectors g_vals
-         and infos to the archive.
+        and infos to the archive.
 
         >>> from moarchiving.get_archive import get_cmo_archive
         >>> moa = get_cmo_archive(reference_point=[5, 5], tau=10)

@@ -61,16 +61,9 @@ class MOArchive4obj(MOArchiveParent):
                  hypervolume_computation_float_type=None):
         """ Create a new 4 objective archive object.
 
-        Args:
-            list_of_f_vals: list of objective vectors
-            reference_point: reference point for the hypervolume calculation
-            infos: list of additional information for each objective vector, of the same length as
-                list_of_f_vals
-            hypervolume_final_float_type: type of the final hypervolume value,
-                defaults to fractions.Fraction
-            hypervolume_computation_float_type: type of the intermediate hypervolume computation,
-                defaults to fractions.Fraction
-
+        f-vals beyond the `reference_point` are pruned away. The `reference_point` is also used
+        to compute the hypervolume.
+        infos are an optional list of additional information about the points in the archive.
         """
         hypervolume_final_float_type = MOArchive4obj.hypervolume_final_float_type \
             if hypervolume_final_float_type is None else hypervolume_final_float_type
@@ -98,14 +91,11 @@ class MOArchive4obj(MOArchiveParent):
                 self._hypervolume_plus = -min([self.distance_to_hypervolume_area(f)
                                                for f in list_of_f_vals])
 
-    def add(self, new_point, info=None, update_hypervolume=True):
+    def add(self, f_vals, info=None, update_hypervolume=True):
         """ Add a new point to the archive.
 
-        Args:
-            new_point: new point to be added
-            info: additional information for the new point
-            update_hypervolume: should be set to True, unless adding multiple points at once,
-            in which case it is slightly more efficient to set it to True only for last point
+        update_hypervolume should be set to True, unless adding multiple points at once,
+        in which case it is slightly more efficient to set it to True only for last point
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive(reference_point=[5, 5, 5, 5])
@@ -124,28 +114,26 @@ class MOArchive4obj(MOArchiveParent):
         >>> list(moa)
         [[4, 3, 2, 1], [2, 2, 2, 2], [1, 2, 3, 4]]
         """
-        if len(new_point) != self.n_obj:
-            raise ValueError(f"argument `f_pair` must be of length {self.n_obj}, was ``{new_point}``")
+        if len(f_vals) != self.n_obj:
+            raise ValueError(f"argument `f_pair` must be of length {self.n_obj}, was ``{f_vals}``")
 
-        if self.dominates(new_point):
+        if self.dominates(f_vals):
             return False
 
-        if not self.in_domain(new_point):
-            dist_to_hv_area = self.distance_to_hypervolume_area(new_point)
+        if not self.in_domain(f_vals):
+            dist_to_hv_area = self.distance_to_hypervolume_area(f_vals)
             if -dist_to_hv_area > self._hypervolume_plus:
                 self._hypervolume_plus = -dist_to_hv_area
             return False
 
-        self.__init__(list(self) + [new_point], self.reference_point, self.infos + [info])
+        self.__init__(list(self) + [f_vals], self.reference_point, self.infos + [info])
         return True
 
-    def remove(self, remove_point):
+    def remove(self, f_vals):
         """ Remove a point from the archive.
 
-        Args:
-            remove_point: point to be removed
-        Returns:
-            False if the point is not in the archive and Info if the point is removed
+        Returns False if the point is not in the archive and it's Info if the point is removed
+
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive([[1, 2, 3, 4], [2, 2, 2, 2], [4, 3, 2, 1]],
         ...                   reference_point=[5, 5, 5, 5], infos=["A", "B", "C"])
@@ -159,20 +147,16 @@ class MOArchive4obj(MOArchiveParent):
         [[4, 3, 2, 1]]
         """
         points_list = list(self)
-        if remove_point not in points_list:
+        if f_vals not in points_list:
             return False
-        point_idx = points_list.index(remove_point)
+        point_idx = points_list.index(f_vals)
         point_info = self.infos[point_idx]
-        self.__init__([p for p in points_list if p != remove_point], self.reference_point,
-                      [info for p, info in zip(points_list, self.infos) if p != remove_point])
+        self.__init__([p for p in points_list if p != f_vals], self.reference_point,
+                      [info for p, info in zip(points_list, self.infos) if p != f_vals])
         return point_info
 
     def add_list(self, list_of_f_vals, infos=None):
         """ Add a list of points to the archive.
-
-        Args:
-            list_of_f_vals: list of points to be added
-            infos: list of additional information for each point
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive(reference_point=[5, 5, 5, 5])

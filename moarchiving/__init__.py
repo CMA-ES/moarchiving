@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-""" This package implements a multi-objective (2, 3 and 4 objectives are supported)
-non-dominated archive.
+""" This package implements a non-dominated archive for 2, 3, or 4 objectives,
 
-It provides easy and fast access to multiple hypervolume indicators, the contributing hypervolume
-of each solution, and to the uncrowded hypervolume improvement of any given point in the
-objective space.
-Additionally, it provides a constrained version of the archive, which allows to store points
-with constraints.
+providing easy and fast access to multiple hypervolume indicators, the
+contributing hypervolume of each solution, and to the uncrowded hypervolume
+improvement of any given point in the objective space.
+
+Additionally, the package provides a constrained version of the archive,
+which allows to store points with constraints.
 
 
 :Authors: Nikolaus Hansen, Nace Sever, Mila Nedić, Tea Tušar, 2024

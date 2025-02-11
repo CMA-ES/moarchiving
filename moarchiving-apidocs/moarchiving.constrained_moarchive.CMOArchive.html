@@ -293,7 +293,7 @@
         
 
         
-            <div class="itemName"><code><a href="#icmop_improvement" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive.icmop_improvement">icmop<wbr></wbr>_improvement</a></code>
+            <div class="itemName"><code><a href="#hypervolume_plus_constr_improvement" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus_constr_improvement">hypervolume<wbr></wbr>_plus<wbr></wbr>_constr<wbr></wbr>_improvement</a></code>
             </div>
         
 
@@ -392,7 +392,7 @@
         
 
         
-            <div class="itemName"><code><a href="#icmop" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive.icmop">icmop</a></code>
+            <div class="itemName"><code><a href="#hypervolume_plus_constr" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus_constr">hypervolume<wbr></wbr>_plus<wbr></wbr>_constr</a></code>
             </div>
         
 
@@ -412,7 +412,7 @@
         
 
         
-            <div class="itemName"><code><a href="#_icmop" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive._icmop">_icmop</a></code>
+            <div class="itemName"><code><a href="#_hypervolume_plus_constr" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive._hypervolume_plus_constr">_hypervolume<wbr></wbr>_plus<wbr></wbr>_constr</a></code>
             </div>
         
 
@@ -587,7 +587,7 @@
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#icmop_improvement" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive.icmop_improvement">icmop<wbr></wbr>_improvement</a></code></td>
+    <td><code><a href="#hypervolume_plus_constr_improvement" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus_constr_improvement">hypervolume<wbr></wbr>_plus<wbr></wbr>_constr<wbr></wbr>_improvement</a></code></td>
     <td>Compute the improvement of the indicator if the objective vector f_vals is added.</td>
   </tr><tr class="method">
     
@@ -632,8 +632,8 @@
   </tr><tr class="property">
     
     <td>Property</td>
-    <td><code><a href="#icmop" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive.icmop">icmop</a></code></td>
-    <td>Return the icmop indicator.</td>
+    <td><code><a href="#hypervolume_plus_constr" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus_constr">hypervolume<wbr></wbr>_plus<wbr></wbr>_constr</a></code></td>
+    <td>Return the hypervolume_plus_constr (icmop) indicator.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -642,7 +642,7 @@
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_icmop" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive._icmop">_icmop</a></code></td>
+    <td><code><a href="#_hypervolume_plus_constr" class="internal-link" title="moarchiving.constrained_moarchive.CMOArchive._hypervolume_plus_constr">_hypervolume<wbr></wbr>_plus<wbr></wbr>_constr</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -992,18 +992,18 @@
 </div><div class="basemethod">
   
   
-  <a name="moarchiving.constrained_moarchive.CMOArchive.icmop_improvement">
+  <a name="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus_constr_improvement">
     
   </a>
-  <a name="icmop_improvement">
+  <a name="hypervolume_plus_constr_improvement">
     
   </a>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">icmop_improvement</span><span class="function-signature">(self, f_vals, g_vals)</span>:
+    <span class="py-keyword">def</span> <span class="py-defname">hypervolume_plus_constr_improvement</span><span class="function-signature">(self, f_vals, g_vals)</span>:
     
-    <a class="headerLink" href="#icmop_improvement" title="moarchiving.constrained_moarchive.CMOArchive.icmop_improvement">
+    <a class="headerLink" href="#hypervolume_plus_constr_improvement" title="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus_constr_improvement">
       
       
       ¶
@@ -1015,26 +1015,26 @@
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_cmo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>get_cmo_archive.hypervolume_final_float_type = <span class="py-builtin">float</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa = get_cmo_archive(reference_point=[5, 5], tau=4) <span class="py-comment"># icmop = -inf</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.icmop_improvement([1, 1], 10)
+<span class="py-prompt">&gt;&gt;&gt; </span>moa = get_cmo_archive(reference_point=[5, 5], tau=4) <span class="py-comment"># hv+c = -inf</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.hypervolume_plus_constr_improvement([1, 1], 10)
 <span class="py-output">inf</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([1, 1], 10) <span class="py-comment"># icmop = -14</span>
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.icmop_improvement([2, 2], 4))
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([1, 1], 10) <span class="py-comment"># hv+c = -14</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.hypervolume_plus_constr_improvement([2, 2], 4))
 <span class="py-output">6</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([2, 2], 4) <span class="py-comment"># icmop = -8</span>
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.icmop_improvement([8, 9], 0))
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([2, 2], 4) <span class="py-comment"># hv+c = -8</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.hypervolume_plus_constr_improvement([8, 9], 0))
 <span class="py-output">4</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([8, 9], 0) <span class="py-comment"># icmop = -4</span>
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.icmop_improvement([8, 5], 0))
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([8, 9], 0) <span class="py-comment"># hv+c = -4</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.hypervolume_plus_constr_improvement([8, 5], 0))
 <span class="py-output">1</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([8, 5], 0) <span class="py-comment"># icmop = -3</span>
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.icmop_improvement([0, 0], 1))
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([8, 5], 0) <span class="py-comment"># hv+c = -3</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.hypervolume_plus_constr_improvement([0, 0], 1))
 <span class="py-output">0</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([0, 0], 1) <span class="py-comment"># icmop = -3</span>
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.icmop_improvement([4, 4], 0))
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([0, 0], 1) <span class="py-comment"># hv+c = -3</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.hypervolume_plus_constr_improvement([4, 4], 0))
 <span class="py-output">4</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([4, 4], 0) <span class="py-comment"># icmop = 1</span>
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.icmop_improvement([3, 3], 0))
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([4, 4], 0) <span class="py-comment"># hv+c = 1</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">int</span>(moa.hypervolume_plus_constr_improvement([3, 3], 0))
 <span class="py-output">3</span>
 </pre></div>
   </div>
@@ -1242,17 +1242,17 @@
 </div><div class="baseproperty">
   
   
-  <a name="moarchiving.constrained_moarchive.CMOArchive.icmop">
+  <a name="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus_constr">
     
   </a>
-  <a name="icmop">
+  <a name="hypervolume_plus_constr">
     
   </a>
   <div class="functionHeader">
     @property<br />
-    <span class="py-defname">icmop</span> =
+    <span class="py-defname">hypervolume_plus_constr</span> =
     
-    <a class="headerLink" href="#icmop" title="moarchiving.constrained_moarchive.CMOArchive.icmop">
+    <a class="headerLink" href="#hypervolume_plus_constr" title="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus_constr">
       
       
       ¶
@@ -1260,7 +1260,7 @@
   </div>
   <div class="functionBody">
     
-    <div><p>Return the icmop indicator.</p></div>
+    <div><p>Return the hypervolume_plus_constr (icmop) indicator.</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1290,17 +1290,17 @@
 </div><div class="baseinstancevariable private">
   
   
-  <a name="moarchiving.constrained_moarchive.CMOArchive._icmop">
+  <a name="moarchiving.constrained_moarchive.CMOArchive._hypervolume_plus_constr">
     
   </a>
-  <a name="_icmop">
+  <a name="_hypervolume_plus_constr">
     
   </a>
   <div class="functionHeader">
     
-    <span class="py-defname">_icmop</span> =
+    <span class="py-defname">_hypervolume_plus_constr</span> =
     
-    <a class="headerLink" href="#_icmop" title="moarchiving.constrained_moarchive.CMOArchive._icmop">
+    <a class="headerLink" href="#_hypervolume_plus_constr" title="moarchiving.constrained_moarchive.CMOArchive._hypervolume_plus_constr">
       
       
       ¶
@@ -1323,7 +1323,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    24.3.3 at 2025-02-10 11:58:03.
+    24.3.3 at 2025-02-11 19:04:21.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

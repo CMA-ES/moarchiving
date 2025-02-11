@@ -67,13 +67,13 @@ class TestCMOArchiving(unittest.TestCase):
         moa = get_cmo_archive(f_vals, g_vals, reference_point=[6, 6, 6])
         moa_copy = moa.copy()
 
-        self.assertEqual(moa.icmop, moa_copy.icmop)
+        self.assertEqual(moa.hypervolume_plus_constr, moa_copy.hypervolume_plus_constr)
 
         moa.add([2, 2, 2], 0)
 
         self.assertEqual(len(moa), 4)
         self.assertEqual(len(moa_copy), 3)
-        self.assertFalse(moa.icmop == moa_copy.icmop)
+        self.assertFalse(moa.hypervolume_plus_constr == moa_copy.hypervolume_plus_constr)
 
     def test_remove(self, n_points=100, n_points_remove=50):
         """ Test the remove function, by comparing the archive with 100 points added and then
@@ -84,39 +84,40 @@ class TestCMOArchiving(unittest.TestCase):
         self.assertEqual(len(moa_remove), 2)
         self.assertSetEqual(list_to_set(list(moa_remove)), list_to_set(f_vals[1:]))
 
-    def test_icmop(self):
-        """ test the hypervolume_plus indicator """
+    def test_hypervolume_plus_constr(self):
+        """ test the hypervolume_plus_constr indicator """
         moa = get_cmo_archive(reference_point=[1, 1, 1], tau=10)
-        self.assertEqual(moa.icmop, -float('inf'))
+        self.assertEqual(moa.hypervolume_plus_constr, -float('inf'))
 
         moa.add([2, 2, 2], 99)
-        self.assertEqual(moa.icmop, - 99 - 10)
+        self.assertEqual(moa.hypervolume_plus_constr, - 99 - 10)
 
         moa.add_list([[0, 0, 5], [1, 2, 1], [3, 3, 2]], [14, 7, 76])
-        self.assertEqual(moa.icmop, -7 - 10)
+        self.assertEqual(moa.hypervolume_plus_constr, -7 - 10)
 
         moa.add([20, 2, 20], 0)
-        self.assertEqual(moa.icmop, -10)
+        self.assertEqual(moa.hypervolume_plus_constr, -10)
 
         moa.add_list([[0, 0, 0], [4, 5, 1]], [3, 0])
-        self.assertEqual(moa.icmop, -5)
+        self.assertEqual(moa.hypervolume_plus_constr, -5)
 
         moa.add([1, 1, 1], 0)
-        self.assertEqual(moa.icmop, 0)
+        self.assertEqual(moa.hypervolume_plus_constr, 0)
 
         moa.add([0.5, 0.5, 0.5], 0)
-        self.assertEqual(moa.icmop, moa.hypervolume)
+        self.assertEqual(moa.hypervolume_plus_constr, moa.hypervolume)
 
         moa = get_cmo_archive(reference_point=[1, 1, 1], tau=1)
-        prev_icmop = moa.icmop
+        prev_hv_plus_constr = moa.hypervolume_plus_constr
         for i in range(1000):
             f_vals = [10 * random.random(), 5 * random.random(), random.random()]
             g_vals = max(random.random() - 0.3, 0)
-            icmop_improvement = moa.icmop_improvement(f_vals, g_vals)
+            hv_plus_constr_improvement = moa.hypervolume_plus_constr_improvement(f_vals, g_vals)
             moa.add(f_vals, g_vals)
-            self.assertLessEqual(prev_icmop, moa.icmop)
-            self.assertAlmostEqual(icmop_improvement, moa.icmop - prev_icmop, places=8)
-            prev_icmop = moa.icmop
+            self.assertLessEqual(prev_hv_plus_constr, moa.hypervolume_plus_constr)
+            self.assertAlmostEqual(moa.hypervolume_plus_constr - prev_hv_plus_constr,
+                                   hv_plus_constr_improvement, places=8)
+            prev_hv_plus_constr = moa.hypervolume_plus_constr
 
 
 if __name__ == '__main__':

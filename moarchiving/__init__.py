@@ -2,11 +2,11 @@
 """ This package implements a multi-objective (2, 3 and 4 objectives are supported)
 non-dominated archive.
 
-It provides easy and fast access to the hypervolume and hypervolume plus indicators,
-the contributing hypervolume of each element, and to the uncrowded hypervolume improvement
-of any given point in objective space.
+It provides easy and fast access to multiple hypervolume indicators, the contributing hypervolume
+of each solution, and to the uncrowded hypervolume improvement of any given point in the
+objective space.
 Additionally, it provides a constrained version of the archive, which allows to store points
-with constraints and to compute the ICMOP indicator.
+with constraints.
 
 
 :Authors: Nikolaus Hansen, Nace Sever, Mila Nedić, Tea Tušar, 2024

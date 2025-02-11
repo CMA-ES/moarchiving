@@ -1,8 +1,7 @@
 # Introduction
 
-This library implements a multi-objective archive of non-dominated solutions  (currently supporting only 2, 3 and 4 objectives). It provides easy and fast access to the hypervolume and [hypervolume plus](https://doi.org/10.1109/TEVC.2022.3210897) indicators, the contributing hypervolume of each solution, and to the [uncrowded hypervolume improvement](https://arxiv.org/abs/1904.08823) of any given point in the objective space.
+This library implements a multi-objective archive of non-dominated solutions  (currently supporting 2, 3 and 4 objectives). It provides easy and fast access to multiple hypervolume indicators, the contributing hypervolume of each solution, and to the [uncrowded hypervolume improvement](https://arxiv.org/abs/1904.08823) of any given point in the objective space.
 
-Additionally, the library offers a constrained version of the archive, which allows the storage of solutions to constrained multi-objective problems and the computation of their [ICMOP](https://doi.org/10.1016/j.ins.2022.05.106) indicator. 
 
 ## Installation
 
@@ -189,9 +188,13 @@ print("[3, 2, 0] in moa:", [3, 2, 0] in moa)
     
 
 ### 6. Performance indicators
-To ensure that all performance indicators are easily comparable, we define all of them as maximization indicators (by multiplying hypervolume plus and ICMOP indicators by -1). In this case, when the archive is not empty, all the indicators are positive and have the same value. 
+We implement the following performance indicators:
+- `hypervolume` (for MOArchive and CMOArchive)
+- `hypervolume_plus` (for MOArchive and CMOArchive), based on, but not completely equal to the one defined [here](https://doi.org/10.1109/TEVC.2022.3210897)
+- `hypervolume_plus_constr` (for CMOArchive), based on, but not completely equal to the one defined [here](https://doi.org/10.1016/j.ins.2022.05.106)
 
-The hypervolume of the archive can be accessed using the `hypervolume` attribute, or the `hypervolume_plus` attribute for the hypervolume plus indicator. 
+To ensure that all performance indicators are easily comparable, we define all of them as maximization indicators (by multiplying `hypervolume_plus` and `hypervolume_plus_constr` indicators by -1). In this case, when the archive is not empty, all the indicators are positive and have the same value. As the archive doesn't yet support addition of ideal point, the values of indicators are not normalized.
+
 
 
 ```python
@@ -203,18 +206,18 @@ print("Hypervolume plus of the archive:", moa.hypervolume_plus)
     Hypervolume plus of the archive: 12
     
 
-In case of a constrained MOArchive, the `icmop` attribute can be accessed as well. 
+In case of a constrained MOArchive, the `hypervolume_plus_constr` attribute can be accessed as well. 
 
 
 ```python
 print("Hyperolume of the constrained archive:", cmoa.hypervolume)
 print("Hypervolume plus of the constrained archive:", cmoa.hypervolume_plus)
-print("ICMOP of the constrained archive:", cmoa.icmop)
+print("Hypervolume plus constr of the constrained archive:", cmoa.hypervolume_plus_constr)
 ```
 
     Hyperolume of the constrained archive: 14
     Hypervolume plus of the constrained archive: 14
-    ICMOP of the constrained archive: 14
+    Hypervolume plus constr of the constrained archive: 14
     
 
 ### 7. Contributing hypervolumes
@@ -338,7 +341,7 @@ for i in range(2000):
     cmoa.add(objectives, constraints, info=f"point_{i}")
     moa.add(objectives, info=f"point_{i}")
     
-    indicators_cmoa.append((cmoa.icmop, cmoa.hypervolume_plus, cmoa.hypervolume))
+    indicators_cmoa.append((cmoa.hypervolume_plus_constr, cmoa.hypervolume_plus, cmoa.hypervolume))
     indicators_moa.append((moa.hypervolume_plus, moa.hypervolume))
     
 ```
@@ -348,7 +351,7 @@ for i in range(2000):
 fig, axs = plt.subplots(1, 2, figsize=(10, 5))
 axs[0].plot([x[2] for x in indicators_cmoa], label="hypervolume")
 axs[0].plot([x[1] for x in indicators_cmoa], label="hypervolume_plus")
-axs[0].plot([x[0] for x in indicators_cmoa], label="ICMOP")
+axs[0].plot([x[0] for x in indicators_cmoa], label="hypervolume_plus_constr")
 axs[0].axhline(0, color="black", linestyle="--", zorder=0)
 axs[0].axhline(-cmoa.tau, color="black", linestyle="--", zorder=0)
 axs[0].set_title("Constrained MOArchive")
@@ -481,7 +484,7 @@ plt.show()
     Testing 2 objectives
     ......................
     Testing 3 objectives
-    .................
+    ................
     Testing 4 objectives
     ...........
     

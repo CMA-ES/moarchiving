@@ -60,7 +60,7 @@ class CMOArchive:
 
         self.tau = tau
         self.n_obj = n_obj
-        self._icmop = -inf
+        self._hypervolume_plus_constr = -inf
 
         if list_of_f_vals is not None:
             self.add_list(list_of_f_vals, list_of_g_vals, infos)
@@ -94,11 +94,11 @@ class CMOArchive:
         except TypeError:
             constraint_violation = g_vals
         if constraint_violation > 0:
-            if constraint_violation + self.tau < -self._icmop:
-                self._icmop = -(constraint_violation + self.tau)
+            if constraint_violation + self.tau < -self._hypervolume_plus_constr:
+                self._hypervolume_plus_constr = -(constraint_violation + self.tau)
             return
         self.archive.add(f_vals, info)
-        self._icmop = max(self.archive._hypervolume_plus, -self.tau)
+        self._hypervolume_plus_constr = max(self.archive._hypervolume_plus, -self.tau)
 
     def add_list(self, list_of_f_vals, list_of_g_vals, infos=None):
         """ Add a list of objective vectors f_vals with corresponding constraints vectors g_vals
@@ -116,7 +116,7 @@ class CMOArchive:
         if infos is None:
             infos = [None] * len(list_of_f_vals)
 
-        if self._icmop < 0:
+        if self._hypervolume_plus_constr < 0:
             for obj, cons, info in zip(list_of_f_vals, list_of_g_vals, infos):
                 self.add(obj, cons, info)
 
@@ -133,7 +133,7 @@ class CMOArchive:
             infos = [info for info, g_vals in zip(infos, list_of_g_vals) if g_vals == 0]
 
             self.archive.add_list(list(list_of_f_vals), list(infos))
-            self._icmop = self.archive._hypervolume_plus
+            self._hypervolume_plus_constr = self.archive._hypervolume_plus
 
     def remove(self, f_vals):
         """ Remove a feasible point with objective vector f_vals from the archive.
@@ -147,7 +147,7 @@ class CMOArchive:
         [[1, 4], [4, 1]]
         """
         info = self.archive.remove(f_vals)
-        self._icmop = self.archive._hypervolume_plus
+        self._hypervolume_plus_constr = self.archive._hypervolume_plus
         return info
 
     @property
@@ -161,9 +161,9 @@ class CMOArchive:
         return self.archive.hypervolume_plus
 
     @property
-    def icmop(self):
-        """ Return the icmop indicator. """
-        return self._icmop
+    def hypervolume_plus_constr(self):
+        """ Return the hypervolume_plus_constr (icmop) indicator. """
+        return self._hypervolume_plus_constr
 
     @property
     def contributing_hypervolumes(self):
@@ -189,7 +189,7 @@ class CMOArchive:
         """ Return a deep copy of the CMOArchive object. """
         new_cmoa = CMOArchive(reference_point=self.archive.reference_point, tau=self.tau)
         new_cmoa.archive = self.archive.copy()
-        new_cmoa._icmop = self._icmop
+        new_cmoa._hypervolume_plus_constr = self._hypervolume_plus_constr
         return new_cmoa
 
     def distance_to_hypervolume_area(self, f_vals):
@@ -215,31 +215,31 @@ class CMOArchive:
         if the objective vector f_vals is added. """
         return self.archive.hypervolume_improvement(f_vals)
 
-    def icmop_improvement(self, f_vals, g_vals):
+    def hypervolume_plus_constr_improvement(self, f_vals, g_vals):
         """ Compute the improvement of the indicator if the objective vector f_vals is added.
 
         >>> from moarchiving.get_archive import get_cmo_archive
         >>> get_cmo_archive.hypervolume_final_float_type = float
-        >>> moa = get_cmo_archive(reference_point=[5, 5], tau=4) # icmop = -inf
-        >>> moa.icmop_improvement([1, 1], 10)
+        >>> moa = get_cmo_archive(reference_point=[5, 5], tau=4) # hv+c = -inf
+        >>> moa.hypervolume_plus_constr_improvement([1, 1], 10)
         inf
-        >>> moa.add([1, 1], 10) # icmop = -14
-        >>> int(moa.icmop_improvement([2, 2], 4))
+        >>> moa.add([1, 1], 10) # hv+c = -14
+        >>> int(moa.hypervolume_plus_constr_improvement([2, 2], 4))
         6
-        >>> moa.add([2, 2], 4) # icmop = -8
-        >>> int(moa.icmop_improvement([8, 9], 0))
+        >>> moa.add([2, 2], 4) # hv+c = -8
+        >>> int(moa.hypervolume_plus_constr_improvement([8, 9], 0))
         4
-        >>> moa.add([8, 9], 0) # icmop = -4
-        >>> int(moa.icmop_improvement([8, 5], 0))
+        >>> moa.add([8, 9], 0) # hv+c = -4
+        >>> int(moa.hypervolume_plus_constr_improvement([8, 5], 0))
         1
-        >>> moa.add([8, 5], 0) # icmop = -3
-        >>> int(moa.icmop_improvement([0, 0], 1))
+        >>> moa.add([8, 5], 0) # hv+c = -3
+        >>> int(moa.hypervolume_plus_constr_improvement([0, 0], 1))
         0
-        >>> moa.add([0, 0], 1) # icmop = -3
-        >>> int(moa.icmop_improvement([4, 4], 0))
+        >>> moa.add([0, 0], 1) # hv+c = -3
+        >>> int(moa.hypervolume_plus_constr_improvement([4, 4], 0))
         4
-        >>> moa.add([4, 4], 0) # icmop = 1
-        >>> int(moa.icmop_improvement([3, 3], 0))
+        >>> moa.add([4, 4], 0) # hv+c = 1
+        >>> int(moa.hypervolume_plus_constr_improvement([3, 3], 0))
         3
         """
         try:
@@ -247,20 +247,20 @@ class CMOArchive:
         except TypeError:
             constraint_violation = g_vals
         if constraint_violation > 0:
-            if constraint_violation + self.tau < -self._icmop:
-                return - self._icmop - (constraint_violation + self.tau)
+            if constraint_violation + self.tau < -self._hypervolume_plus_constr:
+                return - self._hypervolume_plus_constr - (constraint_violation + self.tau)
             return 0
 
         if not self.in_domain(f_vals):
-            if self._icmop > 0:
+            if self._hypervolume_plus_constr > 0:
                 return 0
             distance_to_hv_area = min(self.distance_to_hypervolume_area(f_vals), self.tau)
-            if distance_to_hv_area < - self._icmop:
-                return -self._icmop - distance_to_hv_area
+            if distance_to_hv_area < - self._hypervolume_plus_constr:
+                return -self._hypervolume_plus_constr - distance_to_hv_area
             return 0
 
         if not self.dominates(f_vals):
-            return max(-self._icmop, 0) + self.hypervolume_improvement(f_vals)
+            return max(-self._hypervolume_plus_constr, 0) + self.hypervolume_improvement(f_vals)
         return 0
 
     def in_domain(self, f_vals, reference_point=None):

@@ -306,6 +306,16 @@
         
 
         
+            <div class="itemName"><code><a href="#setup_cdllist" class="internal-link" title="moarchiving.moarchiving_utils.setup_cdllist">setup<wbr></wbr>_cdllist</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="#setup_z_and_closest" class="internal-link" title="moarchiving.moarchiving_utils.setup_z_and_closest">setup<wbr></wbr>_z<wbr></wbr>_and<wbr></wbr>_closest</a></code>
             </div>
         
@@ -316,7 +326,27 @@
         
 
         
+            <div class="itemName"><code><a href="#strictly_dominates" class="internal-link" title="moarchiving.moarchiving_utils.strictly_dominates">strictly<wbr></wbr>_dominates</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="#update_links" class="internal-link" title="moarchiving.moarchiving_utils.update_links">update<wbr></wbr>_links</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#weakly_dominates" class="internal-link" title="moarchiving.moarchiving_utils.weakly_dominates">weakly<wbr></wbr>_dominates</a></code>
             </div>
         
 
@@ -612,13 +642,28 @@
   </tr><tr class="function">
     
     <td>Function</td>
+    <td><code><a href="#setup_cdllist" class="internal-link" title="moarchiving.moarchiving_utils.setup_cdllist">setup<wbr></wbr>_cdllist</a></code></td>
+    <td>Set up a circular doubly linked list from the given data and reference point</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
     <td><code><a href="#setup_z_and_closest" class="internal-link" title="moarchiving.moarchiving_utils.setup_z_and_closest">setup<wbr></wbr>_z<wbr></wbr>_and<wbr></wbr>_closest</a></code></td>
     <td>Sets up the closest[0] and closest[1] pointers for the new node</td>
   </tr><tr class="function">
     
     <td>Function</td>
+    <td><code><a href="#strictly_dominates" class="internal-link" title="moarchiving.moarchiving_utils.strictly_dominates">strictly<wbr></wbr>_dominates</a></code></td>
+    <td>Return True if a strictly dominates b, False otherwise</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
     <td><code><a href="#update_links" class="internal-link" title="moarchiving.moarchiving_utils.update_links">update<wbr></wbr>_links</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#weakly_dominates" class="internal-link" title="moarchiving.moarchiving_utils.weakly_dominates">weakly<wbr></wbr>_dominates</a></code></td>
+    <td>Return True if a weakly dominates b, False otherwise</td>
   </tr>
 </table>
           
@@ -918,6 +963,30 @@
 </div><div class="basefunction">
   
   
+  <a name="moarchiving.moarchiving_utils.setup_cdllist">
+    
+  </a>
+  <a name="setup_cdllist">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setup_cdllist</span><span class="function-signature">(n_obj, points, ref, infos)</span>:
+    
+    <a class="headerLink" href="#setup_cdllist" title="moarchiving.moarchiving_utils.setup_cdllist">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Set up a circular doubly linked list from the given data and reference point</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
   <a name="moarchiving.moarchiving_utils.setup_z_and_closest">
     
   </a>
@@ -938,6 +1007,38 @@
   <div class="docstring functionBody">
     
     <div><p>Sets up the closest[0] and closest[1] pointers for the new node</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="moarchiving.moarchiving_utils.strictly_dominates">
+    
+  </a>
+  <a name="strictly_dominates">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">strictly_dominates</span><span class="function-signature">(a, b, n_obj)</span>:
+    
+    <a class="headerLink" href="#strictly_dominates" title="moarchiving.moarchiving_utils.strictly_dominates">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return True if a strictly dominates b, False otherwise</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>strictly_dominates([1, 2, 3], [2, 3, 3], n_obj=3)
+<span class="py-output">True</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>strictly_dominates([1, 2, 3], [2, 2, 2], n_obj=3)
+<span class="py-output">False</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>strictly_dominates([1, 2, 3], [1, 2, 3], n_obj=3)
+<span class="py-output">False</span>
+</pre></div>
   </div>
 </div><div class="basefunction">
   
@@ -963,6 +1064,38 @@
     
     <div><p class="undocumented">Undocumented</p></div>
   </div>
+</div><div class="basefunction">
+  
+  
+  <a name="moarchiving.moarchiving_utils.weakly_dominates">
+    
+  </a>
+  <a name="weakly_dominates">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">weakly_dominates</span><span class="function-signature">(a, b, n_obj)</span>:
+    
+    <a class="headerLink" href="#weakly_dominates" title="moarchiving.moarchiving_utils.weakly_dominates">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return True if a weakly dominates b, False otherwise</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>weakly_dominates([1, 2, 3], [2, 3, 3], n_obj=3)
+<span class="py-output">True</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>weakly_dominates([1, 2, 3], [2, 2, 2], n_obj=3)
+<span class="py-output">False</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>weakly_dominates([1, 2, 3], [1, 2, 3], n_obj=3)
+<span class="py-output">True</span>
+</pre></div>
+  </div>
 </div>
         </div>
       
@@ -975,7 +1108,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    24.3.3 at 2025-02-11 19:04:21.
+    24.3.3 at 2025-02-12 12:20:27.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

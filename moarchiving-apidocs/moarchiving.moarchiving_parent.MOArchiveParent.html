@@ -307,36 +307,6 @@
             </div>
         
 
-    </li><li class="">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="#setup_cdllist" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.setup_cdllist">setup<wbr></wbr>_cdllist</a></code>
-            </div>
-        
-
-    </li><li class="">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="#strictly_dominates" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.strictly_dominates">strictly<wbr></wbr>_dominates</a></code>
-            </div>
-        
-
-    </li><li class="">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="#weakly_dominates" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.weakly_dominates">weakly<wbr></wbr>_dominates</a></code>
-            </div>
-        
-
     </li><li class="private">
         
         
@@ -684,21 +654,6 @@
     <td>Method</td>
     <td><code><a href="#remove" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.remove">remove</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#setup_cdllist" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.setup_cdllist">setup<wbr></wbr>_cdllist</a></code></td>
-    <td>Set up a circular doubly linked list from the given data and reference point</td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#strictly_dominates" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.strictly_dominates">strictly<wbr></wbr>_dominates</a></code></td>
-    <td>Return True if a strictly dominates b, False otherwise</td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#weakly_dominates" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.weakly_dominates">weakly<wbr></wbr>_dominates</a></code></td>
-    <td>Return True if a weakly dominates b, False otherwise</td>
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
@@ -1215,98 +1170,6 @@
     <div class="interfaceinfo">overridden in <code><a href="moarchiving.moarchiving3obj.MOArchive3obj.html" class="internal-link">moarchiving.moarchiving3obj.MOArchive3obj</a></code>, <code><a href="moarchiving.moarchiving4obj.MOArchive4obj.html" class="internal-link">moarchiving.moarchiving4obj.MOArchive4obj</a></code></div>
     <div><p class="undocumented">Undocumented</p></div>
   </div>
-</div><div class="basemethod">
-  
-  
-  <a name="moarchiving.moarchiving_parent.MOArchiveParent.setup_cdllist">
-    
-  </a>
-  <a name="setup_cdllist">
-    
-  </a>
-  <div class="functionHeader">
-    
-    
-    <span class="py-keyword">def</span> <span class="py-defname">setup_cdllist</span><span class="function-signature">(self, points, ref, infos)</span>:
-    
-    <a class="headerLink" href="#setup_cdllist" title="moarchiving.moarchiving_parent.MOArchiveParent.setup_cdllist">
-      
-      
-      ¶
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    <div><p>Set up a circular doubly linked list from the given data and reference point</p></div>
-  </div>
-</div><div class="basemethod">
-  
-  
-  <a name="moarchiving.moarchiving_parent.MOArchiveParent.strictly_dominates">
-    
-  </a>
-  <a name="strictly_dominates">
-    
-  </a>
-  <div class="functionHeader">
-    
-    
-    <span class="py-keyword">def</span> <span class="py-defname">strictly_dominates</span><span class="function-signature">(self, a, b, n_obj=None)</span>:
-    
-    <a class="headerLink" href="#strictly_dominates" title="moarchiving.moarchiving_parent.MOArchiveParent.strictly_dominates">
-      
-      
-      ¶
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    <div><p>Return True if a strictly dominates b, False otherwise</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
-<span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive(n_obj=3)
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.strictly_dominates([1, 2, 3], [2, 3, 3])
-<span class="py-output">True</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.strictly_dominates([1, 2, 3], [2, 2, 2])
-<span class="py-output">False</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.strictly_dominates([1, 2, 3], [1, 2, 3])
-<span class="py-output">False</span>
-</pre></div>
-  </div>
-</div><div class="basemethod">
-  
-  
-  <a name="moarchiving.moarchiving_parent.MOArchiveParent.weakly_dominates">
-    
-  </a>
-  <a name="weakly_dominates">
-    
-  </a>
-  <div class="functionHeader">
-    
-    
-    <span class="py-keyword">def</span> <span class="py-defname">weakly_dominates</span><span class="function-signature">(self, a, b, n_obj=None)</span>:
-    
-    <a class="headerLink" href="#weakly_dominates" title="moarchiving.moarchiving_parent.MOArchiveParent.weakly_dominates">
-      
-      
-      ¶
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    <div><p>Return True if a weakly dominates b, False otherwise</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
-<span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive(n_obj=3)
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.weakly_dominates([1, 2, 3], [2, 3, 3])
-<span class="py-output">True</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.weakly_dominates([1, 2, 3], [2, 2, 2])
-<span class="py-output">False</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.weakly_dominates([1, 2, 3], [1, 2, 3])
-<span class="py-output">True</span>
-</pre></div>
-  </div>
 </div><div class="baseinstancevariable">
   
   
@@ -1709,7 +1572,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    24.3.3 at 2025-02-11 19:04:21.
+    24.3.3 at 2025-02-12 12:20:27.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

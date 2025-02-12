@@ -332,6 +332,80 @@ def one_contribution_3_obj(head, new, Fc):
     return volume
 
 
+def setup_cdllist(n_obj, points, ref, infos):
+    """ Set up a circular doubly linked list from the given data and reference point """
+    points = [p for p in points if strictly_dominates(p, ref, n_obj)]
+    n = len(points)
+
+    head = [DLNode(info=info) for info in ["s1", "s2", "s3"] + [None] * n]
+    # init_sentinels_new accepts a list at the beginning, therefore we use head[0:3]
+    init_sentinels_new(head[0:3], ref, n_obj)
+    di = n_obj - 1  # Dimension index for sorting (z-axis in 3D)
+
+    if n > 0:
+        # Convert data to a structured format suitable for sorting and linking
+        if n_obj == 3:
+            # Using lexsort to sort by z, y, x in ascending order
+            sorted_indices = my_lexsort(([p[0] for p in points], [p[1] for p in points],
+                                         [p[2] for p in points]))
+        elif n_obj == 4:
+            # Using lexsort to sort by w, z, y, x in ascending order
+            sorted_indices = my_lexsort(([p[0] for p in points], [p[1] for p in points],
+                                         [p[2] for p in points], [p[3] for p in points]))
+        else:
+            raise ValueError("Only 3D and 4D points are supported")
+
+        # Create nodes from sorted points
+        for i, index in enumerate(sorted_indices):
+            head[i + 3].x = points[index]
+            head[i + 3].info = infos[index]
+            if n_obj == 3:
+                # Add 0.0 for 3d points so that it matches the original C code
+                head[i + 3].x.append(0.0)
+
+        # Link nodes
+        s = head[0].next[di]
+        s.next[di] = head[3]
+        head[3].prev[di] = s
+
+        for i in range(3, n + 2):
+            head[i].next[di] = head[i + 1] if i + 1 < len(head) else head[0]
+            head[i + 1].prev[di] = head[i]
+
+        s = head[0].prev[di]
+        s.prev[di] = head[n + 2]
+        head[n + 2].next[di] = s
+
+    return head[0]
+
+
+def weakly_dominates(a, b, n_obj):
+    """ Return True if a weakly dominates b, False otherwise
+
+    >>> weakly_dominates([1, 2, 3], [2, 3, 3], n_obj=3)
+    True
+    >>> weakly_dominates([1, 2, 3], [2, 2, 2], n_obj=3)
+    False
+    >>> weakly_dominates([1, 2, 3], [1, 2, 3], n_obj=3)
+    True
+    """
+    return all(a[i] <= b[i] for i in range(n_obj))
+
+
+def strictly_dominates(a, b, n_obj):
+    """ Return True if a strictly dominates b, False otherwise
+
+    >>> strictly_dominates([1, 2, 3], [2, 3, 3], n_obj=3)
+    True
+    >>> strictly_dominates([1, 2, 3], [2, 2, 2], n_obj=3)
+    False
+    >>> strictly_dominates([1, 2, 3], [1, 2, 3], n_obj=3)
+    False
+    """
+    return (all(a[i] <= b[i] for i in range(n_obj)) and
+            any(a[i] < b[i] for i in range(n_obj)))
+
+
 def hv3dplus(head, Fc):
     """ Computes the hypervolume indicator in d=3 in linear time """
     p = head

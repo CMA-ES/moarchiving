@@ -5,7 +5,7 @@ to avoid code duplication.
 """
 
 
-from moarchiving.moarchiving_utils import DLNode, my_lexsort, init_sentinels_new
+from moarchiving.moarchiving_utils import setup_cdllist, weakly_dominates
 
 inf = float('inf')
 
@@ -39,10 +39,10 @@ class MOArchiveParent:
 
         if reference_point is not None:
             self.reference_point = list(reference_point)
-            self.head = self.setup_cdllist(list_of_f_vals, self.reference_point, infos)
+            self.head = setup_cdllist(self.n_obj, list_of_f_vals, self.reference_point, infos)
         else:
             self.reference_point = None
-            self.head = self.setup_cdllist(list_of_f_vals, [inf] * self.n_obj, infos)
+            self.head = setup_cdllist(self.n_obj, list_of_f_vals, [inf] * self.n_obj, infos)
         self._kink_points = None
 
     def __len__(self):
@@ -81,7 +81,7 @@ class MOArchiveParent:
         True
         """
         for point in self._points_generator():
-            if self.weakly_dominates(point.x, f_val):
+            if weakly_dominates(point.x, f_val, self.n_obj):
                 return True
             # points are sorted in lexicographic order, so we can return False
             # once we find a point that is lexicographically greater than f_val
@@ -304,85 +304,6 @@ class MOArchiveParent:
 
     def compute_hypervolume(self):
         raise NotImplementedError("This method should be implemented in the child class")
-
-    def setup_cdllist(self, points, ref, infos):
-        """ Set up a circular doubly linked list from the given data and reference point """
-        points = [p for p in points if self.strictly_dominates(p, ref)]
-        n = len(points)
-
-        head = [DLNode(info=info) for info in ["s1", "s2", "s3"] + [None] * n]
-        # init_sentinels_new accepts a list at the beginning, therefore we use head[0:3]
-        init_sentinels_new(head[0:3], ref, self.n_obj)
-        di = self.n_obj - 1  # Dimension index for sorting (z-axis in 3D)
-
-        if n > 0:
-            # Convert data to a structured format suitable for sorting and linking
-            if self.n_obj == 3:
-                # Using lexsort to sort by z, y, x in ascending order
-                sorted_indices = my_lexsort(([p[0] for p in points], [p[1] for p in points],
-                                             [p[2] for p in points]))
-            elif self.n_obj == 4:
-                # Using lexsort to sort by w, z, y, x in ascending order
-                sorted_indices = my_lexsort(([p[0] for p in points], [p[1] for p in points],
-                                             [p[2] for p in points], [p[3] for p in points]))
-            else:
-                raise ValueError("Only 3D and 4D points are supported")
-
-            # Create nodes from sorted points
-            for i, index in enumerate(sorted_indices):
-                head[i + 3].x = points[index]
-                head[i + 3].info = infos[index]
-                if self.n_obj == 3:
-                    # Add 0.0 for 3d points so that it matches the original C code
-                    head[i + 3].x.append(0.0)
-
-            # Link nodes
-            s = head[0].next[di]
-            s.next[di] = head[3]
-            head[3].prev[di] = s
-
-            for i in range(3, n + 2):
-                head[i].next[di] = head[i + 1] if i + 1 < len(head) else head[0]
-                head[i + 1].prev[di] = head[i]
-
-            s = head[0].prev[di]
-            s.prev[di] = head[n + 2]
-            head[n + 2].next[di] = s
-
-        return head[0]
-
-    def weakly_dominates(self, a, b, n_obj=None):
-        """ Return True if a weakly dominates b, False otherwise
-
-        >>> from moarchiving.get_archive import get_mo_archive
-        >>> moa = get_mo_archive(n_obj=3)
-        >>> moa.weakly_dominates([1, 2, 3], [2, 3, 3])
-        True
-        >>> moa.weakly_dominates([1, 2, 3], [2, 2, 2])
-        False
-        >>> moa.weakly_dominates([1, 2, 3], [1, 2, 3])
-        True
-        """
-        if n_obj is None:
-            n_obj = self.n_obj
-        return all(a[i] <= b[i] for i in range(n_obj))
-
-    def strictly_dominates(self, a, b, n_obj=None):
-        """ Return True if a strictly dominates b, False otherwise
-
-        >>> from moarchiving.get_archive import get_mo_archive
-        >>> moa = get_mo_archive(n_obj=3)
-        >>> moa.strictly_dominates([1, 2, 3], [2, 3, 3])
-        True
-        >>> moa.strictly_dominates([1, 2, 3], [2, 2, 2])
-        False
-        >>> moa.strictly_dominates([1, 2, 3], [1, 2, 3])
-        False
-        """
-        if n_obj is None:
-            n_obj = self.n_obj
-        return (all(a[i] <= b[i] for i in range(n_obj)) and
-                any(a[i] < b[i] for i in range(n_obj)))
 
 
 if __name__ == "__main__":

@@ -7,7 +7,8 @@ objective space and efficiently calculating hypervolume with respect to the give
 
 from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2obj
 from moarchiving.moarchiving_utils import (DLNode, MySortedList, compute_area_simple, remove_from_z,
-                                           restart_list_y, lexicographic_less, one_contribution_3_obj)
+                                           restart_list_y, lexicographic_less, one_contribution_3_obj,
+                                           weakly_dominates, strictly_dominates)
 from moarchiving.moarchiving_parent import MOArchiveParent
 
 import warnings as _warnings
@@ -255,7 +256,7 @@ class MOArchive3obj(MOArchiveParent):
 
             # Remove nodes dominated by the current node
             nodes_to_remove = [node for node in T if node != current and
-                               self.strictly_dominates(current.x, node.x, n_obj=2)]
+                               strictly_dominates(current.x, node.x, n_obj=2)]
             for node in nodes_to_remove:
                 T.remove(node)
 
@@ -468,7 +469,7 @@ class MOArchive3obj(MOArchiveParent):
 
         while p != stop:
             s = t.outer_delimiter_x(p)
-            if self.weakly_dominates(s.x, p.x) or self.weakly_dominates(t.next_y(s).x, p.x):
+            if weakly_dominates(s.x, p.x, self.n_obj) or weakly_dominates(t.next_y(s).x, p.x, self.n_obj):
                 p.ndomr = 1
                 p = p.next[di]
                 continue

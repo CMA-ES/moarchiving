@@ -11,9 +11,15 @@ from moarchiving.moarchiving_utils import (DLNode, MySortedList, compute_area_si
                                            weakly_dominates, strictly_dominates)
 from moarchiving.moarchiving_parent import MOArchiveParent
 
-import warnings as _warnings
-from sortedcontainers import SortedList
 import math
+import warnings as _warnings
+
+try:
+    from sortedcontainers import SortedList
+    _HAS_SORTEDCONTAINERS = True
+except ImportError:
+    _HAS_SORTEDCONTAINERS = False
+
 try:
     import fractions
 except ImportError:
@@ -66,6 +72,10 @@ class MOArchive3obj(MOArchiveParent):
         to compute the hypervolume.
         infos are an optional list of additional information about the points in the archive.
         """
+        if not _HAS_SORTEDCONTAINERS:
+            raise ImportError("`sortedcontainers` module must be installed for "
+                              "moarchiving in 3 and 4 objectives to work")
+
         hypervolume_final_float_type = MOArchive3obj.hypervolume_final_float_type \
             if hypervolume_final_float_type is None else hypervolume_final_float_type
         hypervolume_computation_float_type = MOArchive3obj.hypervolume_computation_float_type \

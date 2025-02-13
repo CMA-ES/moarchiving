@@ -1,7 +1,10 @@
 """This module contains various utility functions and classes for the MOArchiving package."""
-
-
-from sortedcontainers import SortedKeyList
+import warnings as _warnings
+try:
+    from sortedcontainers import SortedKeyList
+except ImportError:
+    _warnings.warn('`sortedcontainers` module not installed, moarchiving for 3 and 4 objectives will not work')
+    SortedKeyList = list
 
 
 class DLNode:

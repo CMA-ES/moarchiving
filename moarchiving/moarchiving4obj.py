@@ -12,12 +12,6 @@ from moarchiving.moarchiving_parent import MOArchiveParent
 import warnings as _warnings
 
 try:
-    from sortedcontainers import SortedKeyList
-    _HAS_SORTEDCONTAINERS = True
-except ImportError:
-    _HAS_SORTEDCONTAINERS = False
-
-try:
     import fractions
 except ImportError:
     _warnings.warn('`fractions` module not installed, arbitrary precision hypervolume computation not available')
@@ -72,9 +66,6 @@ class MOArchive4obj(MOArchiveParent):
         to compute the hypervolume.
         infos are an optional list of additional information about the points in the archive.
         """
-        if not _HAS_SORTEDCONTAINERS:
-            raise ImportError("`sortedcontainers` module must be installed for "
-                              "moarchiving in 3 and 4 objectives to work")
 
         hypervolume_final_float_type = MOArchive4obj.hypervolume_final_float_type \
             if hypervolume_final_float_type is None else hypervolume_final_float_type

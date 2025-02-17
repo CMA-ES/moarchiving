@@ -2,22 +2,22 @@
 
 
 import unittest
-from moarchiving.moarchiving_utils import MySortedList, DLNode
+from moarchiving.moarchiving_utils import ArchiveSortedList, DLNode
 
 
 class TestSortedList(unittest.TestCase):
     """ Tests for the MySortedList class """
     def test_init(self):
         """ test the initialization of the MySortedList """
-        sl = MySortedList()
+        sl = ArchiveSortedList()
         self.assertEqual(str(sl), "[]")
 
-        sl = MySortedList([DLNode([3, 0]), DLNode([1, 2]), DLNode([0, 3]), DLNode([2, 1])])
+        sl = ArchiveSortedList([DLNode([3, 0]), DLNode([1, 2]), DLNode([0, 3]), DLNode([2, 1])])
         self.assertEqual(str(sl), "[[3, 0], [2, 1], [1, 2], [0, 3]]")
 
     def test_add(self):
         """ test the add method of the MySortedList """
-        sl = MySortedList()
+        sl = ArchiveSortedList()
         self.assertEqual(str(sl), "[]")
         sl.add(DLNode([3, 0]))
         self.assertEqual(str(sl), "[[3, 0]]")
@@ -34,7 +34,7 @@ class TestSortedList(unittest.TestCase):
         n2 = DLNode([1, 2])
         n3 = DLNode([0, 3])
         n4 = DLNode([2, 1])
-        sl = MySortedList([n1, n2, n3, n4])
+        sl = ArchiveSortedList([n1, n2, n3, n4])
         self.assertEqual(str(sl), "[[3, 0], [2, 1], [1, 2], [0, 3]]")
         sl.remove(n1)
         self.assertEqual(str(sl), "[[2, 1], [1, 2], [0, 3]]")
@@ -47,7 +47,7 @@ class TestSortedList(unittest.TestCase):
 
     def test_head(self):
         """ test the head_x and head_y methods of the MySortedList """
-        sl = MySortedList([DLNode([3, 0]), DLNode([1, 2]), DLNode([0, 3]), DLNode([2, 1])])
+        sl = ArchiveSortedList([DLNode([3, 0]), DLNode([1, 2]), DLNode([0, 3]), DLNode([2, 1])])
         self.assertEqual(sl.head_y().x, [3, 0])
         self.assertEqual(sl.head_x().x, [0, 3])
 
@@ -57,7 +57,7 @@ class TestSortedList(unittest.TestCase):
         n2 = DLNode([1, 2])
         n3 = DLNode([0, 3])
         n4 = DLNode([2, 1])
-        sl = MySortedList([n1, n2, n3, n4])
+        sl = ArchiveSortedList([n1, n2, n3, n4])
 
         self.assertEqual(sl.next_y(n1), n4)
         self.assertEqual(sl.next_y(n4), n2)
@@ -73,7 +73,7 @@ class TestSortedList(unittest.TestCase):
         n2 = DLNode([1, 2])
         n3 = DLNode([0, 3])
         n4 = DLNode([2, 1])
-        sl = MySortedList([n1, n2, n3, n4])
+        sl = ArchiveSortedList([n1, n2, n3, n4])
 
         self.assertEqual(sl.outer_delimiter_y(DLNode([1.5, 1.5])), n2)
         self.assertEqual(sl.outer_delimiter_y(DLNode([0.5, 1.5])), n3)
@@ -91,28 +91,28 @@ class TestSortedList(unittest.TestCase):
         n3 = DLNode([0, 3])
         n4 = DLNode([2, 1])
 
-        sl = MySortedList([n1, n2, n3, n4])
+        sl = ArchiveSortedList([n1, n2, n3, n4])
         p = DLNode([1.5, 0.5])
         s = sl.outer_delimiter_x(p)
         points_to_remove = sl.remove_dominated_y(p, s)
         self.assertEqual(points_to_remove, [n4])
         self.assertEqual(str(sl), "[[3, 0], [1, 2], [0, 3]]")
 
-        sl = MySortedList([n1, n2, n3, n4])
+        sl = ArchiveSortedList([n1, n2, n3, n4])
         p = DLNode([0.5, 0.5])
         s = sl.outer_delimiter_x(p)
         points_to_remove = sl.remove_dominated_y(p, s)
         self.assertEqual(points_to_remove, [n4, n2])
         self.assertEqual(str(sl), "[[3, 0], [0, 3]]")
 
-        sl = MySortedList([n1, n2, n3, n4])
+        sl = ArchiveSortedList([n1, n2, n3, n4])
         p = DLNode([1.5, 0.5])
         s = sl.outer_delimiter_y(p)
         points_to_remove = sl.remove_dominated_x(p, s)
         self.assertEqual(points_to_remove, [n4])
         self.assertEqual(str(sl), "[[3, 0], [1, 2], [0, 3]]")
 
-        sl = MySortedList([n1, n2, n3, n4])
+        sl = ArchiveSortedList([n1, n2, n3, n4])
         p = DLNode([0.5, 0.5])
         s = sl.outer_delimiter_y(p)
         points_to_remove = sl.remove_dominated_x(p, s)

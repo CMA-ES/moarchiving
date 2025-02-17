@@ -6,7 +6,7 @@ objective space and efficiently calculating hypervolume with respect to the give
 
 
 from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2obj
-from moarchiving.moarchiving_utils import (DLNode, MySortedList, compute_area_simple, remove_from_z,
+from moarchiving.moarchiving_utils import (DLNode, ArchiveSortedList, compute_area_simple, remove_from_z,
                                            restart_list_y, lexicographic_less, one_contribution_3_obj,
                                            weakly_dominates, strictly_dominates)
 from moarchiving.moarchiving_parent import MOArchiveParent
@@ -467,8 +467,8 @@ class MOArchive3obj(MOArchiveParent):
         """ Preprocessing step to determine the closest points in x and y directions,
         as described in the paper and implemented in the original C code. """
         di = self.n_obj - 1
-        t = MySortedList(iterable=[self.head, self.head.next[di]],
-                         key=lambda node: (node.x[1], node.x[0]))
+        t = ArchiveSortedList(iterable=[self.head, self.head.next[di]],
+                              key=lambda node: (node.x[1], node.x[0]))
 
         p = self.head.next[di].next[di]
         stop = self.head.prev[di]

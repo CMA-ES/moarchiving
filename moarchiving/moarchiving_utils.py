@@ -30,7 +30,7 @@ class DLNode:
         return new_node
 
 
-class MySortedList(SortedKeyList):
+class ArchiveSortedList(SortedKeyList):
     """ A class to represent a sorted list of nodes, together with additional methods that
      follow the definition in the paper."""
     def __init__(self, iterable=None, key=lambda node: node.x[1]):

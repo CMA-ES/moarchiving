@@ -35,6 +35,8 @@ class MySortedList(SortedKeyList):
      follow the definition in the paper."""
     def __init__(self, iterable=None, key=lambda node: node.x[1]):
         """ Initialize the sorted list with the given iterable and key function. """
+        if SortedKeyList is list:
+            raise ImportError("`MySortedList `requires `sortedcontainers` to be installed")
         super().__init__(iterable=iterable, key=key)
 
     def __str__(self):

@@ -200,9 +200,9 @@ class MOArchive4obj(MOArchiveParent):
     def _get_kink_points(self):
         """ Function that returns the kink points of the archive.
 
-         Kink point are calculated by making a sweep of the archive, where the state is one
-         3 objective archive of all possible kink points found so far, and another 3 objective
-         archive which stores the non-dominated points so far in the sweep
+        Kink point are calculated by making a sweep of the archive, where the state is one
+        3 objective archive of all possible kink points found so far, and another 3 objective
+        archive which stores the non-dominated points so far in the sweep
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]], reference_point=[5, 5, 5, 5])

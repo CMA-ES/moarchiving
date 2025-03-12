@@ -1,9 +1,9 @@
 # Introduction
 
-This library implements a multi-objective archive of non-dominated
-solutions for 2, 3 or 4 objectives, providing easy and fast access to
-multiple hypervolume indicators:
-- the hypervolume of the archive, 
+[This package](https://cma-es.github.io/moarchiving/moarchiving-apidocs/index.html) implements a multi-objective 
+ non-dominated archive for 2, 3 or 4 objectives, providing easy and fast access to multiple hypervolume indicators:
+
+- the hypervolume of the archive,
 - the contributing hypervolume of each element, 
 - the [uncrowded hypervolume improvement](https://doi.org/10.1145/3321707.3321852) (see also [here](https://arxiv.org/abs/1904.08823)) of any given point in the objective space, and 
 - the uncrowded hypervolume of the (unpruned) archive.
@@ -16,11 +16,11 @@ On a system shell, either like
 pip install moarchiving
 ```
 
-or from GitHub, for example, from the `development` branch like
+or from GitHub, for example
 ```
 pip install git+https://github.com/CMA-ES/moarchiving.git@development
 ```
-
+installing from the `development` branch.
 
 ## Testing
 
@@ -44,20 +44,19 @@ Ran 7 tests in 0.001s
 ```
 
 
+## Links
+
+- [API documentation](https://cma-es.github.io/moarchiving/moarchiving-apidocs/index.html)
+- [This page including performance test examples](https://cma-es.github.io/moarchiving/)
+- [Code on Github](https://github.com/CMA-ES/moarchiving)
+
+
 ## Details
 
 `moarchiving` with 2 objectives uses the [`fractions.Fraction`](https://docs.python.org/3/library/fractions.html) type to avoid rounding errors when computing hypervolume differences, but its usage can also be easily switched off by assigning the respective class attributes `hypervolume_computation_float_type` and `hypervolume_final_float_type`. The Fraction type can become prohibitively computationally expensive with increasing precision.
 
 The implementation of the two-objective archive is heavily based on the [`bisect`](https://docs.python.org/3/library/bisect.html) module, while in three and four objectives it is based on the [`sortedcontainers`](https://pypi.org/project/sortedcontainers/) module.
 
-
-## Links
-
-- [Code on Github](https://github.com/CMA-ES/moarchiving)
-- Documentation (possibly slighly outdated) in
-  - [this page plus performance test examples](https://cma-es.github.io/moarchiving/)
-  - [apidocs format](https://cma-es.github.io/moarchiving/moarchiving-apidocs/index.html)
-  - [epydocs format](https://cma-es.github.io/moarchiving/moarchiving-epydocs/index.html)
 
 ## Releases
 - 1.0.0 addition of MOArchive classes for 3 and 4 objectives, as well as a class for handling solutions to constrained problems
@@ -83,7 +82,7 @@ The implementation of the two-objective archive is heavily based on the [`bisect
 
 ### 1. Initialization
 The MOArchive object can be created using the `get_mo_archive` function by providing a list of objective values, a reference point, or at least the number of objectives. 
-Further solutions can always be added using `add` or `add_list` methods, but the reference point cannot be changed once the instance is created. A list of information strings can be provided for each element, which will be stored as long as the corresponding element remains in the archive (e.g., the x values of the element). At any time, the list of non-dominated elements and their corresponding information can be accessed.
+Further solutions can be added using `add` or `add_list` methods, but the reference point cannot be changed once the instance is created. A list of information strings can be provided for each element, which will be stored as long as the corresponding element remains in the archive (e.g., the x values of the element). At any time, the list of non-dominated elements and their corresponding information can be accessed.
 
 
 ```python

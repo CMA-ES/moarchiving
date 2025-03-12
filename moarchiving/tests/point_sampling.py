@@ -44,7 +44,7 @@ def get_stacked_points(n_points, points_definitions):
         for p_def in points_definitions:
             if p_def == 'random':
                 points[-1].append(random.random())
-            elif type(p_def) is int:
+            elif isinstance(p_def, int):
                 points[-1].append(p_def)
             else:
                 raise ValueError("Invalid point definition")

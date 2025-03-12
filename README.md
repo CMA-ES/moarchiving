@@ -1,19 +1,24 @@
 # Introduction
 
-This library implements a multi-objective archive of non-dominated solutions  (currently supporting 2, 3 and 4 objectives). It provides easy and fast access to multiple hypervolume indicators, the contributing hypervolume of each solution, and to the [uncrowded hypervolume improvement](https://arxiv.org/abs/1904.08823) of any given point in the objective space.
+This library implements a multi-objective archive of non-dominated
+solutions for 2, 3 or 4 objectives, providing easy and fast access to
+multiple hypervolume indicators:
+- the hypervolume of the archive, 
+- the contributing hypervolume of each element, 
+- the [uncrowded hypervolume improvement](https://doi.org/10.1145/3321707.3321852) (see also [here](https://arxiv.org/abs/1904.08823)) of any given point in the objective space, and 
+- the uncrowded hypervolume of the (unpruned) archive.
 
 
 ## Installation
 
-Either via
-```
-pip install git+https://github.com/CMA-ES/moarchiving.git@master
-```
-
-or simply via
-
+On a system shell, either like
 ```
 pip install moarchiving
+```
+
+or from GitHub, for example, from the `development` branch like
+```
+pip install git+https://github.com/CMA-ES/moarchiving.git@development
 ```
 
 
@@ -41,9 +46,9 @@ Ran 7 tests in 0.001s
 
 ## Details
 
-`moarchiving` uses the [`fractions.Fraction`](https://docs.python.org/3/library/fractions.html) type to avoid rounding errors when computing hypervolume differences, but its usage can also be easily switched off by assigning the respective class attributes `hypervolume_computation_float_type` and `hypervolume_final_float_type`. The Fraction type can become prohibitively computationally expensive with increasing precision.
+`moarchiving` with 2 objectives uses the [`fractions.Fraction`](https://docs.python.org/3/library/fractions.html) type to avoid rounding errors when computing hypervolume differences, but its usage can also be easily switched off by assigning the respective class attributes `hypervolume_computation_float_type` and `hypervolume_final_float_type`. The Fraction type can become prohibitively computationally expensive with increasing precision.
 
-Implementation of two-objective archive is heavily based on the [`bisect`](https://docs.python.org/3/library/bisect.html) module, while in three and four objectives it is based on the [`sortedcontainers`](https://pypi.org/project/sortedcontainers/) module.
+The implementation of the two-objective archive is heavily based on the [`bisect`](https://docs.python.org/3/library/bisect.html) module, while in three and four objectives it is based on the [`sortedcontainers`](https://pypi.org/project/sortedcontainers/) module.
 
 
 ## Links
@@ -77,7 +82,8 @@ Implementation of two-objective archive is heavily based on the [`bisect`](https
 13. [Performance tests](#13-performance-tests)
 
 ### 1. Initialization
-The MOArchive object can be created using the `get_archive` function by providing a list of objective values, a reference point, or at least the number of objectives. Note that additional solutions can always be added using `add` or `add_list` functions, but the reference point cannot be changed once the object is initialized. A list of information strings can be provided for each solution, which will be stored as long as the corresponding solution remains in the archive (e.g., the x values of the solution). At any time, the list of non-dominated solution and their corresponding information can be accessed. 
+The MOArchive object can be created using the `get_mo_archive` function by providing a list of objective values, a reference point, or at least the number of objectives. 
+Further solutions can always be added using `add` or `add_list` methods, but the reference point cannot be changed once the instance is created. A list of information strings can be provided for each element, which will be stored as long as the corresponding element remains in the archive (e.g., the x values of the element). At any time, the list of non-dominated elements and their corresponding information can be accessed.
 
 
 ```python
@@ -95,7 +101,7 @@ print("points in the 4 objective archive:", list(moa4obj))
     points in the 2 objective archive: [[1, 5], [2, 3], [5, 0]]
     points in the 3 objective archive: [[3, 3, 0], [2, 2, 1], [1, 2, 3]]
     points in the 4 objective archive: [[1, 3, 0, 1], [1, 2, 3, 4]]
-    
+
 
 MOArchive objects can also be initialized empty.
 
@@ -106,7 +112,7 @@ print("points in the empty archive:", list(moa))
 ```
 
     points in the empty archive: []
-    
+
 
 ### 2. Constrained MOArchive
 Constrained MOArchive supports all the functionalities of a non-constrained MOArchive, with the added capability of handling constraints when adding or initializing the archive. In addition to the objective values of a solution, constraint values must be provided in the form of a list or a number. A solution is deemed feasible when all its constraint values are less than or equal to zero. 
@@ -121,7 +127,7 @@ print("points in the archive:", list(cmoa))
 ```
 
     points in the archive: [[4, 3, 2], [1, 3, 4]]
-    
+
 
 ### 3. Accessing solution information
 `archive.infos` is used to get the information on solutions in the archive.
@@ -135,7 +141,7 @@ print("infos of the constrained archive", cmoa.infos)
 
     infos of the empty archive []
     infos of the constrained archive ['c', 'b']
-    
+
 
 ### 4. Adding solutions
 Solutions can be added to the MOArchive at any time using the `add` function (for a single solution) or the `add_list` function (for multiple solutions).
@@ -155,7 +161,7 @@ print("infos:", moa.infos)
     infos: ['a']
     points: [[3, 2, 1], [2, 2, 2], [1, 2, 3]]
     infos: ['b', 'd', 'a']
-    
+
 
 When adding to the constrained archive, constraint values must be added as well.
 
@@ -168,7 +174,7 @@ print("infos:", cmoa.infos)
 
     points: [[4, 3, 2], [3, 3, 3], [1, 3, 4]]
     infos: ['c', 'e', 'b']
-    
+
 
 ### 5. Archive size
 The MOArchive implements some functionality of a list (in the 2 objective case, it actually extends the `list` class, though this is not the case in 3 and 4 objectives).  In particular, it includes the `len` method to get the number of solutions in the archive as well as the `in` keyword to check if a point is in the archive.
@@ -185,15 +191,15 @@ print("[3, 2, 0] in moa:", [3, 2, 0] in moa)
     Length of the archive: 3
     [2, 2, 2] in moa: True
     [3, 2, 0] in moa: False
-    
+
 
 ### 6. Performance indicators
-We implement the following performance indicators:
-- `hypervolume` (for MOArchive and CMOArchive)
-- `hypervolume_plus` (for MOArchive and CMOArchive), based on, but not completely equal to the one defined [here](https://doi.org/10.1109/TEVC.2022.3210897)
+An archive provides the following performance indicators:
+- `hypervolume`
+- `hypervolume_plus`, providing additionally the closest distance to the reference area for an empty archive, see [here](https://doi.org/10.1145/3321707.3321852) and [here](https://doi.org/10.1109/TEVC.2022.3210897)
 - `hypervolume_plus_constr` (for CMOArchive), based on, but not completely equal to the one defined [here](https://doi.org/10.1016/j.ins.2022.05.106)
 
-To ensure that all performance indicators are easily comparable, we define all of them as maximization indicators (by multiplying `hypervolume_plus` and `hypervolume_plus_constr` indicators by -1). In this case, when the archive is not empty, all the indicators are positive and have the same value. As the archive doesn't yet support addition of ideal point, the values of indicators are not normalized.
+Indicators are defined for maximization (the original `hypervolume_plus_constr` indicator is multiplied by -1). When the archive is not empty, all the indicators are positive and have the same value. As the archive does not (yet) support an ideal point, the values of indicators are not normalized.
 
 
 
@@ -204,7 +210,7 @@ print("Hypervolume plus of the archive:", moa.hypervolume_plus)
 
     Hypervolume of the archive: 12
     Hypervolume plus of the archive: 12
-    
+
 
 In case of a constrained MOArchive, the `hypervolume_plus_constr` attribute can be accessed as well. 
 
@@ -218,7 +224,7 @@ print("Hypervolume plus constr of the constrained archive:", cmoa.hypervolume_pl
     Hyperolume of the constrained archive: 14
     Hypervolume plus of the constrained archive: 14
     Hypervolume plus constr of the constrained archive: 14
-    
+
 
 ### 7. Contributing hypervolumes
 The `contributing_hypervolumes` attribute provides a list of hypervolume contributions for each point of the archive. Alternatively, the contribution for a single point can be computed using the `contributing_hypervolume(point)` method.
@@ -236,7 +242,7 @@ print("All contributing hypervolumes:", moa.contributing_hypervolumes)
     contributing hv of point [2, 2, 2] is 2
     contributing hv of point [1, 2, 3] is 2
     All contributing hypervolumes: [Fraction(2, 1), Fraction(2, 1), Fraction(2, 1)]
-    
+
 
 ### 8. Hypervolume improvement
 The `hypervolume_improvement(point)` method returns the improvement of the hypervolume if we would add the point to the archive.
@@ -253,9 +259,9 @@ print(f"hypervolume after adding {point}: {moa.hypervolume}")
     hypervolume before adding [1, 3, 0]: 12
     hypervolume improvement of point [1, 3, 0]: 6
     hypervolume after adding [1, 3, 0]: 18
-    
 
-### 9. Distance to the Pareto front
+
+### 9. Distance to the empirical Pareto front
 The `distance_to_pareto_front(point)` method returns the distance between the given point and the Pareto front.
 
 
@@ -268,7 +274,7 @@ print("Distance of [3, 2, 2] to pareto front:", moa.distance_to_pareto_front([3,
     Current archive: [[1, 3, 0], [3, 2, 1], [2, 2, 2], [1, 2, 3]]
     Distance of [3, 2, 1] to pareto front: 0.0
     Distance of [3, 2, 2] to pareto front: 1.0
-    
+
 
 ### 10. Enabling or disabling fractions 
 To avoid loss of precision, fractions are used by default. This can be changed to floats by setting the `hypervolume_final_float_type` and `hypervolume_computation_float_type` function attributes.
@@ -291,7 +297,7 @@ print(moa3_nofr.hypervolume)
 
     161245156349030777798724819133399/10141204801825835211973625643008
     15.899999999999999
-    
+
 
 ### 11. Additional functions
 MOArchive also implements additional functions to check whether a given point is in the archive:
@@ -317,7 +323,7 @@ for point in points_list:
     [5, 5, 0] |         0 |         1 |                 1 | [[1, 3, 0]]
     [2, 2, 3] |         1 |         1 |                 2 | [[2, 2, 2], [1, 2, 3]]
     [0, 2, 3] |         1 |         0 |                 0 | []
-    
+
 
 ### 12. Visualization of indicator values
 By saving the values of indicators for each solution added to the archive, we can visualize their change over time.
@@ -429,7 +435,7 @@ plt.show()
     .............
     Testing 4 objectives
     .........
-    
+
 
 
     
@@ -487,7 +493,7 @@ plt.show()
     ................
     Testing 4 objectives
     ...........
-    
+
 
 
     

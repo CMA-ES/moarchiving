@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-""" This package implements a non-dominated archive for 2, 3, or 4 objectives,
+"""This package implements a non-dominated archive for 2, 3, or 4 objectives,
 
-providing easy and fast access to multiple hypervolume indicators, the
-contributing hypervolume of each solution, and to the uncrowded hypervolume
-improvement of any given point in the objective space.
+providing easy and fast access to multiple hypervolume indicators, namely
+the hypervolume of the archive, the contributing hypervolume of each
+element, the uncrowded hypervolume improvement of any given point in the
+objective space, and the uncrowded hypervolume of the (unpruned) archive.
 
 Additionally, the package provides a constrained version of the archive,
 which allows to store points with constraints.

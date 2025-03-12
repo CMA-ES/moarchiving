@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-"""This module contains, for the time being, a single MOO archive class.
+"""A bi-objective nondominated archive,
 
-A bi-objective nondominated archive as sorted list with incremental
-update in logarithmic time.
-
+implemented as sorted list and with incremental update in logarithmic time.
 """
 from __future__ import division, print_function, unicode_literals
 del division, print_function, unicode_literals
@@ -1060,9 +1058,10 @@ class BiobjectiveNondominatedSortedList(list):
         if self.maintain_contributing_hypervolumes:
             # Old or experimental code:
             """
-            self._contributing_hypervolumes = [  # simple solution
-                self.contributing_hypervolume(i)
-                for i in range(len(self))]
+            ::
+                self._contributing_hypervolumes = [  # simple solution
+                    self.contributing_hypervolume(i)
+                    for i in range(len(self))]
             """
             raise NotImplementedError
         return nb - len(self)

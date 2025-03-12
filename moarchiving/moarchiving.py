@@ -269,10 +269,8 @@ class BiobjectiveNondominatedSortedList(list):
                              " ``%s``" % str(f_pair))
         if not self.in_domain(f_pair):
             if self.hypervolume_plus is not None and self.hypervolume_plus < 0:
-                dist_to_hv_area = self.distance_to_hypervolume_area(f_pair)
-                if -dist_to_hv_area > self.hypervolume_plus:
-                    self._hypervolume_plus = -dist_to_hv_area
-
+                self._hypervolume_plus = max((self._hypervolume_plus,
+                                              -self.distance_to_hypervolume_area(f_pair)))
             self._removed = [f_pair]
             return None
         idx = self.bisect_left(f_pair)
@@ -611,9 +609,19 @@ class BiobjectiveNondominatedSortedList(list):
 
     @property
     def hypervolume_plus(self):
-        """hypervolume_plus indicator of the entire list w.r.t. the "initial" reference point.
+        """uncrowded hypervolume of the entire list w.r.t. the "initial" reference point.
+
+        `hypervolume_plus` equals to the hypervolume when the archive is
+        nonempty, otherwise it is the smallest Euclidean distance to the
+        hypervolume area (AKA reference domain) times -1 of any element
+        that was previously added but rejected because it did not dominate
+        the reference point.
 
         Raise `ValueError` when no reference point was given initially.
+
+        Details: conceptually, the distance computation is based on the
+        nondominated archive as if it was not pruned by the reference
+        point.
 
         >>> from moarchiving import BiobjectiveNondominatedSortedList as NDA
         >>> a = NDA(reference_point=[1, 1])
@@ -707,8 +715,9 @@ class BiobjectiveNondominatedSortedList(list):
         unless the archive is empty and the point does not dominate the
         reference point.
 
-        Assumes that extreme points in the archive are in the reference
-        domain.
+        The implementation assumes that all points of the archive are in
+        the reference domain (and more extreme points have been pruned, as
+        it is the default behavior).
 
         Details: the distance for dominated points is computed by
         iterating over the relevant kink points ``(self[i+1][0],

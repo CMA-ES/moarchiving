@@ -6,9 +6,6 @@ update in logarithmic time.
 
 """
 from __future__ import division, print_function, unicode_literals
-__author__ = "Nikolaus Hansen"
-__license__ = "BSD 3-clause"
-__version__ = "0.7.1"
 del division, print_function, unicode_literals
 
 import warnings as _warnings
@@ -19,6 +16,7 @@ except ImportError: _warnings.warn(
     '`fractions` module not installed, arbitrary precision hypervolume computation not available')
 inf = float('inf')
 
+
 def _debug_trace(*args, **kwargs):
     """return a string like printing the calling trace stack"""
     try:
@@ -28,6 +26,7 @@ def _debug_trace(*args, **kwargs):
     else:
         s = ''.join(traceback.format_stack(*args, **kwargs))
     return s
+
 
 def true_fraction(val, copy=False):
     """return a `fractions.Fraction` object from `val`.
@@ -46,6 +45,7 @@ def true_fraction(val, copy=False):
     if not isinstance(val, (int, float)):
         val = float(val)
     return fractions.Fraction(val)
+
 
 class BiobjectiveNondominatedSortedList(list):
     """A sorted list of non-dominated unique objective-pairs.
@@ -132,7 +132,10 @@ class BiobjectiveNondominatedSortedList(list):
     def __init__(self,
                  list_of_f_pairs=None,
                  reference_point=None,
-                 sort=sorted):
+                 sort=sorted,
+                 infos=None,
+                 hypervolume_final_float_type=None,
+                 hypervolume_computation_float_type=None):
         """`list_of_f_pairs` does not need to be sorted.
 
         f-pairs beyond the `reference_point` are pruned away. The
@@ -144,39 +147,71 @@ class BiobjectiveNondominatedSortedList(list):
         CAVEAT: the interface, in particular the positional interface
         may change in future versions.
         """
-        self.make_expensive_asserts = BiobjectiveNondominatedSortedList.make_expensive_asserts
-        self.hypervolume_final_float_type = BiobjectiveNondominatedSortedList.hypervolume_final_float_type
-        self.hypervolume_computation_float_type = BiobjectiveNondominatedSortedList.hypervolume_computation_float_type
-        self.maintain_contributing_hypervolumes = BiobjectiveNondominatedSortedList.maintain_contributing_hypervolumes
-
-        if reference_point is not None:
-            self.reference_point = list(reference_point)
+        if hypervolume_final_float_type is None:
+            self.hypervolume_final_float_type = BiobjectiveNondominatedSortedList.hypervolume_final_float_type
         else:
-            self.reference_point = reference_point
-        self._removed = []  # should not be necessary but is needed for some tests
-        if list_of_f_pairs is not None and len(list_of_f_pairs) > 0:
-            try:  # prevent `sorted` to bail when `list_of_f_pairs` is an np.array
+            self.hypervolume_final_float_type = hypervolume_final_float_type
+
+        if hypervolume_computation_float_type is None:
+            self.hypervolume_computation_float_type = BiobjectiveNondominatedSortedList.hypervolume_computation_float_type
+        else:
+            self.hypervolume_computation_float_type = hypervolume_computation_float_type
+
+        self.make_expensive_asserts = BiobjectiveNondominatedSortedList.make_expensive_asserts
+        self.maintain_contributing_hypervolumes = BiobjectiveNondominatedSortedList.maintain_contributing_hypervolumes
+        self.n_obj = 2
+
+        if list_of_f_pairs is not None and len(list_of_f_pairs):
+            try:
                 list_of_f_pairs = list_of_f_pairs.tolist()
             except:
                 pass
             if len(list_of_f_pairs[0]) != 2:
                 raise ValueError("need elements of len 2, got %s"
                                  " as first element" % str(list_of_f_pairs[0]))
-            for f_pair in sort(list_of_f_pairs) if sort else list_of_f_pairs:
-                if not isinstance(f_pair, list):
-                    f_pair = list(f_pair)
-                if self.in_domain(f_pair) and not self.dominates_with(len(self) - 1,
-                                                                      f_pair):
-                    self.append(f_pair)  # this is O(1) whereas prune is O(n) for each pruned element
+            if sort is None:
+                list.__init__(self, list_of_f_pairs)
+            else:
+                if infos is not None:
+                    f_pair2info = dict(zip([tuple(f_pair) for f_pair in list_of_f_pairs], infos))
+                    list.__init__(self, sort(list_of_f_pairs))
+                    infos = [f_pair2info[tuple(f_pair)] for f_pair in self]
                 else:
-                    self._removed.append(f_pair)
-        self._infos = None
+                    list.__init__(self, sort(list_of_f_pairs))
+
+            # super(BiobjectiveNondominatedSortedList, self).__init__(sort(list_of_f_pairs))
+        if reference_point is not None:
+            self.reference_point = list(reference_point)
+        else:
+            self.reference_point = reference_point
+
+        if infos is not None:
+            if len(infos) != len(list_of_f_pairs):
+                raise ValueError(f"need as many infos as f_pairs, got "
+                                 f"{len(infos)} infos and {len(list_of_f_pairs)} f_pairs")
+            self._infos = infos
+        else:
+            self._infos = None
+
+        self.prune()  # remove dominated entries, uses in_domain, hence ref-point
         if self.maintain_contributing_hypervolumes:
             self._contributing_hypervolumes = self.contributing_hypervolumes
             raise NotImplementedError('update of _contributing_hypervolumes in _add_HV and _subtract_HV not implemented')
         else:
             self._contributing_hypervolumes = []
         self._set_HV()
+
+        if reference_point is not None:
+            if self._hypervolume > 0:
+                self._hypervolume_plus = self._hypervolume
+            else:
+                if list_of_f_pairs is None or len(list_of_f_pairs) == 0:
+                    self._hypervolume_plus = -inf
+                else:
+                    self._hypervolume_plus = -min([self.distance_to_hypervolume_area(f)
+                                                   for f in list_of_f_pairs])
+        else:
+            self._hypervolume_plus = None
         self.make_expensive_asserts and self._asserts()
 
     def _debug_info(self):
@@ -232,6 +267,9 @@ class BiobjectiveNondominatedSortedList(list):
             raise ValueError("argument `f_pair` must be of length 2, was"
                              " ``%s``" % str(f_pair))
         if not self.in_domain(f_pair):
+            if self.hypervolume_plus is not None and self.hypervolume_plus < 0:
+                self._hypervolume_plus = max((self._hypervolume_plus,
+                                              -self.distance_to_hypervolume_area(f_pair)))
             self._removed = [f_pair]
             return None
         idx = self.bisect_left(f_pair)
@@ -319,11 +357,13 @@ class BiobjectiveNondominatedSortedList(list):
         """
         idx = self.index(f_pair)
         self._subtract_HV(idx)
+        if hasattr(self, '_hypervolume'):
+            self._hypervolume_plus = self._hypervolume if self._hypervolume > 0 else -inf
         self._removed = [self[idx]]
         del self[idx]  # == list.remove(self, f_pair)
         if self._infos: del self._infos[idx]
 
-    def add_list(self, list_of_f_pairs):
+    def add_list(self, list_of_f_pairs, infos=None):
         """insert a list of f-pairs which doesn't need to be sorted.
 
         This is just a shortcut for looping over `add`, but `discarded`
@@ -350,9 +390,11 @@ class BiobjectiveNondominatedSortedList(list):
         a small performance benefit.
         """
         removed = []
+        if infos is None:
+            infos = len(list_of_f_pairs) * [None]
         # should we better create a non-dominated list and do a merge?
-        for f_pair in list_of_f_pairs:
-            if self.add(f_pair) is not None:
+        for f_pair, info in zip(list_of_f_pairs, infos):
+            if self.add(f_pair, info=info) is not None:
                 removed += [self._removed]  # slightly faster than .extend
         self._removed = removed  # could contain elements of `list_of_f_pairs`
         self.make_expensive_asserts and self._asserts()
@@ -384,19 +426,14 @@ class BiobjectiveNondominatedSortedList(list):
         """
 
     def copy(self):
-        """return a shallow copy of `self`, which should be good enough
-
-        because elements of `self` should never (be) change(d).
-
-        CAVEAT: this code has never been tested.
-        """
-        _warnings.warn('BiobjectiveNondominatedSortedList.copy has never been tested')
+        """return a "deep" copy of `self`"""
         nda = BiobjectiveNondominatedSortedList()
         for d in self.__dict__:
-            nda[d] = self[d]
-        list.__init__(nda, self)  # (nda, (p[:] for p in self)) would make the copy deep, see issue #12
+            setattr(nda, d, getattr(self, d))
+        # now fix all mutable references as a true copy
+        list.__init__(nda, (p[:] for p in self))
         nda.reference_point = [xi for xi in self.reference_point]
-        nda._hypervolume = self.hypervolume_final_float_type(self._hypervolume, copy=True)  # with Fraction not necessary
+        nda._hypervolume = self.hypervolume_final_float_type(self._hypervolume)  # with Fraction not necessary
         nda._contributing_hypervolumes = [hv for hv in self._contributing_hypervolumes]
         return nda
 
@@ -570,6 +607,43 @@ class BiobjectiveNondominatedSortedList(list):
         return self._hypervolume
 
     @property
+    def hypervolume_plus(self):
+        """uncrowded hypervolume of the entire list w.r.t. the "initial" reference point.
+
+        `hypervolume_plus` equals to the hypervolume when the archive is
+        nonempty, otherwise it is the smallest Euclidean distance to the
+        hypervolume area (AKA reference domain) times -1 of any element
+        that was previously added but rejected because it did not dominate
+        the reference point.
+
+        Raise `ValueError` when no reference point was given initially.
+
+        Details: conceptually, the distance computation is based on the
+        nondominated archive as if it was not pruned by the reference
+        point.
+
+        >>> from moarchiving import BiobjectiveNondominatedSortedList as NDA
+        >>> a = NDA(reference_point=[1, 1])
+        >>> a.hypervolume_plus
+        -inf
+        >>> a.add([1, 2])
+        >>> a.hypervolume_plus
+        -1.0
+        >>> a.add([1, 1])
+        >>> a.hypervolume_plus
+        -0.0
+        >>> a.add([0.5, 0.5])
+        0
+        >>> float(a.hypervolume_plus)
+        0.25
+        """
+        if self.reference_point is None:
+            raise ValueError("to compute the hypervolume_plus a reference"
+                             " point is needed (must be given initially)")
+        return self._hypervolume_plus
+
+
+    @property
     def contributing_hypervolumes(self):
         """`list` of contributing hypervolumes.
 
@@ -640,8 +714,9 @@ class BiobjectiveNondominatedSortedList(list):
         unless the archive is empty and the point does not dominate the
         reference point.
 
-        Assumes that extreme points in the archive are in the reference
-        domain.
+        The implementation assumes that all points of the archive are in
+        the reference domain (and more extreme points have been pruned, as
+        it is the default behavior).
 
         Details: the distance for dominated points is computed by
         iterating over the relevant kink points ``(self[i+1][0],
@@ -716,6 +791,8 @@ class BiobjectiveNondominatedSortedList(list):
         Overall this amounts to the uncrowded hypervolume improvement,
         see https://arxiv.org/abs/1904.08823
         """
+        save_infos = self._infos.copy() if self._infos is not None else None
+        save_hypervolume_plus = self._hypervolume_plus
         dist = self.distance_to_pareto_front(f_pair)
         if dist:
             return -dist
@@ -739,6 +816,8 @@ class BiobjectiveNondominatedSortedList(list):
         if hv0 != self.hypervolume:
             _warnings.warn("HV changed from %f to %f while computing hypervolume_improvement" %
                            (hv0, self.hypervolume))
+        self._infos = save_infos
+        self._hypervolume_plus = save_hypervolume_plus
         return self.hypervolume_computation_float_type(hv1) - self.hypervolume
 
     def hypervolume_improvement(self, f_pair):
@@ -797,6 +876,8 @@ class BiobjectiveNondominatedSortedList(list):
         if self.reference_point is None:
             return None
         self._hypervolume = self.compute_hypervolume(self.reference_point)
+        if self._hypervolume > 0:
+            self._hypervolume_plus = self._hypervolume
         return self._hypervolume
 
     def compute_hypervolume(self, reference_point):
@@ -922,6 +1003,7 @@ class BiobjectiveNondominatedSortedList(list):
                                self._debug_info(),
                                _debug_trace()))
         self._hypervolume += Ff(dHV)
+        self._hypervolume_plus = self._hypervolume
         return dHV
 
     def prune(self):
@@ -1102,6 +1184,7 @@ class BiobjectiveNondominatedSortedList(list):
                 diffs = np.diff(self, 1, 0)
                 assert all(diffs[:, 0] > 0)
                 assert all(diffs[:, 1] < 0)
+
 
 if __name__ == "__main__":
     import doctest

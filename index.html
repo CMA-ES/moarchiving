@@ -14583,11 +14583,14 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p><a href="https://cma-es.github.io/moarchiving/moarchiving-apidocs/index.html">This package</a> implements a multi-objective 
  non-dominated archive for 2, 3 or 4 objectives, providing easy and fast access to multiple hypervolume indicators:</p>
 <ul>
-<li>the hypervolume of the archive,</li>
-<li>the contributing hypervolume of each element, </li>
-<li>the <a href="https://doi.org/10.1145/3321707.3321852">uncrowded hypervolume improvement</a> (see also <a href="https://arxiv.org/abs/1904.08823">here</a>) of any given point in the objective space, and </li>
-<li>the uncrowded hypervolume of the (unpruned) archive.</li>
+<li>the hypervolume of the entire archive,</li>
+<li>the contributing hypervolume of each element,</li>
+<li>the <a href="https://doi.org/10.1145/3321707.3321852">uncrowded hypervolume improvement</a> (see also <a href="https://arxiv.org/abs/1904.08823">here</a>) of any given point in the objective space, and</li>
+<li>the uncrowded hypervolume of the (unpruned) archive, here called <a href="https://cma-es.github.io/moarchiving/moarchiving-apidocs/moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#hypervolume_plus">hypervolume plus</a>.</li>
 </ul>
+<p>Additionally, the package provides a constrained version of the archive,
+which allows to store points with constraints.</p>
+<p>The source code is available <a href="https://github.com/CMA-ES/moarchiving">on GitHub</a>.</p>
 <h2 id="Installation">Installation<a class="anchor-link" href="#Installation">&#182;</a></h2><p>On a system shell, either like</p>
 
 <pre><code>pip install moarchiving</code></pre>

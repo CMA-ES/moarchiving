@@ -3,11 +3,15 @@
 [This package](https://cma-es.github.io/moarchiving/moarchiving-apidocs/index.html) implements a multi-objective 
  non-dominated archive for 2, 3 or 4 objectives, providing easy and fast access to multiple hypervolume indicators:
 
-- the hypervolume of the archive,
-- the contributing hypervolume of each element, 
-- the [uncrowded hypervolume improvement](https://doi.org/10.1145/3321707.3321852) (see also [here](https://arxiv.org/abs/1904.08823)) of any given point in the objective space, and 
-- the uncrowded hypervolume of the (unpruned) archive.
+- the hypervolume of the entire archive,
+- the contributing hypervolume of each element,
+- the [uncrowded hypervolume improvement](https://doi.org/10.1145/3321707.3321852) (see also [here](https://arxiv.org/abs/1904.08823)) of any given point in the objective space, and
+- the uncrowded hypervolume of the (unpruned) archive, here called [hypervolume plus](https://cma-es.github.io/moarchiving/moarchiving-apidocs/moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#hypervolume_plus).
 
+Additionally, the package provides a constrained version of the archive,
+which allows to store points with constraints.
+
+The source code is available [on GitHub](https://github.com/CMA-ES/moarchiving).
 
 ## Installation
 

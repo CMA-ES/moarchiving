@@ -1059,9 +1059,11 @@ class BiobjectiveNondominatedSortedList(list):
             # Old or experimental code:
             """
             ::
+
                 self._contributing_hypervolumes = [  # simple solution
                     self.contributing_hypervolume(i)
                     for i in range(len(self))]
+
             """
             raise NotImplementedError
         return nb - len(self)

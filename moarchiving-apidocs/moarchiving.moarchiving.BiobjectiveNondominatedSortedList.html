@@ -716,14 +716,24 @@
 
         <div class="moduleDocstring">
           <div><p>A sorted list of non-dominated unique objective-pairs.</p>
-<p>Non-domination here means smaller in at least one objective. The list is sorted (naturally) by the first objective. No equal entries in either objective exist in the list (assuming it is in a consistent state).</p>
+<p>Non-domination here means smaller in at least one objective. The list is
+sorted (naturally) by the first objective. No equal entries in either
+objective exist in the list (assuming it is in a consistent state).</p>
 <p>The operation</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList
-<span class="py-prompt">&gt;&gt;&gt; </span>any_list = BiobjectiveNondominatedSortedList(any_list)  <span class="py-comment"># doctest:+SKIP</span></pre><p>sorts and prunes the pair list `any_list` to become a consistent nondominated sorted archive.</p>
-<p>Afterwards, the methods `add` and `add_list` keep the list always in a consistent state. If a reference point was given on initialization, also the hypervolume of the archive is computed and updated.</p>
-<p>The `contributing_hypervolume` and `hypervolume_improvement` methods give the uncrowded hypervolume improvement, with or without removing the input from the archive before the computation, respectively, see https://arxiv.org/abs/1904.08823</p>
-<p>Removing elements with `pop` or `del` keeps the archive sorted and non-dominated but does not update the hypervolume, which hence becomes inconsistent.</p>
+<span class="py-prompt">&gt;&gt;&gt; </span>any_list = BiobjectiveNondominatedSortedList(any_list)  <span class="py-comment"># doctest:+SKIP</span></pre><p>sorts and prunes the pair list <code>any_list</code> to become a consistent
+nondominated sorted archive.</p>
+<p>Afterwards, the methods <code><a href="#add" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add">add</a></code> and <code><a href="#add_list" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add_list">add_list</a></code> keep the list always
+in a consistent state. If a reference point was given on initialization,
+also the hypervolume of the archive is computed and updated.</p>
+<p>The <code><a href="#contributing_hypervolume" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolume">contributing_hypervolume</a></code> and <code><a href="#hypervolume_improvement" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume_improvement">hypervolume_improvement</a></code> methods
+give the uncrowded hypervolume improvement, with or without removing
+the input from the archive before the computation, respectively, see
+<a class="rst-reference external" href="https://arxiv.org/abs/1904.08823" target="_top">https://arxiv.org/abs/1904.08823</a></p>
+<p>Removing elements with <code>pop</code> or <code>del</code> keeps the archive sorted and
+non-dominated but does not update the hypervolume, which hence
+becomes inconsistent.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>a = BiobjectiveNondominatedSortedList([[1,0.9], [0,1], [0,2]])
 <span class="py-prompt">&gt;&gt;&gt; </span>a
@@ -733,8 +743,14 @@
 <span class="py-more">... </span>    [[-0.749, -1.188], [-0.557, 1.1076],
 <span class="py-more">... </span>    [0.2454, 0.4724], [-1.146, -0.110]])
 <span class="py-output">[[-1.146, -0.11], [-0.749, -1.188]]</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>a._asserts()  <span class="py-comment"># consistency assertions</span></pre><p>Details: This list doesn't prevent the user to insert a new element anywhere and hence get into an inconsistent state. Inheriting from `sortedcontainers.SortedList` would ensure that the `list` remains at least sorted.</p>
-<p>See also: https://pypi.org/project/sortedcontainers https://code.activestate.com/recipes/577197-sortedcollection/ https://pythontips.com/2016/04/24/python-sorted-collections/</p>
+<span class="py-prompt">&gt;&gt;&gt; </span>a._asserts()  <span class="py-comment"># consistency assertions</span></pre><p>Details: This list doesn't prevent the user to insert a new element
+anywhere and hence get into an inconsistent state. Inheriting from
+<code>sortedcontainers.SortedList</code> would ensure that the <code>list</code> remains
+at least sorted.</p>
+<p>See also:
+<a class="rst-reference external" href="https://pypi.org/project/sortedcontainers" target="_top">https://pypi.org/project/sortedcontainers</a>
+<a class="rst-reference external" href="https://code.activestate.com/recipes/577197-sortedcollection/" target="_top">https://code.activestate.com/recipes/577197-sortedcollection/</a>
+<a class="rst-reference external" href="https://pythontips.com/2016/04/24/python-sorted-collections/" target="_top">https://pythontips.com/2016/04/24/python-sorted-collections/</a></p>
 </div>
         </div>
 
@@ -746,12 +762,12 @@
     
     <td>Method</td>
     <td><code><a href="#__init__" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.__init__">__init__</a></code></td>
-    <td>`list_of_f_pairs` does not need to be sorted.</td>
+    <td><code>list_of_f_pairs</code> does not need to be sorted.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#add" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add">add</a></code></td>
-    <td>insert `f_pair` in `self` if it is not (weakly) dominated.</td>
+    <td>insert <code>f_pair</code> in <code>self</code> if it is not (weakly) dominated.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -761,27 +777,27 @@
     
     <td>Method</td>
     <td><code><a href="#bisect_left" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.bisect_left">bisect<wbr></wbr>_left</a></code></td>
-    <td>return index where `f_pair` may need to be inserted.</td>
+    <td>return index where <code>f_pair</code> may need to be inserted.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#compute_hypervolume" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.compute_hypervolume">compute<wbr></wbr>_hypervolume</a></code></td>
-    <td>return hypervolume w.r.t. `reference_point`</td>
+    <td>return hypervolume w.r.t. <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#reference_point" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.reference_point">reference_point</a></code></td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#compute_hypervolumes" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.compute_hypervolumes">compute<wbr></wbr>_hypervolumes</a></code></td>
-    <td>depricated, subject to removal, see `compute_hypervolume` and `contributing_hypervolumes`.</td>
+    <td>depricated, subject to removal, see <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#compute_hypervolume" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.compute_hypervolume">compute_hypervolume</a></code> and <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#contributing_hypervolumes" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolumes">contributing_hypervolumes</a></code>.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#contributing_hypervolume" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolume">contributing<wbr></wbr>_hypervolume</a></code></td>
-    <td>return contributing hypervolume of element `idx`.</td>
+    <td>return contributing hypervolume of element <code>idx</code>.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#copy" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.copy">copy</a></code></td>
-    <td>return a "deep" copy of `self`</td>
+    <td>return a "deep" copy of <code>self</code></td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -791,37 +807,37 @@
     
     <td>Method</td>
     <td><code><a href="#distance_to_pareto_front" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.distance_to_pareto_front">distance<wbr></wbr>_to<wbr></wbr>_pareto<wbr></wbr>_front</a></code></td>
-    <td>of a dominated `f_pair` also considering the reference domain.</td>
+    <td>of a dominated <code>f_pair</code> also considering the reference domain.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#dominates" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.dominates">dominates</a></code></td>
-    <td>return `True` if any element of `self` dominates or is equal to `f_pair`.</td>
+    <td>return <code>True</code> if any element of <code>self</code> dominates or is equal to <code>f_pair</code>.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#dominates_with" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.dominates_with">dominates<wbr></wbr>_with</a></code></td>
-    <td>return `True` if ``self[idx]`` dominates or is equal to `f_pair`.</td>
+    <td>return <code>True</code> if <tt class="rst-docutils literal">self[idx]</tt> dominates or is equal to <code>f_pair</code>.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#dominators" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.dominators">dominators</a></code></td>
-    <td>return the list of all `f_pair`-dominating elements in `self`,</td>
+    <td>return the list of all <code>f_pair</code>-dominating elements in <code>self</code>,</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#hypervolume_improvement" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume_improvement">hypervolume<wbr></wbr>_improvement</a></code></td>
-    <td>return how much `f_pair` would improve the hypervolume.</td>
+    <td>return how much <code>f_pair</code> would improve the hypervolume.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#in_domain" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.in_domain">in<wbr></wbr>_domain</a></code></td>
-    <td>return `True` if `f_pair` is dominating the reference point,</td>
+    <td>return <code>True</code> if <code>f_pair</code> is dominating the reference point,</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#merge" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.merge">merge</a></code></td>
-    <td>obsolete and replaced by `add_list`. merge in a sorted list of f-pairs.</td>
+    <td>obsolete and replaced by <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#add_list" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add_list">add_list</a></code>. merge in a sorted list of f-pairs.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -831,7 +847,7 @@
     
     <td>Method</td>
     <td><code><a href="#remove" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.remove">remove</a></code></td>
-    <td>remove element `f_pair`.</td>
+    <td>remove element <code>f_pair</code>.</td>
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
@@ -866,12 +882,12 @@
     
     <td>Property</td>
     <td><code><a href="#contributing_hypervolumes" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolumes">contributing<wbr></wbr>_hypervolumes</a></code></td>
-    <td>`list` of contributing hypervolumes.</td>
+    <td><code>list</code> of contributing hypervolumes.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#discarded" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.discarded">discarded</a></code></td>
-    <td>`list` of f-pairs discarded in the last relevant method call.</td>
+    <td><code>list</code> of f-pairs discarded in the last relevant method call.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -886,7 +902,7 @@
     
     <td>Property</td>
     <td><code><a href="#infos" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.infos">infos</a></code></td>
-    <td>`list` of complementary information corresponding to each archive entry</td>
+    <td><code>list</code> of complementary information corresponding to each archive entry</td>
   </tr><tr class="staticmethod private">
     
     <td>Static Method</td>
@@ -896,12 +912,12 @@
     
     <td>Method</td>
     <td><code><a href="#_add_at" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._add_at">_add<wbr></wbr>_at</a></code></td>
-    <td>add `f_pair` at position `idx` and remove dominated elements.</td>
+    <td>add <code>f_pair</code> at position <code>idx</code> and remove dominated elements.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
     <td><code><a href="#_add_HV" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._add_HV">_add_<wbr></wbr>HV</a></code></td>
-    <td>add contributing hypervolume of ``self[idx]`` to hypervolume.</td>
+    <td>add contributing hypervolume of <tt class="rst-docutils literal">self[idx]</tt> to hypervolume.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
@@ -916,12 +932,12 @@
     
     <td>Method</td>
     <td><code><a href="#_hypervolume_improvement0" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._hypervolume_improvement0">_hypervolume<wbr></wbr>_improvement0</a></code></td>
-    <td>deprecated and only used for testing: return how much `f_pair` would improve the hypervolume.</td>
+    <td>deprecated and only used for testing: return how much <code>f_pair</code> would improve the hypervolume.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
     <td><code><a href="#_set_HV" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._set_HV">_set_<wbr></wbr>HV</a></code></td>
-    <td>set current hypervolume value using `self.reference_point`.</td>
+    <td>set current hypervolume value using <code>self.reference_point</code>.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
@@ -931,7 +947,7 @@
     
     <td>Method</td>
     <td><code><a href="#_subtract_HV" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._subtract_HV">_subtract_<wbr></wbr>HV</a></code></td>
-    <td>remove contributing hypervolumes of elements ``self[idx0] to self[idx1 - 1]``.</td>
+    <td>remove contributing hypervolumes of elements <tt class="rst-docutils literal">self[idx0] to self[idx1 - 1]</tt>.</td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
@@ -956,7 +972,7 @@
     
     <td>Instance Variable</td>
     <td><code><a href="#_removed" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._removed">_removed</a></code></td>
-    <td>:</td>
+    <td><span class="undocumented">No summary</span></td>
   </tr>
 </table>
           
@@ -987,10 +1003,13 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>`list_of_f_pairs` does not need to be sorted.</p>
-<p>f-pairs beyond the `reference_point` are pruned away. The `reference_point` is also used to compute the hypervolume.</p>
-<p>`sort` is a sorting function and ``sort=None`` will prevent a sort, which can be useful if the `list_of_f_pairs` is already sorted.</p>
-<p>CAVEAT: the interface, in particular the positional interface may change in future versions.</p>
+    <div><p><code>list_of_f_pairs</code> does not need to be sorted.</p>
+<p>f-pairs beyond the <code><a href="#reference_point" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.reference_point">reference_point</a></code> are pruned away. The
+<code><a href="#reference_point" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.reference_point">reference_point</a></code> is also used to compute the hypervolume.</p>
+<p><code>sort</code> is a sorting function and <tt class="rst-docutils literal">sort=None</tt> will prevent a sort,
+which can be useful if the <code>list_of_f_pairs</code> is already sorted.</p>
+<p>CAVEAT: the interface, in particular the positional interface
+may change in future versions.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -1015,11 +1034,17 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>insert `f_pair` in `self` if it is not (weakly) dominated.</p>
-<p>Return index at which the insertion took place or `None`. The list remains sorted in the process.</p>
-<p>The list remains non-dominated with unique elements, which means that some or many or even all of its present elements may be removed.</p>
-<p>`info` is added to the `infos` `list`. It can be an arbitrary object, e.g. a list or dictionary. It can in particular contain (or be) the solution ``x`` such that ``f_pair == fun(info['x'])``.</p>
-<p>Implementation detail: For performance reasons, `insert` is avoided in favor of `__setitem__`, if possible.</p>
+    <div><p>insert <code>f_pair</code> in <code>self</code> if it is not (weakly) dominated.</p>
+<p>Return index at which the insertion took place or <code>None</code>. The
+list remains sorted in the process.</p>
+<p>The list remains non-dominated with unique elements, which
+means that some or many or even all of its present elements may
+be removed.</p>
+<p><code>info</code> is added to the <code><a href="#infos" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.infos">infos</a></code> <code>list</code>. It can be an arbitrary object,
+e.g. a list or dictionary. It can in particular contain (or be) the
+solution <tt class="rst-docutils literal">x</tt> such that <tt class="rst-docutils literal">f_pair == <span class="pre">fun(info['x'])</span></tt>.</p>
+<p>Implementation detail: For performance reasons, <code>insert</code> is
+avoided in favor of <code>__setitem__</code>, if possible.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList
 <span class="py-prompt">&gt;&gt;&gt; </span>arch = BiobjectiveNondominatedSortedList()
@@ -1060,7 +1085,8 @@
   <div class="docstring functionBody">
     
     <div><p>insert a list of f-pairs which doesn't need to be sorted.</p>
-<p>This is just a shortcut for looping over `add`, but `discarded` now contains the discarded elements from all `add` operations.</p>
+<p>This is just a shortcut for looping over <code><a href="#add" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add">add</a></code>, but <code><a href="#discarded" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.discarded">discarded</a></code>
+now contains the discarded elements from all <code><a href="#add" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add">add</a></code> operations.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList
 <span class="py-prompt">&gt;&gt;&gt; </span>arch = BiobjectiveNondominatedSortedList()
@@ -1075,8 +1101,10 @@
 <span class="py-output">True</span>
 <span class="py-prompt">&gt;&gt;&gt; </span>arch.infos  <span class="py-comment"># to have infos use `add` instead</span>
 <span class="py-output">[None, None]</span>
-</pre><p>Return `None`.</p>
-<p>Details: discarded does not contain elements of `list_of_f_pairs`. When `list_of_pairs` is already sorted, `merge` may have a small performance benefit.</p>
+</pre><p>Return <code>None</code>.</p>
+<p>Details: discarded does not contain elements of <code>list_of_f_pairs</code>.
+When <code>list_of_pairs</code> is already sorted, <code><a href="#merge" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.merge">merge</a></code> may have
+a small performance benefit.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -1101,10 +1129,12 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return index where `f_pair` may need to be inserted.</p>
-<p>Smaller indices have a strictly better f1 value or they have equal f1 and better f2 value.</p>
-<p>`lowest_index` restricts the search from below.</p>
-<p>Details: This method does a binary search in `self` using `bisect.bisect_left`.</p>
+    <div><p>return index where <code>f_pair</code> may need to be inserted.</p>
+<p>Smaller indices have a strictly better f1 value or they have
+equal f1 and better f2 value.</p>
+<p><code>lowest_index</code> restricts the search from below.</p>
+<p>Details: This method does a binary search in <code>self</code> using
+<code>bisect.bisect_left</code>.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -1129,7 +1159,7 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return hypervolume w.r.t. `reference_point`</p></div>
+    <div><p>return hypervolume w.r.t. <code><a href="#reference_point" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.reference_point">reference_point</a></code></p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1153,8 +1183,9 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>depricated, subject to removal, see `compute_hypervolume` and `contributing_hypervolumes`.</p>
-<p>Never implemented: return list of contributing hypervolumes w.r.t. reference_point</p>
+    <div><p>depricated, subject to removal, see <code><a href="#compute_hypervolume" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.compute_hypervolume">compute_hypervolume</a></code> and <code><a href="#contributing_hypervolumes" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolumes">contributing_hypervolumes</a></code>.</p>
+<p>Never implemented: return list of contributing hypervolumes w.r.t.
+reference_point</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -1179,9 +1210,14 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return contributing hypervolume of element `idx`.</p>
-<p>If `idx` is an `f_pair`, return contributing hypervolume of element with value `f_pair`. If `f_pair` is not in `self`, return `hypervolume_improvement(f_pair)`, i.e., its uncrowded contributing hypervolume (which can be negative).</p>
-<p>The return type is ``self.hypervolume_computation_float_type` and by default `fractions.Fraction`, which can be converted to `float` like ``float(....contributing_hypervolume(idx))``.</p>
+    <div><p>return contributing hypervolume of element <code>idx</code>.</p>
+<p>If <code>idx</code> is an <code>f_pair</code>, return contributing hypervolume of element
+with value <code>f_pair</code>. If <code>f_pair</code> is not in <code>self</code>, return
+<code>hypervolume_improvement(f_pair)</code>, i.e., its uncrowded contributing
+hypervolume (which can be negative).</p>
+<p>The return type is <tt class="rst-docutils literal">self.hypervolume_computation_float_type` and
+by default `fractions.Fraction`, which can be converted to `float`
+like <span class="pre">``float(....contributing_hypervolume(idx))</span></tt>.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -1206,7 +1242,7 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return a "deep" copy of `self`</p></div>
+    <div><p>return a "deep" copy of <code>self</code></p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1254,22 +1290,31 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>of a dominated `f_pair` also considering the reference domain.</p>
-<p>Non-dominated points have (by definition) a distance of zero, unless the archive is empty and the point does not dominate the reference point.</p>
-<p>The implementation assumes that all points of the archive are in the reference domain (and more extreme points have been pruned, as it is the default behavior).</p>
-<p>Details: the distance for dominated points is computed by iterating over the relevant kink points ``(self[i+1][0], self[i][1])``. In case of minimization, the boundary with two non-dominated points can be depicted like:</p>
+    <div><p>of a dominated <code>f_pair</code> also considering the reference domain.</p>
+<p>Non-dominated points have (by definition) a distance of zero,
+unless the archive is empty and the point does not dominate the
+reference point.</p>
+<p>The implementation assumes that all points of the archive are in
+the reference domain (and more extreme points have been pruned, as
+it is the default behavior).</p>
+<p>Details: the distance for dominated points is computed by
+iterating over the relevant kink points <tt class="rst-docutils literal"><span class="pre">(self[i+1][0],</span>
+<span class="pre">self[i][1])</span></tt>. In case of minimization, the boundary with two
+non-dominated points can be depicted like:</p>
 <pre class="rst-literal-block">
-    ...______.      . &lt;- reference point
-             |
-             x__. &lt;- kink point
+...______.      . &lt;- reference point
+         |
+         x__. &lt;- kink point
+            |
+            x___. &lt;- kink point
                 |
-                x___. &lt;- kink point
-                    |
-                    |
-                    :
-                    :
+                |
+                :
+                :
 </pre>
-<p>The three kink points which are possibly used for the computations are denoted by a dot. The outer kink points use one coordinate of the reference point.</p>
+<p>The three kink points which are possibly used for the computations
+are denoted by a dot. The outer kink points use one coordinate of
+the reference point.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -1294,8 +1339,8 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return `True` if any element of `self` dominates or is equal to `f_pair`.</p>
-<p>Otherwise return `False`.</p>
+    <div><p>return <code>True</code> if any element of <code>self</code> dominates or is equal to <code>f_pair</code>.</p>
+<p>Otherwise return <code>False</code>.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList <span class="py-keyword">as</span> NDA
 <span class="py-prompt">&gt;&gt;&gt; </span>a = NDA([[0.39, 0.075], [0.0087, 0.14]])
@@ -1303,7 +1348,7 @@
 <span class="py-output">True</span>
 <span class="py-prompt">&gt;&gt;&gt; </span>a.dominates([-1, 33]) <span class="py-keyword">or</span> a.dominates([33, -1])
 <span class="py-output">False</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>a._asserts()</pre><p>See also `bisect_left` to find the closest index.</p>
+<span class="py-prompt">&gt;&gt;&gt; </span>a._asserts()</pre><p>See also <code><a href="#bisect_left" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.bisect_left">bisect_left</a></code> to find the closest index.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -1328,8 +1373,8 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return `True` if ``self[idx]`` dominates or is equal to `f_pair`.</p>
-<p>Otherwise return `False` or `None` if `idx` is out-of-range.</p>
+    <div><p>return <code>True</code> if <tt class="rst-docutils literal">self[idx]</tt> dominates or is equal to <code>f_pair</code>.</p>
+<p>Otherwise return <code>False</code> or <code>None</code> if <code>idx</code> is out-of-range.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList <span class="py-keyword">as</span> NDA
 <span class="py-prompt">&gt;&gt;&gt; </span>NDA().dominates_with(0, [1, 2]) <span class="py-keyword">is</span> <span class="py-builtin">None</span>  <span class="py-comment"># empty NDA</span>
@@ -1358,8 +1403,10 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return the list of all `f_pair`-dominating elements in `self`,</p>
-<p>including an equal element. ``len(....dominators(...))`` is hence the number of dominating elements which can also be obtained without creating the list with ``number_only=True``.</p>
+    <div><p>return the list of all <code>f_pair</code>-dominating elements in <code>self</code>,</p>
+<p>including an equal element. <tt class="rst-docutils literal"><span class="pre">len(....dominators(...))</span></tt> is
+hence the number of dominating elements which can also be obtained
+without creating the list with <tt class="rst-docutils literal">number_only=True</tt>.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList <span class="py-keyword">as</span> NDA
 <span class="py-prompt">&gt;&gt;&gt; </span>a = NDA([[1.2, 0.1], [0.5, 1]])
@@ -1397,11 +1444,19 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return how much `f_pair` would improve the hypervolume.</p>
-<p>If dominated, return the distance to the empirical pareto front multiplied by -1. Else if not in domain, return distance to the reference point dominating area times -1.</p>
-<p>Overall this amounts to the uncrowded hypervolume improvement, see https://arxiv.org/abs/1904.08823</p>
-<p>Details: when ``self.reference_point is None`` and `f_pair` is a new extreme point, the returned hypervolume improvement is ``float('inf')``.</p>
-<p>This method extracts a sublist first and thereby tries to circumentvent to compute small differences between large hypervolumes.</p>
+    <div><p>return how much <code>f_pair</code> would improve the hypervolume.</p>
+<p>If dominated, return the distance to the empirical pareto front
+multiplied by -1.
+Else if not in domain, return distance to the reference point
+dominating area times -1.</p>
+<p>Overall this amounts to the uncrowded hypervolume improvement,
+see <a class="rst-reference external" href="https://arxiv.org/abs/1904.08823" target="_top">https://arxiv.org/abs/1904.08823</a></p>
+<p>Details: when <tt class="rst-docutils literal">self.reference_point is None</tt> and <code>f_pair</code> is
+a new extreme point, the returned hypervolume improvement is
+<tt class="rst-docutils literal"><span class="pre">float('inf')</span></tt>.</p>
+<p>This method extracts a sublist first and thereby tries
+to circumentvent to compute small differences between large
+hypervolumes.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -1426,9 +1481,11 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return `True` if `f_pair` is dominating the reference point,</p>
-<p>`False` otherwise. `True` means that `f_pair` contributes to the hypervolume if not dominated by other elements.</p>
-<p>`f_pair` may also be an index in `self` in which case ``self[f_pair]`` is tested to be in-domain.</p>
+    <div><p>return <code>True</code> if <code>f_pair</code> is dominating the reference point,</p>
+<p><code>False</code> otherwise. <code>True</code> means that <code>f_pair</code> contributes to
+the hypervolume if not dominated by other elements.</p>
+<p><code>f_pair</code> may also be an index in <code>self</code> in which case
+<tt class="rst-docutils literal">self[f_pair]</tt> is tested to be in-domain.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList <span class="py-keyword">as</span> NDA
 <span class="py-prompt">&gt;&gt;&gt; </span>a = NDA([[2.2, 0.1], [0.5, 1]], reference_point=[2, 2])
@@ -1466,10 +1523,13 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>obsolete and replaced by `add_list`. merge in a sorted list of f-pairs.</p>
-<p>The list can contain dominated pairs, which are discarded during the merge.</p>
-<p>Return `None`.</p>
-<p>Details: merging 200 into 100_000 takes 3e-4s vs 4e-4s with `add_list`. The `discarded` property is not consistent with the overall merge.</p>
+    <div><p>obsolete and replaced by <code><a href="#add_list" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add_list">add_list</a></code>. merge in a sorted list of f-pairs.</p>
+<p>The list can contain dominated pairs, which are discarded during
+the merge.</p>
+<p>Return <code>None</code>.</p>
+<p>Details: merging 200 into 100_000 takes 3e-4s vs 4e-4s with
+<code><a href="#add_list" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add_list">add_list</a></code>. The <code><a href="#discarded" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.discarded">discarded</a></code> property is not consistent with the
+overall merge.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -1496,7 +1556,14 @@
     
     <div><p>remove dominated or equal entries assuming that the list is sorted.</p>
 <p>Return number of dropped elements.</p>
-<p>Implementation details: pruning from right to left may be preferable, because list.insert(0) is O(n) while list.append is O(1), however it is not possible with the given sorting: in principle, the first element may dominate all others, which can only be discovered in the last step when traversing from right to left. This suggests that reverse sort may be better for pruning or we should inherit from `collections.deque` instead from `list`, but `deque` seems not to support deletion of slices.</p>
+<p>Implementation details: pruning from right to left may be
+preferable, because list.insert(0) is O(n) while list.append is
+O(1), however it is not possible with the given sorting: in
+principle, the first element may dominate all others, which can
+only be discovered in the last step when traversing from right
+to left. This suggests that reverse sort may be better for
+pruning or we should inherit from <code>collections.deque</code> instead
+from <code>list</code>, but <code>deque</code> seems not to support deletion of slices.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -1521,8 +1588,10 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>remove element `f_pair`.</p>
-<p>Raises a `ValueError` (like `list`) if ``f_pair is not in self``. To avoid the error, checking ``if f_pair is in self`` first is a possible coding solution, like</p>
+    <div><p>remove element <code>f_pair</code>.</p>
+<p>Raises a <code>ValueError</code> (like <code>list</code>) if <tt class="rst-docutils literal">f_pair is not in self</tt>.
+To avoid the error, checking <tt class="rst-docutils literal">if f_pair is in self</tt> first is a
+possible coding solution, like</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList
 <span class="py-prompt">&gt;&gt;&gt; </span>nda = BiobjectiveNondominatedSortedList([[2, 3]])
@@ -1547,7 +1616,7 @@
 <span class="py-more">... </span>        <span class="py-keyword">if</span> 100 * pair[0] - <span class="py-builtin">int</span>(100 * pair[0]) &lt; 0.7:
 <span class="py-more">... </span>            res = nda.add(pair)
 <span class="py-more">... </span>            <span class="py-keyword">assert</span> <span class="py-builtin">all</span>(state[i] == nda._state()[i] <span class="py-keyword">for</span> i <span class="py-keyword">in</span> (
-<span class="py-more">... </span>               [0, 3] <span class="py-keyword">if</span> nda.hypervolume_final_float_type <span class="py-keyword">is</span> <span class="py-builtin">float</span> <span class="py-keyword">else</span> [0, 2, 3]))</pre><p>Return `None` (like `list.remove`).</p>
+<span class="py-more">... </span>               [0, 3] <span class="py-keyword">if</span> nda.hypervolume_final_float_type <span class="py-keyword">is</span> <span class="py-builtin">float</span> <span class="py-keyword">else</span> [0, 2, 3]))</pre><p>Return <code>None</code> (like <code>list.remove</code>).</p>
 </div>
   </div>
 </div><div class="baseinstancevariable">
@@ -1644,7 +1713,8 @@
   <div class="functionBody">
     
     <div><p>HV computation takes increasingly longer with increasing precision (number of iterations).</p>
-<p>Set ``BiobjectiveNondominatedSortedList.hypervolume_final_float_type = float`` when speed is an issue.</p>
+<p>Set <tt class="rst-docutils literal">BiobjectiveNondominatedSortedList.hypervolume_final_float_type = float</tt>
+when speed is an issue.</p>
 </div>
     
   </div>
@@ -1717,12 +1787,18 @@
   </div>
   <div class="functionBody">
     
-    <div><p>`list` of contributing hypervolumes.</p>
-<p>Elements in the list are of type `self.hypervolume_computation_float_type`. Conversion to `float` in a list comprehension should always be possible.</p>
-<p>Changing this list will have unexpected consequences if `self.maintain_contributing_hypervolumes`,</p>
-<p>Details: The "initial" reference point is used for the outer points. If none is given, `inf` is used as reference. For the time being, the contributing hypervolumes are computed each time from scratch.</p>
-<p>:See also: `contributing_hypervolume`</p>
-</div>
+    <div><p><code>list</code> of contributing hypervolumes.</p>
+<p>Elements in the list are of type
+<code>self.hypervolume_computation_float_type</code>.
+Conversion to <code>float</code> in a list comprehension should always be
+possible.</p>
+<p>Changing this list will have unexpected consequences if
+<code>self.maintain_contributing_hypervolumes</code>,</p>
+<p>Details: The "initial" reference point is used for the outer
+points. If none is given, <code><a href="moarchiving.moarchiving.html#inf" class="internal-link" title="moarchiving.moarchiving.inf">inf</a></code> is used as reference.
+For the time being, the contributing hypervolumes are
+computed each time from scratch.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">See Also</td></tr><tr><td colspan="2"><code><a href="#contributing_hypervolume" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolume">contributing_hypervolume</a></code></td></tr></table></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1746,8 +1822,11 @@
   </div>
   <div class="functionBody">
     
-    <div><p>`list` of f-pairs discarded in the last relevant method call.</p>
-<p>Methods covered are `__init__`, `prune`, `add`, and `add_list`. Removed duplicates are not element of the discarded list except with `__init__`. When not inserted and not already in `self` also the input argument(s) show(s) up in `discarded`.</p>
+    <div><p><code>list</code> of f-pairs discarded in the last relevant method call.</p>
+<p>Methods covered are <code><a href="#__init__" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.__init__">__init__</a></code>, <code><a href="#prune" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.prune">prune</a></code>, <code><a href="#add" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add">add</a></code>, and <code><a href="#add_list" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add_list">add_list</a></code>.
+Removed duplicates are not element of the discarded list except with
+<code><a href="#__init__" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.__init__">__init__</a></code>. When not inserted and not already in <code>self</code> also the
+input argument(s) show(s) up in <code><a href="#discarded" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.discarded">discarded</a></code>.</p>
 <p>Example to create a list of rank-k-non-dominated fronts:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList <span class="py-keyword">as</span> NDA
@@ -1778,7 +1857,7 @@
   <div class="functionBody">
     
     <div><p>hypervolume of the entire list w.r.t. the "initial" reference point.</p>
-<p>Raise `ValueError` when no reference point was given initially.</p>
+<p>Raise <code>ValueError</code> when no reference point was given initially.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList <span class="py-keyword">as</span> NDA
 <span class="py-prompt">&gt;&gt;&gt; </span>a = NDA([[0.5, 0.4], [0.3, 0.7]], [2, 2.1])
@@ -1822,9 +1901,15 @@
   <div class="functionBody">
     
     <div><p>uncrowded hypervolume of the entire list w.r.t. the "initial" reference point.</p>
-<p>`hypervolume_plus` equals to the hypervolume when the archive is nonempty, otherwise it is the smallest Euclidean distance to the hypervolume area (AKA reference domain) times -1 of any element that was previously added but rejected because it did not dominate the reference point.</p>
-<p>Raise `ValueError` when no reference point was given initially.</p>
-<p>Details: conceptually, the distance computation is based on the nondominated archive as if it was not pruned by the reference point.</p>
+<p><code><a href="#hypervolume_plus" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume_plus">hypervolume_plus</a></code> equals to the hypervolume when the archive is
+nonempty, otherwise it is the smallest Euclidean distance to the
+hypervolume area (AKA reference domain) times -1 of any element
+that was previously added but rejected because it did not dominate
+the reference point.</p>
+<p>Raise <code>ValueError</code> when no reference point was given initially.</p>
+<p>Details: conceptually, the distance computation is based on the
+nondominated archive as if it was not pruned by the reference
+point.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving <span class="py-keyword">import</span> BiobjectiveNondominatedSortedList <span class="py-keyword">as</span> NDA
 <span class="py-prompt">&gt;&gt;&gt; </span>a = NDA(reference_point=[1, 1])
@@ -1864,7 +1949,7 @@
   </div>
   <div class="functionBody">
     
-    <div><p>`list` of complementary information corresponding to each archive entry</p></div>
+    <div><p><code>list</code> of complementary information corresponding to each archive entry</p></div>
     
   </div>
 </div><div class="basestaticmethod private">
@@ -1913,8 +1998,10 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>add `f_pair` at position `idx` and remove dominated elements.</p>
-<p>This method assumes that `f_pair` is not weakly dominated by `self` and that `idx` is the correct insertion place e.g. acquired by `bisect_left`.</p>
+    <div><p>add <code>f_pair</code> at position <code>idx</code> and remove dominated elements.</p>
+<p>This method assumes that <code>f_pair</code> is not weakly dominated by
+<code>self</code> and that <code>idx</code> is the correct insertion place e.g.
+acquired by <code><a href="#bisect_left" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.bisect_left">bisect_left</a></code>.</p>
 </div>
   </div>
 </div><div class="basemethod private">
@@ -1939,7 +2026,7 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>add contributing hypervolume of ``self[idx]`` to hypervolume.</p>
+    <div><p>add contributing hypervolume of <tt class="rst-docutils literal">self[idx]</tt> to hypervolume.</p>
 <p>TODO: also update list of contributing hypervolumes in case.</p>
 </div>
   </div>
@@ -2051,9 +2138,13 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>deprecated and only used for testing: return how much `f_pair` would improve the hypervolume.</p>
-<p>If dominated, return the distance to the empirical pareto front multiplied by -1. Else if not in domain, return distance to the reference point dominating area times -1.</p>
-<p>Overall this amounts to the uncrowded hypervolume improvement, see https://arxiv.org/abs/1904.08823</p>
+    <div><p>deprecated and only used for testing: return how much <code>f_pair</code> would improve the hypervolume.</p>
+<p>If dominated, return the distance to the empirical pareto front
+multiplied by -1.
+Else if not in domain, return distance to the reference point
+dominating area times -1.</p>
+<p>Overall this amounts to the uncrowded hypervolume improvement,
+see <a class="rst-reference external" href="https://arxiv.org/abs/1904.08823" target="_top">https://arxiv.org/abs/1904.08823</a></p>
 </div>
   </div>
 </div><div class="basemethod private">
@@ -2078,9 +2169,10 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>set current hypervolume value using `self.reference_point`.</p>
-<p>Raise `ValueError` if `self.reference_point` is `None`.</p>
-<p>TODO: we may need to store the list of _contributing_ hypervolumes to handle numerical rounding errors later.</p>
+    <div><p>set current hypervolume value using <code>self.reference_point</code>.</p>
+<p>Raise <code>ValueError</code> if <code>self.reference_point</code> is <code>None</code>.</p>
+<p>TODO: we may need to store the list of _contributing_ hypervolumes
+to handle numerical rounding errors later.</p>
 </div>
   </div>
 </div><div class="basemethod private">
@@ -2129,7 +2221,7 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>remove contributing hypervolumes of elements ``self[idx0] to self[idx1 - 1]``.</p>
+    <div><p>remove contributing hypervolumes of elements <tt class="rst-docutils literal">self[idx0] to self[idx1 - 1]</tt>.</p>
 <p>TODO: also update list of contributing hypervolumes in case.</p>
 </div>
   </div>
@@ -2250,13 +2342,12 @@
   </div>
   <div class="functionBody">
     
-    <div><p>:</p>
-<pre class="rst-literal-block">
-    self._contributing_hypervolumes = [  # simple solution
-        self.contributing_hypervolume(i)
-        for i in range(len(self))]
+    <div><p><pre class="rst-literal-block">
+self._contributing_hypervolumes = [  # simple solution
+    self.contributing_hypervolume(i)
+    for i in range(len(self))]
 </pre>
-</div>
+</p></div>
     
   </div>
 </div>
@@ -2271,7 +2362,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2025-03-13 00:56:11.
+    23.9.1 at 2025-03-13 18:34:27.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

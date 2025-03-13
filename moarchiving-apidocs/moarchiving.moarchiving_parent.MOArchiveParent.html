@@ -633,12 +633,12 @@
     
     <td>Method</td>
     <td><code><a href="#dominates" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.dominates">dominates</a></code></td>
-    <td>return `True` if any element of `points` dominates or is equal to `f_val`. Otherwise return `False`.</td>
+    <td>return <code>True</code> if any element of <code>points</code> dominates or is equal to <code>f_val</code>. Otherwise return <code>False</code>.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#dominators" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.dominators">dominators</a></code></td>
-    <td>return the list of all `f_val`-dominating elements in `self`, including an equal element. ``len(....dominators(...))`` is hence the number of dominating elements which can also be obtained without creating the list with ``number_only=True``.</td>
+    <td>return the list of all <code>f_val</code>-dominating elements in <code>self</code>, including an equal element. <tt class="rst-docutils literal"><span class="pre">len(....dominators(...))</span></tt> is hence the number of dominating elements which can also be obtained without creating the list with ...</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -648,7 +648,7 @@
     
     <td>Method</td>
     <td><code><a href="#in_domain" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.in_domain">in<wbr></wbr>_domain</a></code></td>
-    <td>return `True` if `f_vals` is dominating the reference point, `False` otherwise. `True` means that `f_vals` contributes to the hypervolume if not dominated by other elements.</td>
+    <td>return <code>True</code> if <code>f_vals</code> is dominating the reference point, <code>False</code> otherwise. <code>True</code> means that <code>f_vals</code> contributes to the hypervolume if not dominated by other elements.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -683,7 +683,7 @@
     
     <td>Property</td>
     <td><code><a href="#contributing_hypervolumes" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.contributing_hypervolumes">contributing<wbr></wbr>_hypervolumes</a></code></td>
-    <td>`list` of hypervolume contributions of each point in the archive</td>
+    <td><code>list</code> of hypervolume contributions of each point in the archive</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -698,7 +698,7 @@
     
     <td>Property</td>
     <td><code><a href="#infos" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.infos">infos</a></code></td>
-    <td>`list` of complementary information corresponding to each archive entry, corresponding to each of the points in the archive</td>
+    <td><code>list</code> of complementary information corresponding to each archive entry, corresponding to each of the points in the archive</td>
   </tr><tr class="method private">
     
     <td>Method</td>
@@ -1003,7 +1003,8 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>Return the distance to the Pareto front of the archive, by calculating the distances to the kink points</p>
+    <div><p>Return the distance to the Pareto front of the archive,
+by calculating the distances to the kink points</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive([[1, 2, 3], [3, 2, 1], [2, 2, 2]], reference_point=[5, 5, 5])
@@ -1037,7 +1038,8 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return `True` if any element of `points` dominates or is equal to `f_val`. Otherwise return `False`.</p>
+    <div><p>return <code>True</code> if any element of <code>points</code> dominates or is equal to <code>f_val</code>.
+Otherwise return <code>False</code>.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>archive = get_mo_archive([[1, 2, 3], [3, 2, 1]])
@@ -1071,7 +1073,10 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return the list of all `f_val`-dominating elements in `self`, including an equal element. ``len(....dominators(...))`` is hence the number of dominating elements which can also be obtained without creating the list with ``number_only=True``.</p>
+    <div><p>return the list of all <code>f_val</code>-dominating elements in <code>self</code>,
+including an equal element. <tt class="rst-docutils literal"><span class="pre">len(....dominators(...))</span></tt> is
+hence the number of dominating elements which can also be obtained
+without creating the list with <tt class="rst-docutils literal">number_only=True</tt>.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>archive = get_mo_archive([[1, 2, 3], [3, 2, 1], [2, 2, 2], [3, 0, 3]])
@@ -1131,7 +1136,9 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>return `True` if `f_vals` is dominating the reference point, `False` otherwise. `True` means that `f_vals` contributes to the hypervolume if not dominated by other elements.</p>
+    <div><p>return <code>True</code> if <code>f_vals</code> is dominating the reference point,
+<code>False</code> otherwise. <code>True</code> means that <code>f_vals</code> contributes to
+the hypervolume if not dominated by other elements.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>archive3obj = get_mo_archive(reference_point=[3, 3, 3])
@@ -1311,7 +1318,7 @@
   </div>
   <div class="functionBody">
     
-    <div><p>`list` of hypervolume contributions of each point in the archive</p></div>
+    <div><p><code>list</code> of hypervolume contributions of each point in the archive</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1383,7 +1390,8 @@
   </div>
   <div class="functionBody">
     
-    <div><p>`list` of complementary information corresponding to each archive entry, corresponding to each of the points in the archive</p>
+    <div><p><code>list</code> of complementary information corresponding to each archive entry,
+corresponding to each of the points in the archive</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive([[1, 2, 3], [3, 2, 1], [2, 2, 2]], infos=[<span class="py-string">"a"</span>, <span class="py-string">"b"</span>, <span class="py-string">"c"</span>])
@@ -1438,7 +1446,8 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>returns the points in the archive in a form of a python generator instead of a circular doubly linked list</p></div>
+    <div><p>returns the points in the archive in a form of a python generator
+instead of a circular doubly linked list</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1572,7 +1581,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2025-03-13 00:56:11.
+    23.9.1 at 2025-03-13 18:34:27.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

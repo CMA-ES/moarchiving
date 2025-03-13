@@ -598,8 +598,32 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Class for storing a set of non-dominated points in 4 objective space and calculating hypervolume with respect to the given reference point.</p>
-<p>The archive is implemented as a doubly linked list, and can be modified using functions add and remove. Points of the archive can be accessed as a list of points order by the fourth coordinate using function points_list. &gt;&gt;&gt; from moarchiving.get_archive import get_mo_archive &gt;&gt;&gt; moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]]) &gt;&gt;&gt; list(moa) # returns the list of points in the archive sorted by the third coordinate [[4, 3, 2, 1], [1, 2, 3, 4]] &gt;&gt;&gt; moa.add([2, 2, 2, 2]) # add a new point to the archive True &gt;&gt;&gt; moa.add([3, 3, 3, 3]) False &gt;&gt;&gt; get_mo_archive.hypervolume_final_float_type = fractions.Fraction &gt;&gt;&gt; moa = get_mo_archive([[1, 2, 3, 4], [2, 3, 4, 5], [4, 3, 2, 1]], ...                   reference_point=[5, 5, 5, 5], infos=["A", "B", "C"]) &gt;&gt;&gt; moa.infos # returns the list of infos for each point in the archive ['C', 'A'] &gt;&gt;&gt; moa.hypervolume Fraction(44, 1) &gt;&gt;&gt; get_mo_archive.hypervolume_final_float_type = float &gt;&gt;&gt; get_mo_archive.hypervolume_computation_float_type = float &gt;&gt;&gt; moa2 = get_mo_archive([[1, 2, 3, 4], [2, 3, 4, 5], [4, 3, 2, 1]], ...                    reference_point=[5, 5, 5, 5]) &gt;&gt;&gt; moa2.hypervolume 44.0</p>
+          <div><p>Class for storing a set of non-dominated points in 4 objective space and calculating
+hypervolume with respect to the given reference point.</p>
+<p>The archive is implemented as a doubly linked list, and can be modified using functions
+add and remove. Points of the archive can be accessed as a list of points order by the fourth
+coordinate using function points_list.
+&gt;&gt;&gt; from moarchiving.get_archive import get_mo_archive
+&gt;&gt;&gt; moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]])
+&gt;&gt;&gt; list(moa) # returns the list of points in the archive sorted by the third coordinate
+[[4, 3, 2, 1], [1, 2, 3, 4]]
+&gt;&gt;&gt; moa.add([2, 2, 2, 2]) # add a new point to the archive
+True
+&gt;&gt;&gt; moa.add([3, 3, 3, 3])
+False
+&gt;&gt;&gt; get_mo_archive.hypervolume_final_float_type = fractions.Fraction
+&gt;&gt;&gt; moa = get_mo_archive([[1, 2, 3, 4], [2, 3, 4, 5], [4, 3, 2, 1]],
+...                   reference_point=[5, 5, 5, 5], infos=["A", "B", "C"])
+&gt;&gt;&gt; moa.infos # returns the list of infos for each point in the archive
+['C', 'A']
+&gt;&gt;&gt; moa.hypervolume
+Fraction(44, 1)
+&gt;&gt;&gt; get_mo_archive.hypervolume_final_float_type = float
+&gt;&gt;&gt; get_mo_archive.hypervolume_computation_float_type = float
+&gt;&gt;&gt; moa2 = get_mo_archive([[1, 2, 3, 4], [2, 3, 4, 5], [4, 3, 2, 1]],
+...                    reference_point=[5, 5, 5, 5])
+&gt;&gt;&gt; moa2.hypervolume
+44.0</p>
 </div>
         </div>
 
@@ -705,17 +729,17 @@
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#dominates" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.dominates">dominates</a></code></td>
-    <td>return `True` if any element of `points` dominates or is equal to `f_val`. Otherwise return `False`.</td>
+    <td>return <code>True</code> if any element of <code>points</code> dominates or is equal to <code>f_val</code>. Otherwise return <code>False</code>.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#dominators" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.dominators">dominators</a></code></td>
-    <td>return the list of all `f_val`-dominating elements in `self`, including an equal element. ``len(....dominators(...))`` is hence the number of dominating elements which can also be obtained without creating the list with ``number_only=True``.</td>
+    <td>return the list of all <code>f_val</code>-dominating elements in <code>self</code>, including an equal element. <tt class="rst-docutils literal"><span class="pre">len(....dominators(...))</span></tt> is hence the number of dominating elements which can also be obtained without creating the list with ...</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#in_domain" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.in_domain">in<wbr></wbr>_domain</a></code></td>
-    <td>return `True` if `f_vals` is dominating the reference point, `False` otherwise. `True` means that `f_vals` contributes to the hypervolume if not dominated by other elements.</td>
+    <td>return <code>True</code> if <code>f_vals</code> is dominating the reference point, <code>False</code> otherwise. <code>True</code> means that <code>f_vals</code> contributes to the hypervolume if not dominated by other elements.</td>
   </tr><tr class="baseinstancevariable">
     
     <td>Instance Variable</td>
@@ -745,7 +769,7 @@
     
     <td>Property</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#contributing_hypervolumes" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.contributing_hypervolumes">contributing<wbr></wbr>_hypervolumes</a></code></td>
-    <td>`list` of hypervolume contributions of each point in the archive</td>
+    <td><code>list</code> of hypervolume contributions of each point in the archive</td>
   </tr><tr class="baseproperty">
     
     <td>Property</td>
@@ -760,7 +784,7 @@
     
     <td>Property</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#infos" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.infos">infos</a></code></td>
-    <td>`list` of complementary information corresponding to each archive entry, corresponding to each of the points in the archive</td>
+    <td><code>list</code> of complementary information corresponding to each archive entry, corresponding to each of the points in the archive</td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
@@ -812,7 +836,9 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#__init__" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent.__init__</a></code></div>
     <div><p>Create a new 4 objective archive object.</p>
-<p>f-vals beyond the `reference_point` are pruned away. The `reference_point` is also used to compute the hypervolume. infos are an optional list of additional information about the points in the archive.</p>
+<p>f-vals beyond the <code>reference_point</code> are pruned away. The <code>reference_point</code> is also used
+to compute the hypervolume.
+infos are an optional list of additional information about the points in the archive.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -838,7 +864,8 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#add" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent.add</a></code></div>
     <div><p>Add a new point to the archive.</p>
-<p>update_hypervolume should be set to True, unless adding multiple points at once, in which case it is slightly more efficient to set it to True only for last point</p>
+<p>update_hypervolume should be set to True, unless adding multiple points at once,
+in which case it is slightly more efficient to set it to True only for last point</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive(reference_point=[5, 5, 5, 5])
@@ -1082,7 +1109,9 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_get_kink_points" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent._get_kink_points</a></code></div>
     <div><p>Function that returns the kink points of the archive.</p>
-<p>Kink point are calculated by making a sweep of the archive, where the state is one 3 objective archive of all possible kink points found so far, and another 3 objective archive which stores the non-dominated points so far in the sweep</p>
+<p>Kink point are calculated by making a sweep of the archive, where the state is one
+3 objective archive of all possible kink points found so far, and another 3 objective
+archive which stores the non-dominated points so far in the sweep</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]], reference_point=[5, 5, 5, 5])
@@ -1174,7 +1203,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2025-03-13 00:56:11.
+    23.9.1 at 2025-03-13 18:34:27.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

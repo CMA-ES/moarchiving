@@ -598,8 +598,11 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Class for storing a set of non-dominated points in 3 objective space and efficiently calculating hypervolume with respect to the given reference point.</p>
-<p>The archive is implemented as a doubly linked list, and can be modified using functions add and remove. Points of the archive can be accessed as a list of points order by the third coordinate using function points_list.</p>
+          <div><p>Class for storing a set of non-dominated points in 3 objective space and efficiently calculating
+hypervolume with respect to the given reference point.</p>
+<p>The archive is implemented as a doubly linked list, and can be modified using functions
+add and remove. Points of the archive can be accessed as a list of points order by the third
+coordinate using function points_list.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive([[1, 2, 3], [3, 2, 1]])
@@ -730,17 +733,17 @@
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#dominates" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.dominates">dominates</a></code></td>
-    <td>return `True` if any element of `points` dominates or is equal to `f_val`. Otherwise return `False`.</td>
+    <td>return <code>True</code> if any element of <code>points</code> dominates or is equal to <code>f_val</code>. Otherwise return <code>False</code>.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#dominators" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.dominators">dominators</a></code></td>
-    <td>return the list of all `f_val`-dominating elements in `self`, including an equal element. ``len(....dominators(...))`` is hence the number of dominating elements which can also be obtained without creating the list with ``number_only=True``.</td>
+    <td>return the list of all <code>f_val</code>-dominating elements in <code>self</code>, including an equal element. <tt class="rst-docutils literal"><span class="pre">len(....dominators(...))</span></tt> is hence the number of dominating elements which can also be obtained without creating the list with ...</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#in_domain" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.in_domain">in<wbr></wbr>_domain</a></code></td>
-    <td>return `True` if `f_vals` is dominating the reference point, `False` otherwise. `True` means that `f_vals` contributes to the hypervolume if not dominated by other elements.</td>
+    <td>return <code>True</code> if <code>f_vals</code> is dominating the reference point, <code>False</code> otherwise. <code>True</code> means that <code>f_vals</code> contributes to the hypervolume if not dominated by other elements.</td>
   </tr><tr class="baseinstancevariable">
     
     <td>Instance Variable</td>
@@ -770,7 +773,7 @@
     
     <td>Property</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#contributing_hypervolumes" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.contributing_hypervolumes">contributing<wbr></wbr>_hypervolumes</a></code></td>
-    <td>`list` of hypervolume contributions of each point in the archive</td>
+    <td><code>list</code> of hypervolume contributions of each point in the archive</td>
   </tr><tr class="baseproperty">
     
     <td>Property</td>
@@ -785,7 +788,7 @@
     
     <td>Property</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#infos" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.infos">infos</a></code></td>
-    <td>`list` of complementary information corresponding to each archive entry, corresponding to each of the points in the archive</td>
+    <td><code>list</code> of complementary information corresponding to each archive entry, corresponding to each of the points in the archive</td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
@@ -832,7 +835,9 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#__init__" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent.__init__</a></code></div>
     <div><p>Create a new 3 objective archive object.</p>
-<p>f-vals beyond the `reference_point` are pruned away. The `reference_point` is also used to compute the hypervolume. infos are an optional list of additional information about the points in the archive.</p>
+<p>f-vals beyond the <code>reference_point</code> are pruned away. The <code>reference_point</code> is also used
+to compute the hypervolume.
+infos are an optional list of additional information about the points in the archive.</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -858,7 +863,8 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#add" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent.add</a></code></div>
     <div><p>Adds a new point to the archive, and updates the hypervolume if needed.</p>
-<p>Returns True if the point was added, False if it was dominated by another point in the archive</p>
+<p>Returns True if the point was added, False if it was dominated
+by another point in the archive</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive(reference_point=[4, 4, 4])
@@ -901,12 +907,15 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#add_list" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent.add_list</a></code></div>
     <div><p>Adds a list of points to the archive, and updates the hypervolume.</p>
-<p>points are added with the `add_method` method:</p>
+<p>points are added with the <code>add_method</code> method:</p>
+<blockquote>
 <ul class="rst-simple">
-<li>compare: compares the number of points to add with the number of points in the archive and uses the most efficient method based on that</li>
+<li>compare: compares the number of points to add with the number of points in the archive
+and uses the most efficient method based on that</li>
 <li>one_by_one: adds the points one by one to the archive</li>
 <li>reinit: reinitializes the archive with the new points</li>
 </ul>
+</blockquote>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive(reference_point=[4, 4, 4])
@@ -1045,7 +1054,8 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p>Preprocessing step to determine the closest points in x and y directions, as described in the paper and implemented in the original C code.</p></div>
+    <div><p>Preprocessing step to determine the closest points in x and y directions,
+as described in the paper and implemented in the original C code.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1069,7 +1079,8 @@
   </div>
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#remove" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent.remove</a></code></div>
-    <div><p>Removes a point from the archive, and updates the hypervolume. If the point is not found, it raises a ValueError.</p>
+    <div><p>Removes a point from the archive, and updates the hypervolume.
+If the point is not found, it raises a ValueError.</p>
 <p>Returns the info of the removed point.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
@@ -1108,7 +1119,9 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_get_kink_points" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent._get_kink_points</a></code></div>
     <div><p>Function that returns the kink points of the archive.</p>
-<p>Kink point are calculated by making a sweep of the archive, where the state is one 2 objective archive of all possible kink points found so far, and another 2 objective archive which stores the non-dominated points so far in the sweep</p>
+<p>Kink point are calculated by making a sweep of the archive, where the state is one
+2 objective archive of all possible kink points found so far, and another 2 objective
+archive which stores the non-dominated points so far in the sweep</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
 <span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive([[1, 2, 3], [2, 2, 2], [3, 2, 1]], reference_point=[4, 4, 4])
@@ -1137,7 +1150,9 @@
   </div>
   <div class="functionBody">
     <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_hypervolume_plus" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent._hypervolume_plus</a></code></div>
-    <div><p>1) Set u.cx to the point q ∈ Q with the smallest q_x &gt; u_x such that q_y &lt; u_y and q &lt;L u. If such a point is not unique, the alternative with the smallest q_y is preferred</p></div>
+    <div><p>1) Set u.cx to the point q ∈ Q with the smallest q_x &gt; u_x
+such that q_y &lt; u_y and q &lt;L u. If such a point is not
+unique, the alternative with the smallest q_y is preferred</p></div>
     
   </div>
 </div><div class="baseinstancevariable private">
@@ -1224,7 +1239,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2025-03-13 00:56:11.
+    23.9.1 at 2025-03-13 18:34:27.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

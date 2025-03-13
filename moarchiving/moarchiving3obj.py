@@ -303,8 +303,9 @@ class MOArchive3obj(MOArchiveParent):
         """ Adds a list of points to the archive, and updates the hypervolume.
 
         points are added with the `add_method` method:
+
             - compare: compares the number of points to add with the number of points in the archive
-            and uses the most efficient method based on that
+              and uses the most efficient method based on that
             - one_by_one: adds the points one by one to the archive
             - reinit: reinitializes the archive with the new points
 

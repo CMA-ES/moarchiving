@@ -66,25 +66,27 @@ class TestMOArchiving2obj(unittest.TestCase):
         """ test if the add_points function works correctly """
         ref_point = [6, 6]
         start_points = [[1, 3], [5, 1]]
-        moa = BiobjectiveNondominatedSortedList(start_points, ref_point, infos=["A", "B"])
+        moa_ref = BiobjectiveNondominatedSortedList(start_points, ref_point, infos=["A", "B"])
+        moa_no_ref = BiobjectiveNondominatedSortedList(start_points, infos=["A", "B"])
 
-        # add point that is not dominated and does not dominate any other point
-        u1 = [3, 2]
-        moa.add(u1, info="C")
-        self.assertSetEqual(list_to_set(start_points + [u1]), list_to_set(moa))
-        self.assertSetEqual({"A", "B", "C"}, set(moa.infos))
+        for moa in [moa_ref, moa_no_ref]:
+            # add point that is not dominated and does not dominate any other point
+            u1 = [3, 2]
+            moa.add(u1, info="C")
+            self.assertSetEqual(list_to_set(start_points + [u1]), list_to_set(moa))
+            self.assertSetEqual({"A", "B", "C"}, set(moa.infos))
 
-        # add point that is dominated by another point in the archive
-        u2 = [4, 4]
-        moa.add(u2, info="D")
-        self.assertSetEqual(list_to_set(start_points + [u1]), list_to_set(moa))
-        self.assertSetEqual({"A", "B", "C"}, set(moa.infos))
+            # add point that is dominated by another point in the archive
+            u2 = [4, 4]
+            moa.add(u2, info="D")
+            self.assertSetEqual(list_to_set(start_points + [u1]), list_to_set(moa))
+            self.assertSetEqual({"A", "B", "C"}, set(moa.infos))
 
-        # add point that dominates another point in the archive
-        u3 = [2, 2]
-        moa.add(u3, info="E")
-        self.assertSetEqual(list_to_set(start_points + [u3]), list_to_set(moa))
-        self.assertSetEqual({"A", "B", "E"}, set(moa.infos))
+            # add point that dominates another point in the archive
+            u3 = [2, 2]
+            moa.add(u3, info="E")
+            self.assertSetEqual(list_to_set(start_points + [u3]), list_to_set(moa))
+            self.assertSetEqual({"A", "B", "E"}, set(moa.infos))
 
     def test_copy_MOArchive(self):
         """ Test the copy function of the MOArchive3obj class """

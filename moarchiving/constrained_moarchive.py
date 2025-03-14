@@ -90,15 +90,19 @@ class CMOArchive:
         [[2, 2]]
         """
         try:
-            constraint_violation = sum(g_vals)
+            constraint_violation = sum([max(0, g) for g in g_vals])
         except TypeError:
             constraint_violation = g_vals
+
         if constraint_violation > 0:
-            if constraint_violation + self.tau < -self._hypervolume_plus_constr:
+            if (self.archive.reference_point is not None and
+                    constraint_violation + self.tau < -self._hypervolume_plus_constr):
                 self._hypervolume_plus_constr = -(constraint_violation + self.tau)
-            return
-        self.archive.add(f_vals, info)
-        self._hypervolume_plus_constr = max(self.archive._hypervolume_plus, -self.tau)
+        else:
+            self.archive.add(f_vals, info)
+
+            if self.archive.reference_point is not None:
+                self._hypervolume_plus_constr = max(self.archive._hypervolume_plus, -self.tau)
 
     def add_list(self, list_of_f_vals, list_of_g_vals, infos=None):
         """ Add a list of objective vectors f_vals with corresponding constraints vectors g_vals
@@ -163,6 +167,9 @@ class CMOArchive:
     @property
     def hypervolume_plus_constr(self):
         """ Return the hypervolume_plus_constr (icmop) indicator. """
+        if self.archive.reference_point is None:
+            raise ValueError("to compute the hypervolume_plus_constr indicator a reference"
+                             " point is needed (must be given initially)")
         return self._hypervolume_plus_constr
 
     @property

@@ -11,12 +11,12 @@ inf = float('inf')
 
 
 class MOArchiveParent:
-    """ Parent class for Moarchiving 3 and 4 objective classes, to avoid code duplication """
+    """Parent class for Moarchiving 3 and 4 objective classes, to avoid code duplication """
 
     def __init__(self, list_of_f_vals=None, reference_point=None, infos=None, n_obj=None,
                  hypervolume_final_float_type=None,
                  hypervolume_computation_float_type=None):
-        """ Create a new archive object. """
+        """Create a new archive object. """
         self.hypervolume_final_float_type = hypervolume_final_float_type
         self.hypervolume_computation_float_type = hypervolume_computation_float_type
 
@@ -68,7 +68,7 @@ class MOArchiveParent:
         raise NotImplementedError("This method should be implemented in the child class")
 
     def dominates(self, f_val):
-        """ return `True` if any element of `points` dominates or is equal to `f_val`.
+        """return `True` if any element of `points` dominates or is equal to `f_val`.
         Otherwise return `False`.
 
         >>> from moarchiving.get_archive import get_mo_archive
@@ -154,7 +154,7 @@ class MOArchiveParent:
         return True
 
     def _points_generator(self, include_head=False):
-        """ returns the points in the archive in a form of a python generator
+        """returns the points in the archive in a form of a python generator
         instead of a circular doubly linked list """
         first_iter = True
         di = self.n_obj - 1
@@ -185,7 +185,7 @@ class MOArchiveParent:
 
     @property
     def hypervolume(self):
-        """ Returns the hypervolume of the archive """
+        """Return the hypervolume of the archive """
         if self.reference_point is None:
             raise ValueError("to compute the hypervolume indicator a reference"
                              " point is needed (must be given initially)")
@@ -193,7 +193,7 @@ class MOArchiveParent:
 
     @property
     def hypervolume_plus(self):
-        """ Returns the hypervolume_plus of the archive """
+        """Return the hypervolume_plus of the archive """
         if self.reference_point is None:
             raise ValueError("to compute the hypervolume_plus indicator a reference"
                              " point is needed (must be given initially)")
@@ -205,7 +205,7 @@ class MOArchiveParent:
         return [self.contributing_hypervolume(point[:self.n_obj]) for point in self]
 
     def contributing_hypervolume(self, f_vals):
-        """ Returns the hypervolume contribution of a point in the archive
+        """Return the hypervolume contribution of a point in the archive
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> get_mo_archive.hypervolume_final_float_type = float
@@ -237,7 +237,7 @@ class MOArchiveParent:
         raise NotImplementedError("This method should be implemented in the child class")
 
     def distance_to_pareto_front(self, f_vals, ref_factor=1):
-        """ Returns the distance to the Pareto front of the archive,
+        """Return the distance to the Pareto front of the archive,
         by calculating the distances to the kink points
 
         >>> from moarchiving.get_archive import get_mo_archive
@@ -272,7 +272,7 @@ class MOArchiveParent:
         return min(distances_squared) ** 0.5
 
     def distance_to_hypervolume_area(self, f_vals):
-        """ Returns the distance to the hypervolume area of the archive
+        """Return the distance to the hypervolume area of the archive
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive(reference_point=[1, 1, 1])
@@ -294,7 +294,7 @@ class MOArchiveParent:
         raise NotImplementedError("This method should be implemented in the child class")
 
     def _set_HV(self):
-        """ Set the hypervolume of the archive """
+        """Set the hypervolume of the archive """
         if self.reference_point is None:
             return None
         self._hypervolume = self.hypervolume_final_float_type(self.compute_hypervolume())

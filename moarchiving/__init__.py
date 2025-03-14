@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
-""" This package implements a multi-objective (2, 3 and 4 objectives are supported)
-non-dominated archive.
+"""This package implements a multi-objective non-dominated archive for 2, 3 or 4 objectives,
+providing easy and fast access to multiple hypervolume indicators:
 
-It provides easy and fast access to multiple hypervolume indicators, the contributing hypervolume
-of each solution, and to the uncrowded hypervolume improvement of any given point in the
-objective space.
-Additionally, it provides a constrained version of the archive, which allows to store points
-with constraints.
+- the hypervolume of the entire archive,
+- the contributing hypervolume of each element,
+- the uncrowded hypervolume improvement (https://doi.org/10.1145/3321707.3321852, https://arxiv.org/abs/1904.08823) of any given point in the objective space, and
+- the uncrowded hypervolume of the (unpruned) archive, here called hypervolume plus (see `BiobjectiveNondominatedSortedList.hypervolume_plus`).
 
+Additionally, the package provides a constrained version of the archive,
+which allows to store points with constraints.
 
-:Authors: Nikolaus Hansen, Nace Sever, Mila Nedić, Tea Tušar, 2024
+The source code is available at https://github.com/CMA-ES/moarchiving
 
-:License: BSD 3-Clause, see LICENSE file.
-
+Authors: Nikolaus Hansen, Nace Sever, Mila Nedić, Tea Tušar, 2024
+License: BSD 3-Clause, see LICENSE file.
 """
 
 __author__ = "Nikolaus Hansen, Nace Sever, Mila Nedic, Tea Tusar"

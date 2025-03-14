@@ -36,15 +36,16 @@ def get_random_points(n_points, n_dim):
 def get_stacked_points(n_points, points_definitions):
     """ Returns a list of points with n_points and n_dim dimensions,
     where point from i-th dimension is defined by points_definitions[i]:
-     - 'random' for random value between 0 and 1
-     - int for a fixed value """
+
+        - 'random' for random value between 0 and 1
+        - int for a fixed value """
     points = []
     for i in range(n_points):
         points.append([])
         for p_def in points_definitions:
             if p_def == 'random':
                 points[-1].append(random.random())
-            elif type(p_def) is int:
+            elif isinstance(p_def, int):
                 points[-1].append(p_def)
             else:
                 raise ValueError("Invalid point definition")

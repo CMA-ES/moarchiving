@@ -1,5 +1,7 @@
-""" This module contains the factory functions for creating MOArchive objects
-of the appropriate number of objectives, for both constrained and unconstrained problems. """
+"""Convenience create functions for any of the nondominated archives.
+
+The appropriate number of objectives, is derived from the input arguments.
+"""
 
 from moarchiving.moarchiving import BiobjectiveNondominatedSortedList as MOArchive2obj
 from moarchiving.moarchiving3obj import MOArchive3obj
@@ -14,13 +16,16 @@ except ImportError:
 
 
 def get_mo_archive(list_of_f_vals=None, reference_point=None, infos=None, n_obj=None):
-    """
-    Factory function for creating MOArchive objects with the appropriate number of objectives.
+    """Return a nondominated archive instance with the proper number of objectives.
 
-    `list_of_f_vals` is a list of objective vectors with `n_obj` objectives.
-    If `list_of_f_vals` is not provided, `n_obj` should be provided to initialize an empty archive.
-    `reference_point` is used for hypervolume computation and pruning of the archive.
-    A list of additional information for each objective vector can be provided in `infos`.
+    `list_of_f_vals` is a list of objective vectors with `n_obj`
+    objectives. If `list_of_f_vals` is not provided, `n_obj` can be
+    provided to define the number of objectives which is by default 2.
+
+    `reference_point` is used for hypervolume computation and pruning of
+    the archive. A list of additional information for each objective
+    vector, for example the solution from which the objective values were
+    computed, can be provided in `infos`.
     """
     if not hasattr(get_mo_archive, "hypervolume_final_float_type"):
         try:
@@ -82,13 +87,14 @@ def get_mo_archive(list_of_f_vals=None, reference_point=None, infos=None, n_obj=
 
 def get_cmo_archive(list_of_f_vals=None, list_of_g_vals=None, reference_point=None,
                     infos=None, n_obj=None, tau=1):
-    """
-    Function for creating CMOArchive objects, with similar interface as get_mo_archive.
+    """Return a constrained nondominated archive instance with the proper number of objectives.
 
     `list_of_f_vals` is a list of objective vectors with `n_obj` objectives,
     `list_of_g_vals` is a list of constraint violation vectors (or values).
-    If `list_of_f_vals` is not provided, `n_obj` should be provided to initialize an empty archive.
-    `reference_point` is used for hypervolume computation and pruning of the archive.
+    If `list_of_f_vals` is not provided, `n_obj` can be provided to define
+    the number of objectives.
+
+    `reference_point` is used for the hypervolume computation and pruning of the archive.
     A list of additional information for each objective vector can be provided in `infos`.
     """
 

@@ -3,23 +3,27 @@
 import doctest
 import unittest
 
-import moarchiving
+import moarchiving as moa
 
 
-tmp = moarchiving.BiobjectiveNondominatedSortedList.make_expensive_asserts
-moarchiving.BiobjectiveNondominatedSortedList.make_expensive_asserts = True
-# print(moarchiving.moarchiving.BiobjectiveNondominatedSortedList.make_expensive_asserts)
+tmp = moa.BiobjectiveNondominatedSortedList.make_expensive_asserts
+moa.BiobjectiveNondominatedSortedList.make_expensive_asserts = True
+# print(moa.moarching.BiobjectiveNondominatedSortedList.make_expensive_asserts)
 
-for doctest_suite in [moarchiving.moarchiving, moarchiving.moarchiving3obj,
-                      moarchiving.moarchiving4obj, moarchiving.moarchiving_parent]:
+for doctest_suite in [moa.moarchiving,
+                      moa.moarchiving3obj,
+                      moa.moarchiving4obj,
+                      moa.moarchiving_parent]:
     print(f'doctest.testmod({doctest_suite})')
     print(doctest.testmod(doctest_suite))
 
-for unit_test_suite in [moarchiving.test_moarchiving2obj, moarchiving.test_moarchiving3obj,
-                        moarchiving.test_moarchiving4obj, moarchiving.test_constrained_moarchiving,
-                        moarchiving.test_sorted_list]:
+for unit_test_suite in [moa.tests.test_moarchiving2obj,
+                        moa.tests.test_moarchiving3obj,
+                        moa.tests.test_moarchiving4obj,
+                        moa.tests.test_constrained_moarchiving,
+                        moa.tests.test_sorted_list]:
     print(f'unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromModule({unit_test_suite}))')
     unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromModule(unit_test_suite))
 
-moarchiving.BiobjectiveNondominatedSortedList.make_expensive_asserts = tmp
-# print(moarchiving.moarchiving.BiobjectiveNondominatedSortedList.make_expensive_asserts)
+moa.BiobjectiveNondominatedSortedList.make_expensive_asserts = tmp
+# print(moa.moarching.BiobjectiveNondominatedSortedList.make_expensive_asserts)

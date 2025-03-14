@@ -92,7 +92,7 @@ class CMOArchive:
         try:
             constraint_violation = sum([max(0, g) for g in g_vals])
         except TypeError:
-            constraint_violation = g_vals
+            constraint_violation = max(g_vals, 0)
 
         if constraint_violation > 0:
             if (self.archive.reference_point is not None and

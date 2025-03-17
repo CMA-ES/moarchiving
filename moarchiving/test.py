@@ -13,7 +13,8 @@ moa.BiobjectiveNondominatedSortedList.make_expensive_asserts = True
 for doctest_suite in [moa.moarchiving,
                       moa.moarchiving3obj,
                       moa.moarchiving4obj,
-                      moa.moarchiving_parent]:
+                      moa.moarchiving_parent,
+                      moa.constrained_moarchive]:
     print(f'doctest.testmod({doctest_suite})')
     print(doctest.testmod(doctest_suite))
 

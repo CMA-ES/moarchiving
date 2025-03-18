@@ -123,15 +123,11 @@ class CMOArchive:
         if self._hypervolume_plus_constr < 0:
             for obj, cons, info in zip(list_of_f_vals, list_of_g_vals, infos):
                 self.add(obj, cons, info)
-
-        try:
-            list_of_g_vals = [sum(g_vals) for g_vals in list_of_g_vals]
-        except TypeError:
-            pass
-
         else:
-            if infos is None:
-                infos = [None] * len(list_of_f_vals)
+            try:
+                list_of_g_vals = [sum([max(g, 0) for g in g_vals]) for g_vals in list_of_g_vals]
+            except TypeError:
+                list_of_g_vals = [max(g_vals, 0) for g_vals in list_of_g_vals]
 
             list_of_f_vals = [f_vals for f_vals, g_vals in zip(list_of_f_vals, list_of_g_vals) if g_vals == 0]
             infos = [info for info, g_vals in zip(infos, list_of_g_vals) if g_vals == 0]
@@ -230,29 +226,29 @@ class CMOArchive:
         >>> moa = get_cmo_archive(reference_point=[5, 5], tau=4) # hv+c = -inf
         >>> moa.hypervolume_plus_constr_improvement([1, 1], 10)
         inf
-        >>> moa.add([1, 1], 10) # hv+c = -14
+        >>> moa.add([1, 1], [10, 0]) # hv+c = -14
         >>> int(moa.hypervolume_plus_constr_improvement([2, 2], 4))
         6
-        >>> moa.add([2, 2], 4) # hv+c = -8
+        >>> moa.add([2, 2], [3, 1]) # hv+c = -8
         >>> int(moa.hypervolume_plus_constr_improvement([8, 9], 0))
         4
-        >>> moa.add([8, 9], 0) # hv+c = -4
+        >>> moa.add([8, 9], [0, 0]) # hv+c = -4
         >>> int(moa.hypervolume_plus_constr_improvement([8, 5], 0))
         1
-        >>> moa.add([8, 5], 0) # hv+c = -3
+        >>> moa.add([8, 5], [0, 0]) # hv+c = -3
         >>> int(moa.hypervolume_plus_constr_improvement([0, 0], 1))
         0
-        >>> moa.add([0, 0], 1) # hv+c = -3
+        >>> moa.add([0, 0], [1, -3]) # hv+c = -3
         >>> int(moa.hypervolume_plus_constr_improvement([4, 4], 0))
         4
-        >>> moa.add([4, 4], 0) # hv+c = 1
+        >>> moa.add([4, 4], [0, 0]) # hv+c = 1
         >>> int(moa.hypervolume_plus_constr_improvement([3, 3], 0))
         3
         """
         try:
-            constraint_violation = sum(g_vals)
+            constraint_violation = sum([max(0, g) for g in g_vals])
         except TypeError:
-            constraint_violation = g_vals
+            constraint_violation = max(g_vals, 0)
         if constraint_violation > 0:
             if constraint_violation + self.tau < -self._hypervolume_plus_constr:
                 return - self._hypervolume_plus_constr - (constraint_violation + self.tau)

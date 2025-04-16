@@ -4,14 +4,16 @@
 implemented as sorted list and with incremental update in logarithmic time.
 """
 from __future__ import division, print_function, unicode_literals
-del division, print_function, unicode_literals
-
 import warnings as _warnings
 # from collections import deque  # does not support deletion of slices!?
 import bisect as _bisect # to find the insertion index efficiently
-try: import fractions
-except ImportError: _warnings.warn(
+try:
+    import fractions
+except ImportError:
+    _warnings.warn(
     '`fractions` module not installed, arbitrary precision hypervolume computation not available')
+del division, print_function, unicode_literals
+
 inf = float('inf')
 
 
@@ -310,7 +312,8 @@ class BiobjectiveNondominatedSortedList(list):
         if self._infos is not None:  # if the list exists it needs to be updated
             self._infos[idx] = info
         del self[idx + 1:idx2]  # can make `add` 20x faster
-        if self._infos: del self._infos[idx + 1:idx2]
+        if self._infos:
+            del self._infos[idx + 1:idx2]
         self._add_HV(idx)
         assert len(self) >= 1
         assert self._infos is None or len(self) == len(self.infos) == len(self._infos), (
@@ -359,7 +362,8 @@ class BiobjectiveNondominatedSortedList(list):
             self._hypervolume_plus = self._hypervolume if self._hypervolume > 0 else -inf
         self._removed = [self[idx]]
         del self[idx]  # == list.remove(self, f_pair)
-        if self._infos: del self._infos[idx]
+        if self._infos:
+            del self._infos[idx]
 
     def add_list(self, list_of_f_pairs, infos=None):
         """insert a list of f-pairs which doesn't need to be sorted.
@@ -683,8 +687,10 @@ class BiobjectiveNondominatedSortedList(list):
         by default `fractions.Fraction`, which can be converted to `float`
         like ``float(....contributing_hypervolume(idx))``.
         """
-        try: len(idx)
-        except TypeError: pass
+        try:
+            len(idx)
+        except TypeError:
+            pass
         else:  # idx is a pair
             if idx in self:
                 idx = self.index(idx)
@@ -800,7 +806,8 @@ class BiobjectiveNondominatedSortedList(list):
         added = self.add(f_pair) is not None
         if added and self.discarded is not removed:
             add_back = self.discarded
-        else: add_back = []
+        else:
+            add_back = []
         assert len(add_back) + len(self) - added == state[0]
         hv1 = self.hypervolume
         if added:
@@ -1027,7 +1034,8 @@ class BiobjectiveNondominatedSortedList(list):
             i += 1
         removed += self[0:i]
         del self[0:i]
-        if self._infos: del self._infos[0:i]
+        if self._infos:
+            del self._infos[0:i]
         i = 1
         while i < len(self):
             i0 = i
@@ -1052,7 +1060,8 @@ class BiobjectiveNondominatedSortedList(list):
                         break
             removed += self[i0r:ir]
             del self[i0:i]
-            if self._infos: del self._infos[i0:i]
+            if self._infos:
+                del self._infos[i0:i]
             i = i0 + 1
         self._removed = removed  # [p for p in removed if p not in self]
         if self.maintain_contributing_hypervolumes:

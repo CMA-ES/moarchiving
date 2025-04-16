@@ -8,17 +8,19 @@ Testing::
 
 Final final changes to version numbers and such::
 
-    morachiving.py  # edit version number
+    __init__.py  # edit version number
     # not applicable: tools/conda.recipe/meta.yaml  # edit version number
-    README.md  # add release description
+    moarchiving.ipynb  # add release description
+    README.md + .html  # created from moarchiving.ipynb, see howto/update_readme.md
+    merge development to master if necessary
 
 To prepare a distribution from a (usual) dirty code folder::
 
-    backup morachiving --move    # backup is a homebrew minitool
-    git checkout -- morachiving
+    backup moarchiving --move    # backup is a homebrew minitool
+    git checkout -- moarchiving
     python setup.py check
     python -m build > dist_call_output.txt ; less dist_call_output.txt  # bdist_wininst was: python setup.py
-    # twdiff morachiving build/lib/morachiving/  # just checking
+    tree build/lib/moarchiving  # just checking
     backup --recover  # recover above moved folder (and backup current, just in case)
 
 Check distribution and project description:
@@ -29,7 +31,7 @@ Check distribution and project description:
 
 Finally upload the distribution::
 
-    twine upload dist/*0.6.x*  # to not upload outdated stuff
+    twine upload dist/*1.0.x*  # to not upload outdated stuff
 
 """
 # from distutils.core import setup
@@ -72,7 +74,7 @@ setup(name="moarchiving",
       # maintainer="Nikolaus Hansen",
       # maintainer_email="authors_firstname.lastname@inria.fr",
       url="https://github.com/cma-es/moarchiving",
-      license="BSD",
+      license="BSD-3-Clause",
       classifiers = [
           "Intended Audience :: Science/Research",
           "Intended Audience :: Education",
@@ -85,10 +87,11 @@ setup(name="moarchiving",
           "Programming Language :: Python :: 3",
           "Development Status :: 4 - Beta",
           "Environment :: Console",
-          "License :: OSI Approved :: BSD License",
+          # "License :: OSI Approved :: BSD License",
       ],
       keywords=["optimization", "multi-objective",],
       packages=["moarchiving"],
       # install_requires=["bisect"],
+      install_requires=["sortedcontainers"],
       package_data={'': ['LICENSE', ]},  # i.e. moarchiving/LICENSE
       )

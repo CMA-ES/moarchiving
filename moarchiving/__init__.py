@@ -28,4 +28,4 @@ from .moarchiving import BiobjectiveNondominatedSortedList as MOArchive2obj
 from .moarchiving3obj import MOArchive3obj
 from .moarchiving4obj import MOArchive4obj
 from .constrained_moarchive import CMOArchive
-from . import tests
+#  from . import tests  # creates a circular import?

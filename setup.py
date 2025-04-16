@@ -90,8 +90,8 @@ setup(name="moarchiving",
           # "License :: OSI Approved :: BSD License",
       ],
       keywords=["optimization", "multi-objective",],
-      packages=["moarchiving"],
-      # install_requires=["bisect"],
+      packages=["moarchiving", "moarchiving.tests"],
+      # install_requires=["bisect"],  # is builtin
       install_requires=["sortedcontainers"],
       package_data={'': ['LICENSE', ]},  # i.e. moarchiving/LICENSE
       )

@@ -31,11 +31,11 @@ Make distribution
 
 ```sh
     cd install-folder
-    python -c "open('README.md', 'w').write(open('../README.md', 'r').read().split('### 11')[0])"
+    python -c "s = open('../README.md', 'r').read().split('### 11')[0]; open('README.md', 'w').write(s)"
     python -m build > dist_call_output.txt
     less dist_call_output.txt  # not very informative
     ll dist  # just checking creation date
-    tar -tf dist/moarchiving-1.0.0.tar.gz | tree --fromfile  # check that the distribution folders are clean
+    tar -tf dist/moarchiving-1.0.0.tar.gz | tree --fromfile | less  # check that the distribution folders are clean
 ```
 
 Check distribution and project description:

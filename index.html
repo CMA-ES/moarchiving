@@ -14620,7 +14620,7 @@ Ran 7 tests in 0.001s</code></pre>
 <h2 id="Details">Details<a class="anchor-link" href="#Details">&#182;</a></h2><p><code>moarchiving</code> with 2 objectives uses the <a href="https://docs.python.org/3/library/fractions.html"><code>fractions.Fraction</code></a> type to avoid rounding errors when computing hypervolume differences, but its usage can also be easily switched off by assigning the respective class attributes <code>hypervolume_computation_float_type</code> and <code>hypervolume_final_float_type</code>. The Fraction type can become prohibitively computationally expensive with increasing precision.</p>
 <p>The implementation of the two-objective archive is heavily based on the <a href="https://docs.python.org/3/library/bisect.html"><code>bisect</code></a> module, while in three and four objectives it is based on the <a href="https://pypi.org/project/sortedcontainers/"><code>sortedcontainers</code></a> module.</p>
 <h2 id="Releases">Releases<a class="anchor-link" href="#Releases">&#182;</a></h2><ul>
-<li>1.0.0 addition of MOArchive classes for 3 and 4 objectives, as well as a class for handling solutions to constrained problems</li>
+<li><a href="https://github.com/CMA-ES/moarchiving/releases/tag/r1.0.0">1.0.0</a> addition of MOArchive classes for 3 and 4 objectives, as well as a class for handling solutions to constrained problems</li>
 <li>0.7.0 reimplementation of <code>BiobjectiveNondominatedSortedList.hypervolume_improvement</code> by extracting a sublist first.</li>
 <li>0.6.0 the <code>infos</code> attribute is a <code>list</code> with corresponding (arbitrary) information, e.g. for keeping the respective solutions.</li>
 <li>0.5.3 fixed assertion error when not using <code>fractions.Fraction</code></li>

@@ -6,6 +6,29 @@ except ImportError:
     _warnings.warn('`sortedcontainers` module not installed, moarchiving for 3 and 4 objectives will not work')
     SortedKeyList = list
 
+try:
+    import fractions
+except ImportError:
+    _warnings.warn('`fractions` module not installed, arbitrary precision hypervolume computation not available')
+
+def true_fraction(val, copy=False):
+    """return a `fractions.Fraction` object from `val`.
+
+    Fixes the issue that `Fraction` does not convert an `np.intc` or
+    `np.int32` type to infinite representation `int`.
+    """
+    try:
+        fractions.Fraction
+    except NameError:
+        return val
+    if isinstance(val, fractions.Fraction):
+        if copy:  # Fraction(.) is almost 20 times slower than float(.)
+            return fractions.Fraction(val)
+        return val
+    if not isinstance(val, (int, float)):
+        val = float(val)
+    return fractions.Fraction(val)
+
 
 class DLNode:
     """ A class to represent a node in a doubly linked list. """

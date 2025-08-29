@@ -18,14 +18,14 @@ License: BSD 3-Clause, see LICENSE file.
 
 __author__ = "Nikolaus Hansen, Nace Sever, Mila Nedic, Tea Tusar"
 __license__ = "BSD 3-clause"
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 
-from .get_archive import get_mo_archive, get_cmo_archive
+from .get_archive import get_mo_archive
+from .get_archive import get_cmo_archive
 from .moarchiving import BiobjectiveNondominatedSortedList
+from .moarchiving import BiobjectiveNondominatedSortedList as MOArchive2obj
 from .moarchiving3obj import MOArchive3obj
 from .moarchiving4obj import MOArchive4obj
-from .moarchiving_parent import MOArchiveParent
 from .constrained_moarchive import CMOArchive
-from moarchiving.tests import (test_moarchiving2obj, test_moarchiving3obj, test_moarchiving4obj,
-                               test_constrained_moarchiving, test_sorted_list)
+#  from . import tests  # creates a circular import?

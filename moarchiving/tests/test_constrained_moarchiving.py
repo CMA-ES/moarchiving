@@ -42,23 +42,28 @@ class TestCMOArchiving(unittest.TestCase):
         ref_point = [6, 6]
         f_vals = [[1, 2], [3, 4], [5, 1]]
         g_vals = [42, 0, 0]
-        moa = get_cmo_archive(f_vals, g_vals, ref_point)
+        moa_ref = get_cmo_archive(f_vals, g_vals, ref_point)
+        moa_no_ref = get_cmo_archive(f_vals, g_vals)
+        for moa in [moa_ref, moa_no_ref]:
+            # add point that is not dominated and does not dominate any other point
+            moa.add([1, 5], [0])
+            self.assertEqual([[1, 5], [3, 4], [5, 1]], list(moa))
 
-        # add point that is not dominated and does not dominate any other point
-        moa.add([1, 5], [0])
-        self.assertEqual([[1, 5], [3, 4], [5, 1]], list(moa))
+            # add point that is dominated by another point in the archive
+            moa.add([4, 4], [0])
+            self.assertEqual([[1, 5], [3, 4], [5, 1]], list(moa))
 
-        # add point that is dominated by another point in the archive
-        moa.add([4, 4], [0])
-        self.assertEqual([[1, 5], [3, 4], [5, 1]], list(moa))
+            # add point that dominates another point in the archive
+            moa.add([3, 3], [0])
+            self.assertEqual([[1, 5], [3, 3], [5, 1]], list(moa))
 
-        # add point that dominates another point in the archive
-        moa.add([3, 3], [0])
-        self.assertEqual([[1, 5], [3, 3], [5, 1]], list(moa))
+            # don't add point, because it is not feasible
+            moa.add([1, 1], [1])
+            self.assertEqual([[1, 5], [3, 3], [5, 1]], list(moa))
 
-        # don't add point, because it is not feasible
-        moa.add([1, 1], [1])
-        self.assertEqual([[1, 5], [3, 3], [5, 1]], list(moa))
+            # do not add point with that have any constraint violation > 0
+            moa.add([2, 2], [-3, 2])
+            self.assertEqual([[1, 5], [3, 3], [5, 1]], list(moa))
 
     def test_copy_CMOArchive(self):
         """ Test the copy function of the CMOArchive class """

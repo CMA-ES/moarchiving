@@ -6,7 +6,7 @@
   <head>
     
     <title>All Documents</title>
-    <meta name="generator" content="pydoctor 23.9.1"> 
+    <meta name="generator" content="pydoctor 25.4.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
   <body>
     
@@ -48,7 +49,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -72,39 +73,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -115,8 +83,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -147,7 +115,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.constrained_moarchive">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive</div>
@@ -188,6 +156,14 @@
             <div class="kind">Module</div>
             <div class="privacy">PUBLIC</div>
             <div class="summary">This module contains a MOArchiving4obj class for storing a set of non-dominated points in 4 objective space and calculating hypervolume with respect to the given reference point.</div>
+          </li><li id="moarchiving.moarchiving_base">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base</div>
+            <div class="url">moarchiving.moarchiving_base.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Base class for functionality used with any number of objectives.</div>
           </li><li id="moarchiving.moarchiving_parent">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent</div>
@@ -211,7 +187,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Run all doctests and unit tests in the moarchiving package.</div>
+            <div class="summary">Run all doctests and unit tests of the moarchiving package:</div>
           </li><li id="moarchiving.tests">
             
             <div class="fullName">moarchiving<wbr></wbr>.tests</div>
@@ -260,6 +236,14 @@
             <div class="kind">Module</div>
             <div class="privacy">PUBLIC</div>
             <div class="summary">Test the MOArchive4obj class</div>
+          </li><li id="moarchiving.tests.test_normalization">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization</div>
+            <div class="url">moarchiving.tests.test_normalization.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Test the MOArchive3obj class</div>
           </li><li id="moarchiving.tests.test_sorted_list">
             
             <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_sorted<wbr></wbr>_list</div>
@@ -275,7 +259,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.__license__">
             
             <div class="fullName">moarchiving<wbr></wbr>.__license__</div>
@@ -283,7 +267,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.__version__">
             
             <div class="fullName">moarchiving<wbr></wbr>.__version__</div>
@@ -291,383 +275,15 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.inf">
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_utils.true_fraction">
             
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.inf</div>
-            <div class="url">moarchiving.moarchiving.html#inf</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving._debug_trace">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>._debug<wbr></wbr>_trace</div>
-            <div class="url">moarchiving.moarchiving.html#_debug_trace</div>
-            <div class="type">Function</div>
-            <div class="kind">Function</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary">return a string like printing the calling trace stack</div>
-          </li><li id="moarchiving.moarchiving.true_fraction">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.true<wbr></wbr>_fraction</div>
-            <div class="url">moarchiving.moarchiving.html#true_fraction</div>
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.true<wbr></wbr>_fraction</div>
+            <div class="url">moarchiving.moarchiving_utils.html#true_fraction</div>
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
             <div class="summary">return a <code>fractions.Fraction</code> object from <code>val</code>.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html</div>
-            <div class="type">Class</div>
-            <div class="kind">Class</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">A sorted list of non-dominated unique objective-pairs.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.make_expensive_asserts">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.make<wbr></wbr>_expensive<wbr></wbr>_asserts</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#make_expensive_asserts</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">HV computation takes increasingly longer with increasing precision (number of iterations).</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.maintain_contributing_hypervolumes">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.maintain<wbr></wbr>_contributing<wbr></wbr>_hypervolumes</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#maintain_contributing_hypervolumes</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.__init__">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.__init__</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#__init__</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><code>list_of_f_pairs</code> does not need to be sorted.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume_final_float_type">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.hypervolume<wbr></wbr>_final<wbr></wbr>_float<wbr></wbr>_type</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#hypervolume_final_float_type</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume_computation_float_type">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.hypervolume<wbr></wbr>_computation<wbr></wbr>_float<wbr></wbr>_type</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#hypervolume_computation_float_type</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.n_obj">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.n<wbr></wbr>_obj</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#n_obj</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.reference_point">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.reference<wbr></wbr>_point</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#reference_point</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._infos">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._infos</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_infos</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._contributing_hypervolumes">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._contributing<wbr></wbr>_hypervolumes</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_contributing_hypervolumes</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._hypervolume_plus">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._hypervolume<wbr></wbr>_plus</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_hypervolume_plus</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._debug_info">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._debug<wbr></wbr>_info</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_debug_info</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary">return debug info as a list of (key, value) tuples</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.add</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#add</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">insert <code>f_pair</code> in <code>self</code> if it is not (weakly) dominated.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._removed">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._removed</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_removed</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">No summary</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._add_at">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._add<wbr></wbr>_at</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_add_at</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary">add <code>f_pair</code> at position <code>idx</code> and remove dominated elements.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.remove">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.remove</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#remove</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">remove element <code>f_pair</code>.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add_list">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.add<wbr></wbr>_list</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#add_list</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">insert a list of f-pairs which doesn't need to be sorted.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.merge">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.merge</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#merge</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">obsolete and replaced by <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#add_list" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add_list">add_list</a></code>. merge in a sorted list of f-pairs.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.copy">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.copy</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#copy</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">return a "deep" copy of <code>self</code></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.bisect_left">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.bisect<wbr></wbr>_left</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#bisect_left</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">return index where <code>f_pair</code> may need to be inserted.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.dominates">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.dominates</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#dominates</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">return <code>True</code> if any element of <code>self</code> dominates or is equal to <code>f_pair</code>.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.dominates_with">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.dominates<wbr></wbr>_with</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#dominates_with</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">return <code>True</code> if <tt class="rst-docutils literal">self[idx]</tt> dominates or is equal to <code>f_pair</code>.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.dominators">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.dominators</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#dominators</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">return the list of all <code>f_pair</code>-dominating elements in <code>self</code>,</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.in_domain">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.in<wbr></wbr>_domain</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#in_domain</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">return <code>True</code> if <code>f_pair</code> is dominating the reference point,</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.infos">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.infos</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#infos</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Property</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><code>list</code> of complementary information corresponding to each archive entry</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.hypervolume</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#hypervolume</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Property</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">hypervolume of the entire list w.r.t. the "initial" reference point.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume_plus">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.hypervolume<wbr></wbr>_plus</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#hypervolume_plus</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Property</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">uncrowded hypervolume of the entire list w.r.t. the "initial" reference point.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolumes">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.contributing<wbr></wbr>_hypervolumes</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#contributing_hypervolumes</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Property</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><code>list</code> of contributing hypervolumes.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolume">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.contributing<wbr></wbr>_hypervolume</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#contributing_hypervolume</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">return contributing hypervolume of element <code>idx</code>.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.distance_to_pareto_front">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.distance<wbr></wbr>_to<wbr></wbr>_pareto<wbr></wbr>_front</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#distance_to_pareto_front</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">of a dominated <code>f_pair</code> also considering the reference domain.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.distance_to_hypervolume_area">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.distance<wbr></wbr>_to<wbr></wbr>_hypervolume<wbr></wbr>_area</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#distance_to_hypervolume_area</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._hypervolume_improvement0">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._hypervolume<wbr></wbr>_improvement0</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_hypervolume_improvement0</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary">deprecated and only used for testing: return how much <code>f_pair</code> would improve the hypervolume.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume_improvement">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.hypervolume<wbr></wbr>_improvement</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#hypervolume_improvement</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">return how much <code>f_pair</code> would improve the hypervolume.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._set_HV">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._set_<wbr></wbr>HV</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_set_HV</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary">set current hypervolume value using <code>self.reference_point</code>.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._hypervolume">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._hypervolume</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_hypervolume</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.compute_hypervolume">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.compute<wbr></wbr>_hypervolume</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#compute_hypervolume</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">return hypervolume w.r.t. <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#reference_point" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.reference_point">reference_point</a></code></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.compute_hypervolumes">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.compute<wbr></wbr>_hypervolumes</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#compute_hypervolumes</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">depricated, subject to removal, see <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#compute_hypervolume" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.compute_hypervolume">compute_hypervolume</a></code> and <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#contributing_hypervolumes" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolumes">contributing_hypervolumes</a></code>.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._subtract_HV">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._subtract_<wbr></wbr>HV</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_subtract_HV</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary">remove contributing hypervolumes of elements <tt class="rst-docutils literal">self[idx0] to self[idx1 - 1]</tt>.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._add_HV">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._add_<wbr></wbr>HV</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_add_HV</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary">add contributing hypervolume of <tt class="rst-docutils literal">self[idx]</tt> to hypervolume.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.prune">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.prune</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#prune</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">remove dominated or equal entries assuming that the list is sorted.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.discarded">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.discarded</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#discarded</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Property</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><code>list</code> of f-pairs discarded in the last relevant method call.</div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._state">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._state</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_state</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._random_archive">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._random<wbr></wbr>_archive</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_random_archive</div>
-            <div class="type">Function</div>
-            <div class="kind">Static Method</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._asserts">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._asserts</div>
-            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_asserts</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary">make all kind of consistency assertions.</div>
           </li><li id="moarchiving.moarchiving_utils.DLNode">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.<wbr></wbr>DLNode</div>
@@ -691,7 +307,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_utils.DLNode.closest">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.<wbr></wbr>DLNode<wbr></wbr>.closest</div>
@@ -699,7 +315,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_utils.DLNode.cnext">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.<wbr></wbr>DLNode<wbr></wbr>.cnext</div>
@@ -707,7 +323,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_utils.DLNode.next">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.<wbr></wbr>DLNode<wbr></wbr>.next</div>
@@ -715,7 +331,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_utils.DLNode.prev">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.<wbr></wbr>DLNode<wbr></wbr>.prev</div>
@@ -723,7 +339,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_utils.DLNode.ndomr">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.<wbr></wbr>DLNode<wbr></wbr>.ndomr</div>
@@ -731,7 +347,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_utils.DLNode.info">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.<wbr></wbr>DLNode<wbr></wbr>.info</div>
@@ -739,7 +355,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_utils.DLNode.copy">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.<wbr></wbr>DLNode<wbr></wbr>.copy</div>
@@ -907,7 +523,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_utils.restart_list_y">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.restart<wbr></wbr>_list<wbr></wbr>_y</div>
@@ -931,7 +547,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_utils.one_contribution_3_obj">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_utils<wbr></wbr>.one<wbr></wbr>_contribution<wbr></wbr>_3<wbr></wbr>_obj</div>
@@ -988,6 +604,542 @@
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
             <div class="summary">Compute the hypervolume indicator in d=4 by iteratively computing the one contribution problem in d=3.</div>
+          </li><li id="moarchiving.moarchiving_base.inf">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.inf</div>
+            <div class="url">moarchiving.moarchiving_base.html#inf</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html</div>
+            <div class="type">Class</div>
+            <div class="kind">Class</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Provide functionality used with any number of objectives</div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase.__init__">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>.__init__</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#__init__</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Create a new MOArchiveBase object.</div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase.hypervolume_final_float_type">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>.hypervolume<wbr></wbr>_final<wbr></wbr>_float<wbr></wbr>_type</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#hypervolume_final_float_type</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase.hypervolume_computation_float_type">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>.hypervolume<wbr></wbr>_computation<wbr></wbr>_float<wbr></wbr>_type</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#hypervolume_computation_float_type</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase.n_obj">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>.n<wbr></wbr>_obj</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#n_obj</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase.reference_point">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>.reference<wbr></wbr>_point</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#reference_point</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._hypervolume_plus">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._hypervolume<wbr></wbr>_plus</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_hypervolume_plus</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._hypervolume">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._hypervolume</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_hypervolume</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._weights">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._weights</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_weights</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._ideal_point">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._ideal<wbr></wbr>_point</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_ideal_point</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._weights_ideal_point">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._weights<wbr></wbr>_ideal<wbr></wbr>_point</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_weights_ideal_point</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._hv_factor">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._hv<wbr></wbr>_factor</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_hv_factor</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase.in_domain">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>.in<wbr></wbr>_domain</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#in_domain</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return <code>True</code> if <code>f_vals</code> is dominating the reference point,</div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase.distance_to_hypervolume_area">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>.distance<wbr></wbr>_to<wbr></wbr>_hypervolume<wbr></wbr>_area</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#distance_to_hypervolume_area</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return the distance to the hypervolume area of the archive</div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase.weights">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>.weights</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#weights</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return hypervolume weights, set to <code>value</code> when <tt class="rst-docutils rst-literal">value is not None</tt> and return previous value</div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase.ideal_point">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>.ideal<wbr></wbr>_point</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#ideal_point</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return ideal point, set to <code>value</code> when <tt class="rst-docutils rst-literal">value is not None</tt> and return previous value</div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._update_weights">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._update<wbr></wbr>_weights</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_update_weights</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">recalculates the hv_factor when weights or ideal point change.</div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._set_HV">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._set_<wbr></wbr>HV</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_set_HV</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">set current hypervolume value using <code>self.reference_point</code>.</div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._compute_hypervolume">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._compute<wbr></wbr>_hypervolume</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_compute_hypervolume</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._update_hv_plus">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._update<wbr></wbr>_hv<wbr></wbr>_plus</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_update_hv_plus</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">updates the hypervolume plus indicator with the new list of solutions <code>list_of_f_vals</code>.</div>
+          </li><li id="moarchiving.moarchiving_base.MOArchiveBase._convert_and_validate_f_vals">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Base<wbr></wbr>._convert<wbr></wbr>_and<wbr></wbr>_validate<wbr></wbr>_f<wbr></wbr>_vals</div>
+            <div class="url">moarchiving.moarchiving_base.MOArchiveBase.html#_convert_and_validate_f_vals</div>
+            <div class="type">Function</div>
+            <div class="kind">Static Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">converts <code>list_of_f_vals</code> to a list, ensures that the inner lists have correct length</div>
+          </li><li id="moarchiving.moarchiving.inf">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.inf</div>
+            <div class="url">moarchiving.moarchiving.html#inf</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving._debug_trace">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>._debug<wbr></wbr>_trace</div>
+            <div class="url">moarchiving.moarchiving.html#_debug_trace</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">return a string like printing the calling trace stack</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html</div>
+            <div class="type">Class</div>
+            <div class="kind">Class</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A sorted list of non-dominated unique objective-pairs.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.make_expensive_asserts">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.make<wbr></wbr>_expensive<wbr></wbr>_asserts</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#make_expensive_asserts</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.maintain_contributing_hypervolumes">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.maintain<wbr></wbr>_contributing<wbr></wbr>_hypervolumes</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#maintain_contributing_hypervolumes</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.__init__">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.__init__</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#__init__</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><code>list_of_f_pairs</code> does not need to be sorted.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._infos">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._infos</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_infos</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._contributing_hypervolumes">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._contributing<wbr></wbr>_hypervolumes</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_contributing_hypervolumes</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._debug_info">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._debug<wbr></wbr>_info</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_debug_info</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">return debug info as a list of (key, value) tuples</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.add</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#add</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">insert <code>f_pair</code> in <code>self</code> if it is not (weakly) dominated.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._removed">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._removed</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_removed</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._add_at">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._add<wbr></wbr>_at</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_add_at</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">add <code>f_pair</code> at position <code>idx</code> and remove dominated elements.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.remove">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.remove</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#remove</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">remove element <code>f_pair</code>.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._hypervolume_plus">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._hypervolume<wbr></wbr>_plus</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_hypervolume_plus</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add_list">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.add<wbr></wbr>_list</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#add_list</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">insert a list of f-pairs which doesn't need to be sorted.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.merge">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.merge</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#merge</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">obsolete and replaced by <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#add_list" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.add_list">add_list</a></code>. merge in a sorted list of f-pairs.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.copy">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.copy</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#copy</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return a "deep" copy of <code>self</code></div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.bisect_left">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.bisect<wbr></wbr>_left</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#bisect_left</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return index where <code>f_pair</code> may need to be inserted.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.dominates">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.dominates</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#dominates</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return <code>True</code> if any element of <code>self</code> dominates or is equal to <code>f_pair</code>.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.dominates_with">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.dominates<wbr></wbr>_with</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#dominates_with</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return <code>True</code> if <tt class="rst-docutils rst-literal">self[idx]</tt> dominates or is equal to <code>f_pair</code>.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.dominators">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.dominators</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#dominators</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return the list of all <code>f_pair</code>-dominating elements in <code>self</code>,</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.infos">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.infos</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#infos</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Property</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><code>list</code> of complementary information corresponding to each archive entry</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.hypervolume</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#hypervolume</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Property</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">hypervolume of the entire list w.r.t. the "initial" reference point.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume_plus">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.hypervolume<wbr></wbr>_plus</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#hypervolume_plus</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Property</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">uncrowded hypervolume of the entire list w.r.t. the "initial" reference point.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolumes">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.contributing<wbr></wbr>_hypervolumes</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#contributing_hypervolumes</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Property</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><code>list</code> of contributing hypervolumes.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolume">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.contributing<wbr></wbr>_hypervolume</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#contributing_hypervolume</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return contributing hypervolume of element <code>idx</code>.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._contributing_hypervolume">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._contributing<wbr></wbr>_hypervolume</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_contributing_hypervolume</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">return contributing hypervolume of element <code>idx</code>, without normalization</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._contributing_hypervolume_of_idx">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._contributing<wbr></wbr>_hypervolume<wbr></wbr>_of<wbr></wbr>_idx</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_contributing_hypervolume_of_idx</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">return contributing hypervolume of element with the index <code>idx</code>, without normalization</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._distance_to_pareto_front_with_weights">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._distance<wbr></wbr>_to<wbr></wbr>_pareto<wbr></wbr>_front<wbr></wbr>_with<wbr></wbr>_weights</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_distance_to_pareto_front_with_weights</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">of a dominated <code>f_pair</code> also considering the reference domain.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.distance_to_pareto_front">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.distance<wbr></wbr>_to<wbr></wbr>_pareto<wbr></wbr>_front</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#distance_to_pareto_front</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">of a dominated <code>f_pair</code> also considering the reference domain.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._distance_to_pareto_front">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._distance<wbr></wbr>_to<wbr></wbr>_pareto<wbr></wbr>_front</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_distance_to_pareto_front</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">of a dominated <code>f_pair</code> also considering the reference domain, without using the normalization weights</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._hypervolume_improvement0">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._hypervolume<wbr></wbr>_improvement0</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_hypervolume_improvement0</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">deprecated and only used for testing: return how much <code>f_pair</code> would improve the hypervolume.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.hypervolume_improvement">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.hypervolume<wbr></wbr>_improvement</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#hypervolume_improvement</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return how much <code>f_pair</code> would improve the hypervolume.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._hypervolume_improvement">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._hypervolume<wbr></wbr>_improvement</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_hypervolume_improvement</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">return how much <code>f_pair</code> would improve the hypervolume, without normalization</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._hypervolume_improvement_of_nondominated_point">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._hypervolume<wbr></wbr>_improvement<wbr></wbr>_of<wbr></wbr>_nondominated<wbr></wbr>_point</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_hypervolume_improvement_of_nondominated_point</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">return how much <code>f_pair</code> would improve the hypervolume.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.compute_hypervolume">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.compute<wbr></wbr>_hypervolume</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#compute_hypervolume</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">return hypervolume w.r.t. <code>reference_point</code></div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._compute_hypervolume">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._compute<wbr></wbr>_hypervolume</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_compute_hypervolume</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">return hypervolume w.r.t. <code>reference_point</code>, without normalization</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.compute_hypervolumes">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.compute<wbr></wbr>_hypervolumes</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#compute_hypervolumes</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">depricated, subject to removal, see <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#compute_hypervolume" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.compute_hypervolume">compute_hypervolume</a></code> and <code><a href="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#contributing_hypervolumes" class="internal-link" title="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.contributing_hypervolumes">contributing_hypervolumes</a></code>.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._subtract_HV">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._subtract_<wbr></wbr>HV</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_subtract_HV</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">remove contributing hypervolumes of elements <tt class="rst-docutils rst-literal">self[idx0] to self[idx1 - 1]</tt>.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._add_HV">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._add_<wbr></wbr>HV</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_add_HV</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">add contributing hypervolume of <tt class="rst-docutils rst-literal">self[idx]</tt> to hypervolume.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.prune">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.prune</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#prune</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">remove dominated or equal entries assuming that the list is sorted.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList.discarded">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>.discarded</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#discarded</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Property</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><code>list</code> of f-pairs discarded in the last relevant method call.</div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._state">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._state</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_state</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._random_archive">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._random<wbr></wbr>_archive</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_random_archive</div>
+            <div class="type">Function</div>
+            <div class="kind">Static Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.moarchiving.BiobjectiveNondominatedSortedList._asserts">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>.<wbr></wbr>Biobjective<wbr></wbr>Nondominated<wbr></wbr>Sorted<wbr></wbr>List<wbr></wbr>._asserts</div>
+            <div class="url">moarchiving.moarchiving.BiobjectiveNondominatedSortedList.html#_asserts</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">make all kind of consistency assertions.</div>
           </li><li id="moarchiving.moarchiving_parent.inf">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.inf</div>
@@ -995,7 +1147,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent</div>
@@ -1012,30 +1164,6 @@
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
             <div class="summary">Create a new archive object.</div>
-          </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume_final_float_type">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.hypervolume<wbr></wbr>_final<wbr></wbr>_float<wbr></wbr>_type</div>
-            <div class="url">moarchiving.moarchiving_parent.MOArchiveParent.html#hypervolume_final_float_type</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume_computation_float_type">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.hypervolume<wbr></wbr>_computation<wbr></wbr>_float<wbr></wbr>_type</div>
-            <div class="url">moarchiving.moarchiving_parent.MOArchiveParent.html#hypervolume_computation_float_type</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.n_obj">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.n<wbr></wbr>_obj</div>
-            <div class="url">moarchiving.moarchiving_parent.MOArchiveParent.html#n_obj</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent._length">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>._length</div>
@@ -1043,15 +1171,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.reference_point">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.reference<wbr></wbr>_point</div>
-            <div class="url">moarchiving.moarchiving_parent.MOArchiveParent.html#reference_point</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.head">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.head</div>
@@ -1059,7 +1179,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent._kink_points">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>._kink<wbr></wbr>_points</div>
@@ -1067,7 +1187,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.__len__">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.__len__</div>
@@ -1075,7 +1195,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.__iter__">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.__iter__</div>
@@ -1083,7 +1203,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.add">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.add</div>
@@ -1091,7 +1211,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.remove">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.remove</div>
@@ -1099,7 +1219,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.add_list">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.add<wbr></wbr>_list</div>
@@ -1107,7 +1227,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.copy">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.copy</div>
@@ -1115,7 +1235,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.dominates">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.dominates</div>
@@ -1131,15 +1251,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">return the list of all <code>f_val</code>-dominating elements in <code>self</code>, including an equal element. <tt class="rst-docutils literal"><span class="pre">len(....dominators(...))</span></tt> is hence the number of dominating elements which can also be obtained without creating the list with ...</div>
-          </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.in_domain">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.in<wbr></wbr>_domain</div>
-            <div class="url">moarchiving.moarchiving_parent.MOArchiveParent.html#in_domain</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">return <code>True</code> if <code>f_vals</code> is dominating the reference point, <code>False</code> otherwise. <code>True</code> means that <code>f_vals</code> contributes to the hypervolume if not dominated by other elements.</div>
+            <div class="summary">return the list of all <code>f_val</code>-dominating elements in <code>self</code>, including an equal element. <tt class="rst-docutils rst-literal"><span class="pre">len(....dominators(...))</span></tt> is hence the number of dominating elements which can also be obtained without creating the list with ...</div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent._points_generator">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>._points<wbr></wbr>_generator</div>
@@ -1147,7 +1259,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary">returns the points in the archive in a form of a python generator instead of a circular doubly linked list</div>
+            <div class="summary">returns the points in the archive in a form of a python generator</div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.infos">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.infos</div>
@@ -1155,7 +1267,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><code>list</code> of complementary information corresponding to each archive entry, corresponding to each of the points in the archive</div>
+            <div class="summary"><code>list</code> of complementary information corresponding to each archive entry</div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.hypervolume</div>
@@ -1163,7 +1275,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the hypervolume of the archive</div>
+            <div class="summary">return the hypervolume of the archive</div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume_plus">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.hypervolume<wbr></wbr>_plus</div>
@@ -1171,7 +1283,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the hypervolume_plus of the archive</div>
+            <div class="summary">return the hypervolume_plus of the archive</div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.contributing_hypervolumes">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.contributing<wbr></wbr>_hypervolumes</div>
@@ -1187,7 +1299,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the hypervolume contribution of a point in the archive</div>
+            <div class="summary">return the hypervolume contribution of a point in the archive</div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent._get_kink_points">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>._get<wbr></wbr>_kink<wbr></wbr>_points</div>
@@ -1195,7 +1307,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.distance_to_pareto_front">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.distance<wbr></wbr>_to<wbr></wbr>_pareto<wbr></wbr>_front</div>
@@ -1203,15 +1315,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the distance to the Pareto front of the archive, by calculating the distances to the kink points</div>
-          </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.distance_to_hypervolume_area">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.distance<wbr></wbr>_to<wbr></wbr>_hypervolume<wbr></wbr>_area</div>
-            <div class="url">moarchiving.moarchiving_parent.MOArchiveParent.html#distance_to_hypervolume_area</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the distance to the hypervolume area of the archive</div>
+            <div class="summary">return the distance to the Pareto front of the archive,</div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume_improvement">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.hypervolume<wbr></wbr>_improvement</div>
@@ -1219,31 +1323,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving_parent.MOArchiveParent._set_HV">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>._set_<wbr></wbr>HV</div>
-            <div class="url">moarchiving.moarchiving_parent.MOArchiveParent.html#_set_HV</div>
-            <div class="type">Function</div>
-            <div class="kind">Method</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary">Set the hypervolume of the archive</div>
-          </li><li id="moarchiving.moarchiving_parent.MOArchiveParent._hypervolume">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>._hypervolume</div>
-            <div class="url">moarchiving.moarchiving_parent.MOArchiveParent.html#_hypervolume</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving_parent.MOArchiveParent._hypervolume_plus">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>._hypervolume<wbr></wbr>_plus</div>
-            <div class="url">moarchiving.moarchiving_parent.MOArchiveParent.html#_hypervolume_plus</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving_parent.MOArchiveParent.compute_hypervolume">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving<wbr></wbr>_parent<wbr></wbr>.<wbr></wbr>MOArchive<wbr></wbr>Parent<wbr></wbr>.compute<wbr></wbr>_hypervolume</div>
@@ -1251,7 +1331,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving3obj.inf">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.inf</div>
@@ -1259,7 +1339,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving3obj.MOArchive3obj">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.<wbr></wbr>MOArchive3obj</div>
@@ -1283,7 +1363,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving3obj.MOArchive3obj._length">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.<wbr></wbr>MOArchive3obj<wbr></wbr>._length</div>
@@ -1291,15 +1371,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving3obj.MOArchive3obj._hypervolume_plus">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.<wbr></wbr>MOArchive3obj<wbr></wbr>._hypervolume<wbr></wbr>_plus</div>
-            <div class="url">moarchiving.moarchiving3obj.MOArchive3obj.html#_hypervolume_plus</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary">1) Set u.cx to the point q ∈ Q with the smallest q_x &gt; u_x such that q_y &lt; u_y and q &lt;L u. If such a point is not unique, the alternative with the smallest q_y is preferred</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving3obj.MOArchive3obj.add">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.<wbr></wbr>MOArchive3obj<wbr></wbr>.add</div>
@@ -1308,6 +1380,14 @@
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
             <div class="summary">Adds a new point to the archive, and updates the hypervolume if needed.</div>
+          </li><li id="moarchiving.moarchiving3obj.MOArchive3obj._hypervolume_plus">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.<wbr></wbr>MOArchive3obj<wbr></wbr>._hypervolume<wbr></wbr>_plus</div>
+            <div class="url">moarchiving.moarchiving3obj.MOArchive3obj.html#_hypervolume_plus</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving3obj.MOArchive3obj._kink_points">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.<wbr></wbr>MOArchive3obj<wbr></wbr>._kink<wbr></wbr>_points</div>
@@ -1315,7 +1395,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving3obj.MOArchive3obj.remove">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.<wbr></wbr>MOArchive3obj<wbr></wbr>.remove</div>
@@ -1355,7 +1435,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Returns the hypervolume improvement of adding a point to the archive</div>
+            <div class="summary">returns the hypervolume improvement of adding a point to the archive</div>
           </li><li id="moarchiving.moarchiving3obj.MOArchive3obj.compute_hypervolume">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.<wbr></wbr>MOArchive3obj<wbr></wbr>.compute<wbr></wbr>_hypervolume</div>
@@ -1363,7 +1443,15 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Compute the hypervolume of the current state of archive</div>
+            <div class="summary">compute the hypervolume of the current state of archive</div>
+          </li><li id="moarchiving.moarchiving3obj.MOArchive3obj._compute_hypervolume">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.<wbr></wbr>MOArchive3obj<wbr></wbr>._compute<wbr></wbr>_hypervolume</div>
+            <div class="url">moarchiving.moarchiving3obj.MOArchive3obj.html#_compute_hypervolume</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">compute the hypervolume of the archive without normalization weights</div>
           </li><li id="moarchiving.moarchiving3obj.MOArchive3obj.preprocessing">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving3obj<wbr></wbr>.<wbr></wbr>MOArchive3obj<wbr></wbr>.preprocessing</div>
@@ -1371,7 +1459,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Preprocessing step to determine the closest points in x and y directions, as described in the paper and implemented in the original C code.</div>
+            <div class="summary">preprocessing step to determine the closest points in x and y directions,</div>
           </li><li id="moarchiving.moarchiving4obj.inf">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving4obj<wbr></wbr>.inf</div>
@@ -1379,7 +1467,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving4obj.MOArchive4obj">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving4obj<wbr></wbr>.<wbr></wbr>MOArchive4obj</div>
@@ -1403,7 +1491,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving4obj.MOArchive4obj._length">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving4obj<wbr></wbr>.<wbr></wbr>MOArchive4obj<wbr></wbr>._length</div>
@@ -1411,15 +1499,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
-          </li><li id="moarchiving.moarchiving4obj.MOArchive4obj._hypervolume_plus">
-            
-            <div class="fullName">moarchiving<wbr></wbr>.moarchiving4obj<wbr></wbr>.<wbr></wbr>MOArchive4obj<wbr></wbr>._hypervolume<wbr></wbr>_plus</div>
-            <div class="url">moarchiving.moarchiving4obj.MOArchive4obj.html#_hypervolume_plus</div>
-            <div class="type">Attribute</div>
-            <div class="kind">Instance Variable</div>
-            <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving4obj.MOArchive4obj.add">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving4obj<wbr></wbr>.<wbr></wbr>MOArchive4obj<wbr></wbr>.add</div>
@@ -1428,6 +1508,14 @@
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
             <div class="summary">Add a new point to the archive.</div>
+          </li><li id="moarchiving.moarchiving4obj.MOArchive4obj._hypervolume_plus">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving4obj<wbr></wbr>.<wbr></wbr>MOArchive4obj<wbr></wbr>._hypervolume<wbr></wbr>_plus</div>
+            <div class="url">moarchiving.moarchiving4obj.MOArchive4obj.html#_hypervolume_plus</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.moarchiving4obj.MOArchive4obj.remove">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving4obj<wbr></wbr>.<wbr></wbr>MOArchive4obj<wbr></wbr>.remove</div>
@@ -1475,7 +1563,15 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Compute the hypervolume of the archive.</div>
+            <div class="summary">compute the hypervolume of the archive.</div>
+          </li><li id="moarchiving.moarchiving4obj.MOArchive4obj._compute_hypervolume">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.moarchiving4obj<wbr></wbr>.<wbr></wbr>MOArchive4obj<wbr></wbr>._compute<wbr></wbr>_hypervolume</div>
+            <div class="url">moarchiving.moarchiving4obj.MOArchive4obj.html#_compute_hypervolume</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">compute the hypervolume of the archive without normalization weights</div>
           </li><li id="moarchiving.moarchiving4obj.MOArchive4obj.remove_dominated">
             
             <div class="fullName">moarchiving<wbr></wbr>.moarchiving4obj<wbr></wbr>.<wbr></wbr>MOArchive4obj<wbr></wbr>.remove<wbr></wbr>_dominated</div>
@@ -1491,7 +1587,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive</div>
@@ -1515,7 +1611,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.tau">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.tau</div>
@@ -1523,7 +1619,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.n_obj">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.n<wbr></wbr>_obj</div>
@@ -1531,7 +1627,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive._hypervolume_plus_constr">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>._hypervolume<wbr></wbr>_plus<wbr></wbr>_constr</div>
@@ -1539,7 +1635,15 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.constrained_moarchive.CMOArchive.max_g_vals">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.max<wbr></wbr>_g<wbr></wbr>_vals</div>
+            <div class="url">moarchiving.constrained_moarchive.CMOArchive.html#max_g_vals</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.__iter__">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.__iter__</div>
@@ -1547,7 +1651,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return an iterator over the objective vectors in the archive.</div>
+            <div class="summary">return an iterator over the objective vectors in the archive.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.__len__">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.__len__</div>
@@ -1555,7 +1659,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the number of objective vectors in the archive.</div>
+            <div class="summary">return the number of objective vectors in the archive.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.add">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.add</div>
@@ -1563,7 +1667,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Add the objective vector f_vals with corresponding constraints to the archive if it is feasible. If no feasible solution was found yet, also update the indicator.</div>
+            <div class="summary">add the objective vector <code>f_vals</code> with constraints <code>g_vals</code> to the archive</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.add_list">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.add<wbr></wbr>_list</div>
@@ -1571,7 +1675,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Add a list of objective vectors f_vals with corresponding constraints vectors g_vals and infos to the archive.</div>
+            <div class="summary">add a list of objective vectors with corresponding constraints to the archive.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.remove">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.remove</div>
@@ -1579,7 +1683,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Remove a feasible point with objective vector f_vals from the archive.</div>
+            <div class="summary">remove a feasible point with objective vector <code>f_vals</code> from the archive.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.hypervolume">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.hypervolume</div>
@@ -1587,7 +1691,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the hypervolume indicator.</div>
+            <div class="summary">return the hypervolume indicator.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.hypervolume<wbr></wbr>_plus</div>
@@ -1595,7 +1699,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the hypervolume_plus indicator.</div>
+            <div class="summary">return the hypervolume_plus indicator.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus_constr">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.hypervolume<wbr></wbr>_plus<wbr></wbr>_constr</div>
@@ -1603,7 +1707,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the hypervolume_plus_constr (icmop) indicator.</div>
+            <div class="summary">return the hypervolume_plus_constr (icmop) indicator.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.contributing_hypervolumes">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.contributing<wbr></wbr>_hypervolumes</div>
@@ -1611,7 +1715,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the hypervolume contributions of each point in the archive.</div>
+            <div class="summary">return the hypervolume contributions of each point in the archive.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.infos">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.infos</div>
@@ -1619,7 +1723,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return the list of additional information for each point in the archive.</div>
+            <div class="summary">return the list of additional information for each point in the archive.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.compute_hypervolume">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.compute<wbr></wbr>_hypervolume</div>
@@ -1627,7 +1731,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Compute the hypervolume of the archive.</div>
+            <div class="summary">compute the hypervolume of the archive.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.contributing_hypervolume">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.contributing<wbr></wbr>_hypervolume</div>
@@ -1635,7 +1739,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Compute the hypervolume contribution of the objective vector f_vals to the archive.</div>
+            <div class="summary">compute the hypervolume contribution of the objective vector f_vals to the archive.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.copy">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.copy</div>
@@ -1643,7 +1747,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return a deep copy of the CMOArchive object.</div>
+            <div class="summary">return a deep copy of the CMOArchive object.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.distance_to_hypervolume_area">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.distance<wbr></wbr>_to<wbr></wbr>_hypervolume<wbr></wbr>_area</div>
@@ -1651,7 +1755,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Compute the distance of the objective vector f_vals to the hypervolume area.</div>
+            <div class="summary">compute the distance of the objective vector <code>f_vals</code> to the hypervolume area.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.distance_to_pareto_front">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.distance<wbr></wbr>_to<wbr></wbr>_pareto<wbr></wbr>_front</div>
@@ -1659,7 +1763,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Compute the distance of the objective vector f_vals to the Pareto front.</div>
+            <div class="summary">compute the distance of the objective vector <code>f_vals</code> to the empirical Pareto front.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.dominates">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.dominates</div>
@@ -1667,7 +1771,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Returns True if the objective vector f_vals is dominated by any of the points in the archive.</div>
+            <div class="summary">returns True if the vector <code>f_vals</code> is dominated by any of the points in the archive.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.dominators">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.dominators</div>
@@ -1675,7 +1779,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Returns a list of points in the archive that dominate the objective vector f_vals. If number_only is True, only the number of dominators is returned.</div>
+            <div class="summary">returns a list of points in the archive that dominate the objective vector <code>f_vals</code>.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.hypervolume_improvement">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.hypervolume<wbr></wbr>_improvement</div>
@@ -1683,7 +1787,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Compute the hypervolume improvement of the archive if the objective vector f_vals is added.</div>
+            <div class="summary">compute the hypervolume improvement of the archive if objective vector <code>f_vals</code> is added.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.hypervolume_plus_constr_improvement">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.hypervolume<wbr></wbr>_plus<wbr></wbr>_constr<wbr></wbr>_improvement</div>
@@ -1691,7 +1795,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Compute the improvement of the indicator if the objective vector f_vals is added.</div>
+            <div class="summary">compute the improvement of the indicator if the objective vector f_vals is added.</div>
           </li><li id="moarchiving.constrained_moarchive.CMOArchive.in_domain">
             
             <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>.in<wbr></wbr>_domain</div>
@@ -1699,7 +1803,15 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Returns True if the objective vector f_vals dominates the reference point.</div>
+            <div class="summary">returns True if the objective vector f_vals dominates the reference point.</div>
+          </li><li id="moarchiving.constrained_moarchive.CMOArchive._get_normalized_constraint_violation">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.constrained<wbr></wbr>_moarchive<wbr></wbr>.<wbr></wbr>CMOArchive<wbr></wbr>._get<wbr></wbr>_normalized<wbr></wbr>_constraint<wbr></wbr>_violation</div>
+            <div class="url">moarchiving.constrained_moarchive.CMOArchive.html#_get_normalized_constraint_violation</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">returns the sum of normalized constraint violation of the constraint vector g_vals,</div>
           </li><li id="moarchiving.get_archive.get_mo_archive">
             
             <div class="fullName">moarchiving<wbr></wbr>.get<wbr></wbr>_archive<wbr></wbr>.get<wbr></wbr>_mo<wbr></wbr>_archive</div>
@@ -1707,7 +1819,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return a nondominated archive instance with the proper number of objectives.</div>
+            <div class="summary">return a nondominated archive instance with the proper number of objectives.</div>
           </li><li id="moarchiving.get_archive.get_cmo_archive">
             
             <div class="fullName">moarchiving<wbr></wbr>.get<wbr></wbr>_archive<wbr></wbr>.get<wbr></wbr>_cmo<wbr></wbr>_archive</div>
@@ -1715,7 +1827,23 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Return a constrained nondominated archive instance with the proper number of objectives.</div>
+            <div class="summary">return a constrained nondominated archive instance with the proper number of objectives.</div>
+          </li><li id="moarchiving.test.run_doctests">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.test<wbr></wbr>.run<wbr></wbr>_doctests</div>
+            <div class="url">moarchiving.test.html#run_doctests</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
+          </li><li id="moarchiving.test.run_unittests">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.test<wbr></wbr>.run<wbr></wbr>_unittests</div>
+            <div class="url">moarchiving.test.html#run_unittests</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.tests.test_moarchiving2obj.inf">
             
             <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_moarchiving2obj<wbr></wbr>.inf</div>
@@ -1723,7 +1851,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.tests.test_moarchiving2obj.list_to_set">
             
             <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_moarchiving2obj<wbr></wbr>.list<wbr></wbr>_to<wbr></wbr>_set</div>
@@ -1875,7 +2003,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.tests.test_moarchiving3obj.list_to_set">
             
             <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_moarchiving3obj<wbr></wbr>.list<wbr></wbr>_to<wbr></wbr>_set</div>
@@ -1883,7 +2011,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj">
             
             <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_moarchiving3obj<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>MOArchiving3obj</div>
@@ -1891,7 +2019,7 @@
             <div class="type">Class</div>
             <div class="kind">Class</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">No class docstring; 21/21 methods documented</span></div>
+            <div class="summary"><span class="rst-undocumented">No class docstring; 21/21 methods documented</span></div>
           </li><li id="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_hypervolume_easy">
             
             <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_moarchiving3obj<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>MOArchiving3obj<wbr></wbr>.test<wbr></wbr>_hypervolume<wbr></wbr>_easy</div>
@@ -2356,6 +2484,86 @@
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
             <div class="summary">test the remove_dominated_x and remove_dominated_y methods of the MySortedList</div>
+          </li><li id="moarchiving.tests.test_normalization.TestNormalization">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>Normalization</div>
+            <div class="url">moarchiving.tests.test_normalization.TestNormalization.html</div>
+            <div class="type">Class</div>
+            <div class="kind">Class</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="rst-undocumented">No class docstring; 9/9 methods documented</span></div>
+          </li><li id="moarchiving.tests.test_normalization.TestNormalization.test_weights_ideal_point_easy_2dim">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>Normalization<wbr></wbr>.test<wbr></wbr>_weights<wbr></wbr>_ideal<wbr></wbr>_point<wbr></wbr>_easy<wbr></wbr>_2dim</div>
+            <div class="url">moarchiving.tests.test_normalization.TestNormalization.html#test_weights_ideal_point_easy_2dim</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">test the hypervolume after changing weights and ideal point in 2D</div>
+          </li><li id="moarchiving.tests.test_normalization.TestNormalization.test_weights_ideal_point_easy_3dim">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>Normalization<wbr></wbr>.test<wbr></wbr>_weights<wbr></wbr>_ideal<wbr></wbr>_point<wbr></wbr>_easy<wbr></wbr>_3dim</div>
+            <div class="url">moarchiving.tests.test_normalization.TestNormalization.html#test_weights_ideal_point_easy_3dim</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">test the hypervolume after changing weights and ideal point in 3D</div>
+          </li><li id="moarchiving.tests.test_normalization.TestNormalization.test_weights_ideal_point_easy_4dim">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>Normalization<wbr></wbr>.test<wbr></wbr>_weights<wbr></wbr>_ideal<wbr></wbr>_point<wbr></wbr>_easy<wbr></wbr>_4dim</div>
+            <div class="url">moarchiving.tests.test_normalization.TestNormalization.html#test_weights_ideal_point_easy_4dim</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">test the hypervolume after changing weights and ideal point in 4D</div>
+          </li><li id="moarchiving.tests.test_normalization.TestNormalization.test_hypervolume_after_weights_change">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>Normalization<wbr></wbr>.test<wbr></wbr>_hypervolume<wbr></wbr>_after<wbr></wbr>_weights<wbr></wbr>_change</div>
+            <div class="url">moarchiving.tests.test_normalization.TestNormalization.html#test_hypervolume_after_weights_change</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">test the hypervolume after weights update</div>
+          </li><li id="moarchiving.tests.test_normalization.TestNormalization.test_hypervolume_after_ideal_point_change">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>Normalization<wbr></wbr>.test<wbr></wbr>_hypervolume<wbr></wbr>_after<wbr></wbr>_ideal<wbr></wbr>_point<wbr></wbr>_change</div>
+            <div class="url">moarchiving.tests.test_normalization.TestNormalization.html#test_hypervolume_after_ideal_point_change</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">test the hypervolume after ideal point update</div>
+          </li><li id="moarchiving.tests.test_normalization.TestNormalization.test_hypervolume_improvement">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>Normalization<wbr></wbr>.test<wbr></wbr>_hypervolume<wbr></wbr>_improvement</div>
+            <div class="url">moarchiving.tests.test_normalization.TestNormalization.html#test_hypervolume_improvement</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">test the hypervolume improvement of a point, when using weights and ideal point</div>
+          </li><li id="moarchiving.tests.test_normalization.TestNormalization.test_contributing_hypervolume">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>Normalization<wbr></wbr>.test<wbr></wbr>_contributing<wbr></wbr>_hypervolume</div>
+            <div class="url">moarchiving.tests.test_normalization.TestNormalization.html#test_contributing_hypervolume</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">test the contributing_hypervolume function with different weights and ideal points</div>
+          </li><li id="moarchiving.tests.test_normalization.TestNormalization.test_hypervolume_plus">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>Normalization<wbr></wbr>.test<wbr></wbr>_hypervolume<wbr></wbr>_plus</div>
+            <div class="url">moarchiving.tests.test_normalization.TestNormalization.html#test_hypervolume_plus</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">test the hypervolume_plus indicator with different weights and ideal points</div>
+          </li><li id="moarchiving.tests.test_normalization.TestNormalization.test_hypervolume_plus_constr">
+            
+            <div class="fullName">moarchiving<wbr></wbr>.tests<wbr></wbr>.test<wbr></wbr>_normalization<wbr></wbr>.<wbr></wbr>Test<wbr></wbr>Normalization<wbr></wbr>.test<wbr></wbr>_hypervolume<wbr></wbr>_plus<wbr></wbr>_constr</div>
+            <div class="url">moarchiving.tests.test_normalization.TestNormalization.html#test_hypervolume_plus_constr</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">test the hypervolume_plus_constr indicator with different weights and ideal points</div>
           </li>
        </ul>
     </div>

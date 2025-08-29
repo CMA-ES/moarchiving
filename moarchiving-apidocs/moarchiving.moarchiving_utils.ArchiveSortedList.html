@@ -7,7 +7,7 @@
   <head>
     
     <title>moarchiving.moarchiving_utils.ArchiveSortedList</title>
-    <meta name="generator" content="pydoctor 23.9.1"> 
+    <meta name="generator" content="pydoctor 25.4.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
 
   <body>
@@ -52,7 +53,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -76,39 +77,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -119,8 +87,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -488,6 +456,16 @@
         
 
         
+            <div class="itemName"><code><a href="moarchiving.moarchiving_utils.html#true_fraction" class="internal-link" title="moarchiving.moarchiving_utils.true_fraction">true<wbr></wbr>_fraction</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="moarchiving.moarchiving_utils.html#update_links" class="internal-link" title="moarchiving.moarchiving_utils.update_links">update<wbr></wbr>_links</a></code>
             </div>
         
@@ -554,7 +532,7 @@ follow the definition in the paper.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id18">
+          <table class="children sortable" id="id24">
   
   
   <tr class="method">
@@ -637,7 +615,7 @@ follow the definition in the paper.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">__init__</span><span class="function-signature">(self, iterable=None, key=(lambda node: node.x[1]))</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">__init__</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">iterable=None, </span><span class="rst-sig-param">key=lambda node: node.x[1]</span>):</span>
     
     <a class="headerLink" href="#__init__" title="moarchiving.moarchiving_utils.ArchiveSortedList.__init__">
       
@@ -661,7 +639,7 @@ follow the definition in the paper.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">__str__</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">__str__</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#__str__" title="moarchiving.moarchiving_utils.ArchiveSortedList.__str__">
       
@@ -685,7 +663,7 @@ follow the definition in the paper.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">add_x</span><span class="function-signature">(self, p, s)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">add_x</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">p, </span><span class="rst-sig-param">s</span>):</span>
     
     <a class="headerLink" href="#add_x" title="moarchiving.moarchiving_utils.ArchiveSortedList.add_x">
       
@@ -709,7 +687,7 @@ follow the definition in the paper.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">add_y</span><span class="function-signature">(self, p, s)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">add_y</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">p, </span><span class="rst-sig-param">s</span>):</span>
     
     <a class="headerLink" href="#add_y" title="moarchiving.moarchiving_utils.ArchiveSortedList.add_y">
       
@@ -733,7 +711,7 @@ follow the definition in the paper.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">head_x</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">head_x</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#head_x" title="moarchiving.moarchiving_utils.ArchiveSortedList.head_x">
       
@@ -757,7 +735,7 @@ follow the definition in the paper.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">head_y</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">head_y</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#head_y" title="moarchiving.moarchiving_utils.ArchiveSortedList.head_y">
       
@@ -781,7 +759,7 @@ follow the definition in the paper.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">next_x</span><span class="function-signature">(self, s)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">next_x</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">s</span>):</span>
     
     <a class="headerLink" href="#next_x" title="moarchiving.moarchiving_utils.ArchiveSortedList.next_x">
       
@@ -806,7 +784,7 @@ from the list</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">next_y</span><span class="function-signature">(self, s)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">next_y</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">s</span>):</span>
     
     <a class="headerLink" href="#next_y" title="moarchiving.moarchiving_utils.ArchiveSortedList.next_y">
       
@@ -831,7 +809,7 @@ from the list</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">outer_delimiter_x</span><span class="function-signature">(self, p)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">outer_delimiter_x</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">p</span>):</span>
     
     <a class="headerLink" href="#outer_delimiter_x" title="moarchiving.moarchiving_utils.ArchiveSortedList.outer_delimiter_x">
       
@@ -855,7 +833,7 @@ from the list</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">outer_delimiter_y</span><span class="function-signature">(self, p)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">outer_delimiter_y</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">p</span>):</span>
     
     <a class="headerLink" href="#outer_delimiter_y" title="moarchiving.moarchiving_utils.ArchiveSortedList.outer_delimiter_y">
       
@@ -879,7 +857,7 @@ from the list</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">remove_dominated_x</span><span class="function-signature">(self, p, s)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">remove_dominated_x</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">p, </span><span class="rst-sig-param">s</span>):</span>
     
     <a class="headerLink" href="#remove_dominated_x" title="moarchiving.moarchiving_utils.ArchiveSortedList.remove_dominated_x">
       
@@ -904,7 +882,7 @@ and return them sorted by ascending order of q_x</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">remove_dominated_y</span><span class="function-signature">(self, p, s)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">remove_dominated_y</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">p, </span><span class="rst-sig-param">s</span>):</span>
     
     <a class="headerLink" href="#remove_dominated_y" title="moarchiving.moarchiving_utils.ArchiveSortedList.remove_dominated_y">
       
@@ -926,10 +904,10 @@ and return them sorted by ascending order of q_y</p></div>
     <footer class="navbar navbar-default">
 
   
-  <div class="container">
+  <div class="container-fluid">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2025-03-14 16:01:47.
+    25.4.0 at 2025-08-29 12:45:45.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -5,17 +5,9 @@ objective space and calculating hypervolume with respect to the given reference 
 """
 
 
-from moarchiving.moarchiving_utils import hv4dplusR, remove_from_z
+from moarchiving.moarchiving_utils import hv4dplusR, remove_from_z, true_fraction
 from moarchiving.moarchiving3obj import MOArchive3obj
 from moarchiving.moarchiving_parent import MOArchiveParent
-
-import warnings as _warnings
-
-try:
-    import fractions
-except ImportError:
-    _warnings.warn('`fractions` module not installed, arbitrary precision hypervolume computation not available')
-
 
 inf = float('inf')
 
@@ -27,6 +19,7 @@ class MOArchive4obj(MOArchiveParent):
     The archive is implemented as a doubly linked list, and can be modified using functions
     add and remove. Points of the archive can be accessed as a list of points order by the fourth
     coordinate using function points_list.
+
     >>> from moarchiving.get_archive import get_mo_archive
     >>> moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]])
     >>> list(moa) # returns the list of points in the archive sorted by the third coordinate
@@ -35,7 +28,7 @@ class MOArchive4obj(MOArchiveParent):
     True
     >>> moa.add([3, 3, 3, 3])
     False
-    >>> get_mo_archive.hypervolume_final_float_type = fractions.Fraction
+    >>> get_mo_archive.hypervolume_final_float_type = true_fraction
     >>> moa = get_mo_archive([[1, 2, 3, 4], [2, 3, 4, 5], [4, 3, 2, 1]],
     ...                   reference_point=[5, 5, 5, 5], infos=["A", "B", "C"])
     >>> moa.infos # returns the list of infos for each point in the archive
@@ -50,48 +43,34 @@ class MOArchive4obj(MOArchiveParent):
     44.0
 
     """
-    try:
-        hypervolume_final_float_type = fractions.Fraction
-        hypervolume_computation_float_type = fractions.Fraction
-    except:
-        hypervolume_final_float_type = float
-        hypervolume_computation_float_type = float
 
-    def __init__(self, list_of_f_vals=None, reference_point=None, infos=None,
-                 hypervolume_final_float_type=None,
-                 hypervolume_computation_float_type=None):
+    def __init__(self, list_of_f_vals=None, reference_point=None, infos=None, ideal_point=None, weights=None,
+                 hypervolume_final_float_type=None, hypervolume_computation_float_type=None):
         """ Create a new 4 objective archive object.
 
         f-vals beyond the `reference_point` are pruned away. The `reference_point` is also used
         to compute the hypervolume.
         infos are an optional list of additional information about the points in the archive.
         """
-
-        hypervolume_final_float_type = MOArchive4obj.hypervolume_final_float_type \
-            if hypervolume_final_float_type is None else hypervolume_final_float_type
-        hypervolume_computation_float_type = MOArchive4obj.hypervolume_computation_float_type \
-            if hypervolume_computation_float_type is None else hypervolume_computation_float_type
+        list_of_f_vals = self._convert_and_validate_f_vals(list_of_f_vals, n_obj=4)
 
         super().__init__(list_of_f_vals=list_of_f_vals,
                          reference_point=reference_point,
                          infos=infos,
+                         ideal_point=ideal_point,
+                         weights=weights,
                          n_obj=4,
                          hypervolume_final_float_type=hypervolume_final_float_type,
                          hypervolume_computation_float_type=hypervolume_computation_float_type)
 
         self._hypervolume_already_computed = False
         self.remove_dominated()
-        hv = self._set_HV()
+
+        self._set_HV()
+        self._update_hv_plus(list_of_f_vals)
+
         self._length = len(list(self))
-        self._hypervolume_already_computed = True
-        if hv is not None and hv > 0:
-            self._hypervolume_plus = self._hypervolume
-        else:
-            if list_of_f_vals is None or len(list_of_f_vals) == 0:
-                self._hypervolume_plus = -inf
-            else:
-                self._hypervolume_plus = -min([self.distance_to_hypervolume_area(f)
-                                               for f in list_of_f_vals])
+
 
     def add(self, f_vals, info=None, update_hypervolume=True):
         """ Add a new point to the archive.
@@ -128,7 +107,8 @@ class MOArchive4obj(MOArchiveParent):
                 self._hypervolume_plus = -dist_to_hv_area
             return False
 
-        self.__init__(list(self) + [f_vals], self.reference_point, self.infos + [info])
+        self.__init__(list(self) + [f_vals], reference_point=self.reference_point,
+                      infos=self.infos + [info], ideal_point=self._ideal_point, weights=self._weights)
         return True
 
     def remove(self, f_vals):
@@ -153,8 +133,10 @@ class MOArchive4obj(MOArchiveParent):
             return False
         point_idx = points_list.index(f_vals)
         point_info = self.infos[point_idx]
-        self.__init__([p for p in points_list if p != f_vals], self.reference_point,
-                      [info for p, info in zip(points_list, self.infos) if p != f_vals])
+        self.__init__([p for p in points_list if p != f_vals],
+                      reference_point=self.reference_point,
+                      infos=[info for p, info in zip(points_list, self.infos) if p != f_vals],
+                      ideal_point=self._ideal_point, weights=self._weights)
         return point_info
 
     def add_list(self, list_of_f_vals, infos=None):
@@ -175,7 +157,8 @@ class MOArchive4obj(MOArchiveParent):
         if infos is None:
             infos = [None] * len(list_of_f_vals)
 
-        self.__init__(list(self) + list_of_f_vals, self.reference_point, self.infos + infos)
+        self.__init__(list(self) + list_of_f_vals, reference_point=self.reference_point,
+                      infos=self.infos + infos, ideal_point=self._ideal_point, weights=self._weights)
 
     def copy(self):
         """ Return a copy of the archive.
@@ -195,7 +178,8 @@ class MOArchive4obj(MOArchiveParent):
         >>> list(moa), moa.infos
         ([[4, 3, 2, 1], [1, 2, 3, 4]], ['C', 'A'])
         """
-        return MOArchive4obj(list(self), self.reference_point, self.infos)
+        return MOArchive4obj(list(self), reference_point=self.reference_point, infos=self.infos,
+                             ideal_point=self._ideal_point, weights=self._weights)
 
     def _get_kink_points(self):
         """ Function that returns the kink points of the archive.
@@ -271,19 +255,25 @@ class MOArchive4obj(MOArchiveParent):
         return self.hypervolume_final_float_type(moa_copy.hypervolume - self.hypervolume)
 
     def compute_hypervolume(self, reference_point=None):
-        """ Compute the hypervolume of the archive.
+        """compute the hypervolume of the archive. """
+        return self._compute_hypervolume(reference_point=reference_point) * self._hv_factor
+
+    def _compute_hypervolume(self, reference_point=None):
+        """compute the hypervolume of the archive without normalization weights
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]], reference_point=[5, 5, 5, 5])
-        >>> moa.compute_hypervolume()
+        >>> moa._compute_hypervolume()
         44.0
         """
         if reference_point is not None:
             _warnings.warn("Reference point given at the initialization is used "
-                           "in 3 objective hypervolume computation")
+                           "in 4 objective hypervolume computation")
 
         if self._hypervolume_already_computed:
             return self._hypervolume
+
+        self._hypervolume_already_computed = True
         return self.hypervolume_final_float_type(
             hv4dplusR(self.head, self.hypervolume_computation_float_type))
 

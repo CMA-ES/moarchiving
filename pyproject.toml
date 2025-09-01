@@ -1,0 +1,70 @@
+# see _setup.py for release instructions
+
+[build-system]
+requires = [
+    "setuptools >=70.1",
+    # "setuptools-scm",   # if we want to use git versions for versioning
+    # "wheel",  # setuptools doesn't need wheel anymore, see https://pypi.org/project/wheel/
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "moarchiving"
+description = "This package implements a non-dominated archive for 2, 3 or 4 objectives with hypervolume indicator and uncrowded hypervolume improvement computation."
+dynamic = ["version",  # see tool.setuptools.dynamic below
+           # "readme",
+          ]
+readme = "README.md"  # manually copied and cut
+authors = [
+    { name = "Nikolaus Hansen", email = "authors_firstname.lastname@inria.fr" },
+    { name = "Nace Sever" },
+    { name = "Mila Nedic" },
+    { name = "Tea Tusar" },
+]
+keywords = [
+    "multi-objective",
+    "optimization",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Education",
+    "Intended Audience :: Other Audience",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = [
+    "sortedcontainers >=2.4.0",
+]
+
+[project.optional-dependencies]
+arbitrary-precision = ["fractions"]
+
+[project.urls]
+Homepage = "https://github.com/cma-es/moarchiving"
+
+[tool.setuptools.dynamic]
+version = {attr = "moarchiving.__version__"}
+
+[tool.ruff.lint]
+ignore = ["E722", "E741"]
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+# [tool.setuptools]
+# packages = ["moarchiving", "moarchiving.tests"]  # automatic detection fails in my dirty folder
+# include-package-data = false  # true is default
+
+# [tool.setuptools.package-data]
+# "*" = ["LICENSE"]
+
+# [tool.setuptools.exclude-package-data]
+# "*" = ["*"]
+
+# [tool.setuptools.packages.find]  # for . works only in a clean folder
+# where = ["src"]

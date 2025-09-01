@@ -7,7 +7,7 @@
   <head>
     
     <title>moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj</title>
-    <meta name="generator" content="pydoctor 23.9.1"> 
+    <meta name="generator" content="pydoctor 25.4.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
 
   <body>
@@ -52,7 +53,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -76,39 +77,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -119,8 +87,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -473,7 +441,7 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id26">
+          <table class="children sortable" id="id33">
   
   
   <tr class="method">
@@ -601,7 +569,7 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_add</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_add</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_add" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_add">
       
@@ -625,7 +593,7 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_contributing_hypervolume</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_contributing_hypervolume</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_contributing_hypervolume" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_contributing_hypervolume">
       
@@ -650,7 +618,7 @@ compare it to the 2obj version, with one objective set to 0</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_copy_DLNode</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_copy_DLNode</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_copy_DLNode" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_copy_DLNode">
       
@@ -674,7 +642,7 @@ compare it to the 2obj version, with one objective set to 0</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_copy_MOArchive</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_copy_MOArchive</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_copy_MOArchive" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_copy_MOArchive">
       
@@ -698,7 +666,7 @@ compare it to the 2obj version, with one objective set to 0</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_distance_to_hypervolume_area</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_distance_to_hypervolume_area</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_distance_to_hypervolume_area" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_distance_to_hypervolume_area">
       
@@ -723,7 +691,7 @@ reference point is not set, then for points in and outside the hypervolume area<
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_distance_to_pareto_front_compare_2obj</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_distance_to_pareto_front_compare_2obj</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_distance_to_pareto_front_compare_2obj" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_distance_to_pareto_front_compare_2obj">
       
@@ -747,7 +715,7 @@ reference point is not set, then for points in and outside the hypervolume area<
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_distance_to_pareto_front_simple</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_distance_to_pareto_front_simple</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_distance_to_pareto_front_simple" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_distance_to_pareto_front_simple">
       
@@ -771,7 +739,7 @@ reference point is not set, then for points in and outside the hypervolume area<
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_dominates</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_dominates</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_dominates" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_dominates">
       
@@ -795,7 +763,7 @@ reference point is not set, then for points in and outside the hypervolume area<
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_dominators</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_dominators</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_dominators" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_dominators">
       
@@ -819,7 +787,7 @@ reference point is not set, then for points in and outside the hypervolume area<
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_get_non_dominated_points</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_get_non_dominated_points</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_get_non_dominated_points" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_get_non_dominated_points">
       
@@ -845,7 +813,7 @@ reference point is not set, then for points in and outside the hypervolume area<
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_hypervolume</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_hypervolume</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_hypervolume" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_hypervolume">
       
@@ -870,7 +838,7 @@ implementation in C</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_hypervolume_after_add</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_hypervolume_after_add</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_hypervolume_after_add" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_hypervolume_after_add">
       
@@ -895,7 +863,7 @@ hypervolume obtained by adding the points to a new archive</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_hypervolume_easy</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_hypervolume_easy</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_hypervolume_easy" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_hypervolume_easy">
       
@@ -919,7 +887,7 @@ hypervolume obtained by adding the points to a new archive</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_hypervolume_improvement</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_hypervolume_improvement</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_hypervolume_improvement" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_hypervolume_improvement">
       
@@ -944,7 +912,7 @@ compare it to the 2obj version, with one objective set to 0</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_hypervolume_plus</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_hypervolume_plus</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_hypervolume_plus" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_hypervolume_plus">
       
@@ -968,7 +936,7 @@ compare it to the 2obj version, with one objective set to 0</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_in_domain</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_in_domain</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_in_domain" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_in_domain">
       
@@ -992,7 +960,7 @@ compare it to the 2obj version, with one objective set to 0</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_infos_dominated</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_infos_dominated</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_infos_dominated" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_infos_dominated">
       
@@ -1016,7 +984,7 @@ compare it to the 2obj version, with one objective set to 0</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_infos_non_dominated</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_infos_non_dominated</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_infos_non_dominated" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_infos_non_dominated">
       
@@ -1041,7 +1009,7 @@ the infos should be the same</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_length</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_length</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_length" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_length">
       
@@ -1065,7 +1033,7 @@ the infos should be the same</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_lexsort</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_lexsort</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#test_lexsort" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_lexsort">
       
@@ -1089,7 +1057,7 @@ the infos should be the same</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test_remove</span><span class="function-signature">(self, n_points=100, n_points_remove=50)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test_remove</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">n_points=100, </span><span class="rst-sig-param">n_points_remove=50</span>):</span>
     
     <a class="headerLink" href="#test_remove" title="moarchiving.tests.test_moarchiving3obj.TestMOArchiving3obj.test_remove">
       
@@ -1111,10 +1079,10 @@ the infos should be the same</p></div>
     <footer class="navbar navbar-default">
 
   
-  <div class="container">
+  <div class="container-fluid">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2025-03-14 16:01:47.
+    25.4.0 at 2025-08-29 12:45:45.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

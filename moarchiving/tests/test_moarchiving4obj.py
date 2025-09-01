@@ -67,22 +67,24 @@ class TestMOArchiving4obj(unittest.TestCase):
         """ test if the add_points function works correctly for 4obj points"""
         ref_point = [6, 6, 6, 6]
         start_points = [[1, 2, 5, 4], [2, 3, 5, 1], [3, 5, 1, 4]]
-        moa = MOArchive4obj(start_points, ref_point, infos=["A", "B", "C"])
+        moa_ref = MOArchive4obj(start_points, ref_point, infos=["A", "B", "C"])
+        moa_no_ref = MOArchive4obj(start_points, infos=["A", "B", "C"])
 
-        # add point that is not dominated and does not dominate any other point
-        u1 = [3, 3, 3, 3]
-        moa.add(u1, "D")
-        self.assertSetEqual(list_to_set(start_points + [u1]), list_to_set(list(moa)))
+        for moa in [moa_ref, moa_no_ref]:
+            # add point that is not dominated and does not dominate any other point
+            u1 = [3, 3, 3, 3]
+            moa.add(u1, "D")
+            self.assertSetEqual(list_to_set(start_points + [u1]), list_to_set(list(moa)))
 
-        # add point that is dominated by another point in the archive
-        u2 = [4, 5, 2, 4]
-        moa.add(u2, "E")
-        self.assertSetEqual(list_to_set(start_points + [u1]), list_to_set(list(moa)))
+            # add point that is dominated by another point in the archive
+            u2 = [4, 5, 2, 4]
+            moa.add(u2, "E")
+            self.assertSetEqual(list_to_set(start_points + [u1]), list_to_set(list(moa)))
 
-        # add point that dominates another point in the archive
-        u3 = [2, 3, 1, 4]
-        moa.add(u3, "F")
-        self.assertSetEqual(list_to_set(start_points[:2] + [u1, u3]), list_to_set(list(moa)))
+            # add point that dominates another point in the archive
+            u3 = [2, 3, 1, 4]
+            moa.add(u3, "F")
+            self.assertSetEqual(list_to_set(start_points[:2] + [u1, u3]), list_to_set(list(moa)))
 
     def test_hypervolume_after_add(self):
         """ test if the hypervolume is calculated correctly after adding points """

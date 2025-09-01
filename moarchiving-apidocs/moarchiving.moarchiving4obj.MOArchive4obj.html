@@ -7,7 +7,7 @@
   <head>
     
     <title>moarchiving.moarchiving4obj.MOArchive4obj</title>
-    <meta name="generator" content="pydoctor 23.9.1"> 
+    <meta name="generator" content="pydoctor 25.4.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
 
   <body>
@@ -52,7 +53,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -76,39 +77,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -119,8 +87,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -243,6 +211,16 @@
         
 
         
+            <div class="itemName"><code><a href="#_compute_hypervolume" class="internal-link" title="moarchiving.moarchiving4obj.MOArchive4obj._compute_hypervolume">_compute<wbr></wbr>_hypervolume</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="#_get_kink_points" class="internal-link" title="moarchiving.moarchiving4obj.MOArchive4obj._get_kink_points">_get<wbr></wbr>_kink<wbr></wbr>_points</a></code>
             </div>
         
@@ -254,6 +232,46 @@
         <ul>
     
     <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#distance_to_hypervolume_area" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.distance_to_hypervolume_area">distance<wbr></wbr>_to<wbr></wbr>_hypervolume<wbr></wbr>_area</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#ideal_point" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.ideal_point">ideal<wbr></wbr>_point</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#in_domain" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.in_domain">in<wbr></wbr>_domain</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#weights" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.weights">weights</a></code>
+            </div>
+        
+
+    </li><li class="">
         
         
         
@@ -289,16 +307,6 @@
         
 
         
-            <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#distance_to_hypervolume_area" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.distance_to_hypervolume_area">distance<wbr></wbr>_to<wbr></wbr>_hypervolume<wbr></wbr>_area</a></code>
-            </div>
-        
-
-    </li><li class="">
-        
-        
-        
-
-        
             <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#distance_to_pareto_front" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.distance_to_pareto_front">distance<wbr></wbr>_to<wbr></wbr>_pareto<wbr></wbr>_front</a></code>
             </div>
         
@@ -323,13 +331,43 @@
             </div>
         
 
-    </li><li class="">
+    </li><li class="private">
         
         
         
 
         
-            <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#in_domain" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.in_domain">in<wbr></wbr>_domain</a></code>
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_convert_and_validate_f_vals" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._convert_and_validate_f_vals">_convert<wbr></wbr>_and<wbr></wbr>_validate<wbr></wbr>_f<wbr></wbr>_vals</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_set_HV" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._set_HV">_set_<wbr></wbr>HV</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_update_hv_plus" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._update_hv_plus">_update<wbr></wbr>_hv<wbr></wbr>_plus</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_update_weights" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._update_weights">_update<wbr></wbr>_weights</a></code>
             </div>
         
 
@@ -340,16 +378,6 @@
 
         
             <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_points_generator" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent._points_generator">_points<wbr></wbr>_generator</a></code>
-            </div>
-        
-
-    </li><li class="private">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_set_HV" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent._set_HV">_set_<wbr></wbr>HV</a></code>
             </div>
         
 
@@ -401,47 +429,47 @@
         
 
         
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#hypervolume_computation_float_type" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.hypervolume_computation_float_type">hypervolume<wbr></wbr>_computation<wbr></wbr>_float<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#hypervolume_final_float_type" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.hypervolume_final_float_type">hypervolume<wbr></wbr>_final<wbr></wbr>_float<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#n_obj" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.n_obj">n<wbr></wbr>_obj</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#reference_point" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.reference_point">reference<wbr></wbr>_point</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#head" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.head">head</a></code>
-            </div>
-        
-
-    </li><li class="">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#hypervolume_computation_float_type" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume_computation_float_type">hypervolume<wbr></wbr>_computation<wbr></wbr>_float<wbr></wbr>_type</a></code>
-            </div>
-        
-
-    </li><li class="">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#hypervolume_final_float_type" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume_final_float_type">hypervolume<wbr></wbr>_final<wbr></wbr>_float<wbr></wbr>_type</a></code>
-            </div>
-        
-
-    </li><li class="">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#n_obj" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.n_obj">n<wbr></wbr>_obj</a></code>
-            </div>
-        
-
-    </li><li class="">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#reference_point" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.reference_point">reference<wbr></wbr>_point</a></code>
             </div>
         
 
@@ -491,7 +519,47 @@
         
 
         
-            <div class="itemName"><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_hypervolume" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent._hypervolume">_hypervolume</a></code>
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_hv_factor" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._hv_factor">_hv<wbr></wbr>_factor</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_hypervolume" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._hypervolume">_hypervolume</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_ideal_point" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._ideal_point">_ideal<wbr></wbr>_point</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_weights" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._weights">_weights</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_weights_ideal_point" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._weights_ideal_point">_weights<wbr></wbr>_ideal<wbr></wbr>_point</a></code>
             </div>
         
 
@@ -593,7 +661,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">MOArchive4obj</span>(<a href="moarchiving.moarchiving_parent.MOArchiveParent.html" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent">MOArchiveParent</a>):</code></p><p>Constructor: <code><a href="#__init__" class="internal-link" title="moarchiving.moarchiving4obj.MOArchive4obj.__init__">MOArchive4obj(list_of_f_vals, reference_point, infos, hypervolume_final_float_type, hypervolume_computation_float_type)</a></code></p>
+          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">MOArchive4obj</span>(<a href="moarchiving.moarchiving_parent.MOArchiveParent.html" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent">MOArchiveParent</a>):</code></p><p>Constructor: <code><a href="#__init__" class="internal-link" title="moarchiving.moarchiving4obj.MOArchive4obj.__init__">MOArchive4obj(list_of_f_vals, reference_point, infos, ideal_point, ...)</a></code></p>
           <p><a href="classIndex.html#moarchiving.moarchiving4obj.MOArchive4obj">View In Hierarchy</a></p>
         </div>
 
@@ -602,33 +670,34 @@
 hypervolume with respect to the given reference point.</p>
 <p>The archive is implemented as a doubly linked list, and can be modified using functions
 add and remove. Points of the archive can be accessed as a list of points order by the fourth
-coordinate using function points_list.
-&gt;&gt;&gt; from moarchiving.get_archive import get_mo_archive
-&gt;&gt;&gt; moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]])
-&gt;&gt;&gt; list(moa) # returns the list of points in the archive sorted by the third coordinate
-[[4, 3, 2, 1], [1, 2, 3, 4]]
-&gt;&gt;&gt; moa.add([2, 2, 2, 2]) # add a new point to the archive
-True
-&gt;&gt;&gt; moa.add([3, 3, 3, 3])
-False
-&gt;&gt;&gt; get_mo_archive.hypervolume_final_float_type = fractions.Fraction
-&gt;&gt;&gt; moa = get_mo_archive([[1, 2, 3, 4], [2, 3, 4, 5], [4, 3, 2, 1]],
-...                   reference_point=[5, 5, 5, 5], infos=["A", "B", "C"])
-&gt;&gt;&gt; moa.infos # returns the list of infos for each point in the archive
-['C', 'A']
-&gt;&gt;&gt; moa.hypervolume
-Fraction(44, 1)
-&gt;&gt;&gt; get_mo_archive.hypervolume_final_float_type = float
-&gt;&gt;&gt; get_mo_archive.hypervolume_computation_float_type = float
-&gt;&gt;&gt; moa2 = get_mo_archive([[1, 2, 3, 4], [2, 3, 4, 5], [4, 3, 2, 1]],
-...                    reference_point=[5, 5, 5, 5])
-&gt;&gt;&gt; moa2.hypervolume
-44.0</p>
-</div>
+coordinate using function points_list.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
+<span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]])
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">list</span>(moa) <span class="py-comment"># returns the list of points in the archive sorted by the third coordinate</span>
+<span class="py-output">[[4, 3, 2, 1], [1, 2, 3, 4]]</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([2, 2, 2, 2]) <span class="py-comment"># add a new point to the archive</span>
+<span class="py-output">True</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.add([3, 3, 3, 3])
+<span class="py-output">False</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>get_mo_archive.hypervolume_final_float_type = true_fraction
+<span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive([[1, 2, 3, 4], [2, 3, 4, 5], [4, 3, 2, 1]],
+<span class="py-more">... </span>                  reference_point=[5, 5, 5, 5], infos=[<span class="py-string">"A"</span>, <span class="py-string">"B"</span>, <span class="py-string">"C"</span>])
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.infos <span class="py-comment"># returns the list of infos for each point in the archive</span>
+<span class="py-output">['C', 'A']</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>moa.hypervolume
+<span class="py-output">Fraction(44, 1)</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>get_mo_archive.hypervolume_final_float_type = <span class="py-builtin">float</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>get_mo_archive.hypervolume_computation_float_type = <span class="py-builtin">float</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>moa2 = get_mo_archive([[1, 2, 3, 4], [2, 3, 4, 5], [4, 3, 2, 1]],
+<span class="py-more">... </span>                   reference_point=[5, 5, 5, 5])
+<span class="py-prompt">&gt;&gt;&gt; </span>moa2.hypervolume
+<span class="py-output">44.0</span>
+</pre></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id12">
+          <table class="children sortable" id="id14">
   
   
   <tr class="method">
@@ -650,7 +719,7 @@ Fraction(44, 1)
     
     <td>Method</td>
     <td><code><a href="#compute_hypervolume" class="internal-link" title="moarchiving.moarchiving4obj.MOArchive4obj.compute_hypervolume">compute<wbr></wbr>_hypervolume</a></code></td>
-    <td>Compute the hypervolume of the archive.</td>
+    <td>compute the hypervolume of the archive.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -674,57 +743,57 @@ Fraction(44, 1)
   </tr><tr class="method private">
     
     <td>Method</td>
+    <td><code><a href="#_compute_hypervolume" class="internal-link" title="moarchiving.moarchiving4obj.MOArchive4obj._compute_hypervolume">_compute<wbr></wbr>_hypervolume</a></code></td>
+    <td>compute the hypervolume of the archive without normalization weights</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
     <td><code><a href="#_get_kink_points" class="internal-link" title="moarchiving.moarchiving4obj.MOArchive4obj._get_kink_points">_get<wbr></wbr>_kink<wbr></wbr>_points</a></code></td>
     <td>Function that returns the kink points of the archive.</td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
     <td><code><a href="#_hypervolume_already_computed" class="internal-link" title="moarchiving.moarchiving4obj.MOArchive4obj._hypervolume_already_computed">_hypervolume<wbr></wbr>_already<wbr></wbr>_computed</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
     <td><code><a href="#_hypervolume_plus" class="internal-link" title="moarchiving.moarchiving4obj.MOArchive4obj._hypervolume_plus">_hypervolume<wbr></wbr>_plus</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
     <td><code><a href="#_length" class="internal-link" title="moarchiving.moarchiving4obj.MOArchive4obj._length">_length</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr>
 </table>
           
             <p class="inheritedFrom">
               Inherited from <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent">MOArchiveParent</a></code>:
             </p>
-            <table class="children sortable" id="id13">
+            <table class="children sortable" id="id15">
   
   
   <tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#__iter__" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.__iter__">__iter__</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#__len__" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.__len__">__len__</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#contributing_hypervolume" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.contributing_hypervolume">contributing<wbr></wbr>_hypervolume</a></code></td>
-    <td>Return the hypervolume contribution of a point in the archive</td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#distance_to_hypervolume_area" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.distance_to_hypervolume_area">distance<wbr></wbr>_to<wbr></wbr>_hypervolume<wbr></wbr>_area</a></code></td>
-    <td>Return the distance to the hypervolume area of the archive</td>
+    <td>return the hypervolume contribution of a point in the archive</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#distance_to_pareto_front" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.distance_to_pareto_front">distance<wbr></wbr>_to<wbr></wbr>_pareto<wbr></wbr>_front</a></code></td>
-    <td>Return the distance to the Pareto front of the archive, by calculating the distances to the kink points</td>
+    <td>return the distance to the Pareto front of the archive,</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
@@ -734,37 +803,12 @@ Fraction(44, 1)
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#dominators" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.dominators">dominators</a></code></td>
-    <td>return the list of all <code>f_val</code>-dominating elements in <code>self</code>, including an equal element. <tt class="rst-docutils literal"><span class="pre">len(....dominators(...))</span></tt> is hence the number of dominating elements which can also be obtained without creating the list with ...</td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#in_domain" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.in_domain">in<wbr></wbr>_domain</a></code></td>
-    <td>return <code>True</code> if <code>f_vals</code> is dominating the reference point, <code>False</code> otherwise. <code>True</code> means that <code>f_vals</code> contributes to the hypervolume if not dominated by other elements.</td>
+    <td>return the list of all <code>f_val</code>-dominating elements in <code>self</code>, including an equal element. <tt class="rst-docutils rst-literal"><span class="pre">len(....dominators(...))</span></tt> is hence the number of dominating elements which can also be obtained without creating the list with ...</td>
   </tr><tr class="baseinstancevariable">
     
     <td>Instance Variable</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#head" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.head">head</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="baseinstancevariable">
-    
-    <td>Instance Variable</td>
-    <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#hypervolume_computation_float_type" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume_computation_float_type">hypervolume<wbr></wbr>_computation<wbr></wbr>_float<wbr></wbr>_type</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="baseinstancevariable">
-    
-    <td>Instance Variable</td>
-    <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#hypervolume_final_float_type" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume_final_float_type">hypervolume<wbr></wbr>_final<wbr></wbr>_float<wbr></wbr>_type</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="baseinstancevariable">
-    
-    <td>Instance Variable</td>
-    <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#n_obj" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.n_obj">n<wbr></wbr>_obj</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="baseinstancevariable">
-    
-    <td>Instance Variable</td>
-    <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#reference_point" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.reference_point">reference<wbr></wbr>_point</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="baseproperty">
     
     <td>Property</td>
@@ -774,37 +818,121 @@ Fraction(44, 1)
     
     <td>Property</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#hypervolume" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume">hypervolume</a></code></td>
-    <td>Return the hypervolume of the archive</td>
+    <td>return the hypervolume of the archive</td>
   </tr><tr class="baseproperty">
     
     <td>Property</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#hypervolume_plus" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.hypervolume_plus">hypervolume<wbr></wbr>_plus</a></code></td>
-    <td>Return the hypervolume_plus of the archive</td>
+    <td>return the hypervolume_plus of the archive</td>
   </tr><tr class="baseproperty">
     
     <td>Property</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#infos" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent.infos">infos</a></code></td>
-    <td><code>list</code> of complementary information corresponding to each archive entry, corresponding to each of the points in the archive</td>
+    <td><code>list</code> of complementary information corresponding to each archive entry</td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_points_generator" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent._points_generator">_points<wbr></wbr>_generator</a></code></td>
-    <td>returns the points in the archive in a form of a python generator instead of a circular doubly linked list</td>
-  </tr><tr class="basemethod private">
-    
-    <td>Method</td>
-    <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_set_HV" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent._set_HV">_set_<wbr></wbr>HV</a></code></td>
-    <td>Set the hypervolume of the archive</td>
-  </tr><tr class="baseinstancevariable private">
-    
-    <td>Instance Variable</td>
-    <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_hypervolume" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent._hypervolume">_hypervolume</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td>returns the points in the archive in a form of a python generator</td>
   </tr><tr class="baseinstancevariable private">
     
     <td>Instance Variable</td>
     <td><code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_kink_points" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent._kink_points">_kink<wbr></wbr>_points</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="moarchiving.moarchiving_base.MOArchiveBase.html" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase">MOArchiveBase</a></code> (via <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html" class="internal-link" title="moarchiving.moarchiving_parent.MOArchiveParent">MOArchiveParent</a></code>):
+            </p>
+            <table class="children sortable" id="id16">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#distance_to_hypervolume_area" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.distance_to_hypervolume_area">distance<wbr></wbr>_to<wbr></wbr>_hypervolume<wbr></wbr>_area</a></code></td>
+    <td>return the distance to the hypervolume area of the archive</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#ideal_point" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.ideal_point">ideal<wbr></wbr>_point</a></code></td>
+    <td>return ideal point, set to <code>value</code> when <tt class="rst-docutils rst-literal">value is not None</tt> and return previous value</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#in_domain" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.in_domain">in<wbr></wbr>_domain</a></code></td>
+    <td>return <code>True</code> if <code>f_vals</code> is dominating the reference point,</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#weights" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.weights">weights</a></code></td>
+    <td>return hypervolume weights, set to <code>value</code> when <tt class="rst-docutils rst-literal">value is not None</tt> and return previous value</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#hypervolume_computation_float_type" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.hypervolume_computation_float_type">hypervolume<wbr></wbr>_computation<wbr></wbr>_float<wbr></wbr>_type</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#hypervolume_final_float_type" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.hypervolume_final_float_type">hypervolume<wbr></wbr>_final<wbr></wbr>_float<wbr></wbr>_type</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#n_obj" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.n_obj">n<wbr></wbr>_obj</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#reference_point" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase.reference_point">reference<wbr></wbr>_point</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr><tr class="basestaticmethod private">
+    
+    <td>Static Method</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_convert_and_validate_f_vals" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._convert_and_validate_f_vals">_convert<wbr></wbr>_and<wbr></wbr>_validate<wbr></wbr>_f<wbr></wbr>_vals</a></code></td>
+    <td>converts <code>list_of_f_vals</code> to a list, ensures that the inner lists have correct length</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_set_HV" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._set_HV">_set_<wbr></wbr>HV</a></code></td>
+    <td>set current hypervolume value using <code>self.reference_point</code>.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_update_hv_plus" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._update_hv_plus">_update<wbr></wbr>_hv<wbr></wbr>_plus</a></code></td>
+    <td>updates the hypervolume plus indicator with the new list of solutions <code>list_of_f_vals</code>.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_update_weights" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._update_weights">_update<wbr></wbr>_weights</a></code></td>
+    <td>recalculates the hv_factor when weights or ideal point change.</td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_hv_factor" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._hv_factor">_hv<wbr></wbr>_factor</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_hypervolume" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._hypervolume">_hypervolume</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_ideal_point" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._ideal_point">_ideal<wbr></wbr>_point</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_weights" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._weights">_weights</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_weights_ideal_point" class="internal-link" title="moarchiving.moarchiving_base.MOArchiveBase._weights_ideal_point">_weights<wbr></wbr>_ideal<wbr></wbr>_point</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr>
 </table>
             
@@ -825,7 +953,7 @@ Fraction(44, 1)
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">__init__</span><span class="function-signature">(self, list_of_f_vals=None, reference_point=None, infos=None, hypervolume_final_float_type=None, hypervolume_computation_float_type=None)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">__init__</span><span class="function-signature long-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">list_of_f_vals=None, </span><span class="rst-sig-param">reference_point=None, </span><span class="rst-sig-param">infos=None, </span><span class="rst-sig-param">ideal_point=None, </span><span class="rst-sig-param">weights=None, </span><span class="rst-sig-param">hypervolume_final_float_type=None, </span><span class="rst-sig-param">hypervolume_computation_float_type=None</span>):</span>
     
     <a class="headerLink" href="#__init__" title="moarchiving.moarchiving4obj.MOArchive4obj.__init__">
       
@@ -853,7 +981,7 @@ infos are an optional list of additional information about the points in the arc
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">add</span><span class="function-signature">(self, f_vals, info=None, update_hypervolume=True)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">add</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">f_vals, </span><span class="rst-sig-param">info=None, </span><span class="rst-sig-param">update_hypervolume=True</span>):</span>
     
     <a class="headerLink" href="#add" title="moarchiving.moarchiving4obj.MOArchive4obj.add">
       
@@ -897,7 +1025,7 @@ in which case it is slightly more efficient to set it to True only for last poin
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">add_list</span><span class="function-signature">(self, list_of_f_vals, infos=None)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">add_list</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">list_of_f_vals, </span><span class="rst-sig-param">infos=None</span>):</span>
     
     <a class="headerLink" href="#add_list" title="moarchiving.moarchiving4obj.MOArchive4obj.add_list">
       
@@ -934,7 +1062,7 @@ in which case it is slightly more efficient to set it to True only for last poin
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">compute_hypervolume</span><span class="function-signature">(self, reference_point=None)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">compute_hypervolume</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">reference_point=None</span>):</span>
     
     <a class="headerLink" href="#compute_hypervolume" title="moarchiving.moarchiving4obj.MOArchive4obj.compute_hypervolume">
       
@@ -944,13 +1072,7 @@ in which case it is slightly more efficient to set it to True only for last poin
   </div>
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#compute_hypervolume" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent.compute_hypervolume</a></code></div>
-    <div><p>Compute the hypervolume of the archive.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
-<span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]], reference_point=[5, 5, 5, 5])
-<span class="py-prompt">&gt;&gt;&gt; </span>moa.compute_hypervolume()
-<span class="py-output">44.0</span>
-</pre></div>
+    <div><p>compute the hypervolume of the archive.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -964,7 +1086,7 @@ in which case it is slightly more efficient to set it to True only for last poin
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">copy</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">copy</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#copy" title="moarchiving.moarchiving4obj.MOArchive4obj.copy">
       
@@ -1004,7 +1126,7 @@ in which case it is slightly more efficient to set it to True only for last poin
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">hypervolume_improvement</span><span class="function-signature">(self, f_vals)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">hypervolume_improvement</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">f_vals</span>):</span>
     
     <a class="headerLink" href="#hypervolume_improvement" title="moarchiving.moarchiving4obj.MOArchive4obj.hypervolume_improvement">
       
@@ -1036,7 +1158,7 @@ in which case it is slightly more efficient to set it to True only for last poin
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">remove</span><span class="function-signature">(self, f_vals)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">remove</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">f_vals</span>):</span>
     
     <a class="headerLink" href="#remove" title="moarchiving.moarchiving4obj.MOArchive4obj.remove">
       
@@ -1074,7 +1196,7 @@ in which case it is slightly more efficient to set it to True only for last poin
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">remove_dominated</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">remove_dominated</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#remove_dominated" title="moarchiving.moarchiving4obj.MOArchive4obj.remove_dominated">
       
@@ -1089,6 +1211,36 @@ in which case it is slightly more efficient to set it to True only for last poin
 </div><div class="basemethod private">
   
   
+  <a name="moarchiving.moarchiving4obj.MOArchive4obj._compute_hypervolume">
+    
+  </a>
+  <a name="_compute_hypervolume">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_compute_hypervolume</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">reference_point=None</span>):</span>
+    
+    <a class="headerLink" href="#_compute_hypervolume" title="moarchiving.moarchiving4obj.MOArchive4obj._compute_hypervolume">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_compute_hypervolume" class="internal-link">moarchiving.moarchiving_base.MOArchiveBase._compute_hypervolume</a></code></div>
+    <div><p>compute the hypervolume of the archive without normalization weights</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> moarchiving.get_archive <span class="py-keyword">import</span> get_mo_archive
+<span class="py-prompt">&gt;&gt;&gt; </span>moa = get_mo_archive([[1, 2, 3, 4], [4, 3, 2, 1]], reference_point=[5, 5, 5, 5])
+<span class="py-prompt">&gt;&gt;&gt; </span>moa._compute_hypervolume()
+<span class="py-output">44.0</span>
+</pre></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
   <a name="moarchiving.moarchiving4obj.MOArchive4obj._get_kink_points">
     
   </a>
@@ -1098,7 +1250,7 @@ in which case it is slightly more efficient to set it to True only for last poin
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_get_kink_points</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_get_kink_points</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#_get_kink_points" title="moarchiving.moarchiving4obj.MOArchive4obj._get_kink_points">
       
@@ -1163,7 +1315,7 @@ archive which stores the non-dominated points so far in the sweep</p>
     </a>
   </div>
   <div class="functionBody">
-    <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_parent.MOArchiveParent.html#_hypervolume_plus" class="internal-link">moarchiving.moarchiving_parent.MOArchiveParent._hypervolume_plus</a></code></div>
+    <div class="interfaceinfo">overrides <code><a href="moarchiving.moarchiving_base.MOArchiveBase.html#_hypervolume_plus" class="internal-link">moarchiving.moarchiving_base.MOArchiveBase._hypervolume_plus</a></code></div>
     <div><p class="undocumented">Undocumented</p></div>
     
   </div>
@@ -1200,10 +1352,10 @@ archive which stores the non-dominated points so far in the sweep</p>
     <footer class="navbar navbar-default">
 
   
-  <div class="container">
+  <div class="container-fluid">
     <a href="index.html">API Documentation</a> for moarchiving,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2025-03-14 16:01:47.
+    25.4.0 at 2025-08-29 12:45:45.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -120,20 +120,28 @@ class CMOArchive:
         if infos is None:
             infos = [None] * len(list_of_f_vals)
 
-        if self._hypervolume_plus_constr < 0:
-            for obj, cons, info in zip(list_of_f_vals, list_of_g_vals, infos):
-                self.add(obj, cons, info)
-        else:
-            try:
-                list_of_g_vals = [sum([max(g, 0) for g in g_vals]) for g_vals in list_of_g_vals]
-            except TypeError:
-                list_of_g_vals = [max(g_vals, 0) for g_vals in list_of_g_vals]
+        i = 0
+        while self._hypervolume_plus_constr < 0 and i < len(list_of_f_vals):
+            self.add(list_of_f_vals[i], list_of_g_vals[i], infos[i])
+            i += 1
 
-            list_of_f_vals = [f_vals for f_vals, g_vals in zip(list_of_f_vals, list_of_g_vals) if g_vals == 0]
-            infos = [info for info, g_vals in zip(infos, list_of_g_vals) if g_vals == 0]
+        list_of_f_vals = list_of_f_vals[i:]
+        list_of_g_vals = list_of_g_vals[i:]
+        infos = infos[i:]
 
-            self.archive.add_list(list(list_of_f_vals), list(infos))
-            self._hypervolume_plus_constr = self.archive._hypervolume_plus
+        if len(list_of_f_vals) == 0:
+            return
+
+        try:
+            list_of_g_vals = [sum([max(g, 0) for g in g_vals]) for g_vals in list_of_g_vals]
+        except TypeError:
+            list_of_g_vals = [max(g_vals, 0) for g_vals in list_of_g_vals]
+
+        list_of_f_vals = [f_vals for f_vals, g_vals in zip(list_of_f_vals, list_of_g_vals) if g_vals == 0]
+        infos = [info for info, g_vals in zip(infos, list_of_g_vals) if g_vals == 0]
+
+        self.archive.add_list(list(list_of_f_vals), list(infos))
+        self._hypervolume_plus_constr = self.archive._hypervolume_plus
 
     def remove(self, f_vals):
         """ Remove a feasible point with objective vector f_vals from the archive.

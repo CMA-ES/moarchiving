@@ -6,42 +6,30 @@ to avoid code duplication.
 
 
 from moarchiving.moarchiving_utils import setup_cdllist, weakly_dominates
+from moarchiving.moarchiving_base import MOArchiveBase
 
 inf = float('inf')
 
 
-class MOArchiveParent:
+class MOArchiveParent(MOArchiveBase):
     """Parent class for Moarchiving 3 and 4 objective classes, to avoid code duplication """
 
-    def __init__(self, list_of_f_vals=None, reference_point=None, infos=None, n_obj=None,
-                 hypervolume_final_float_type=None,
-                 hypervolume_computation_float_type=None):
+    def __init__(self, list_of_f_vals=None, reference_point=None, infos=None, ideal_point=None, weights=None,
+                 n_obj=None, hypervolume_final_float_type=None, hypervolume_computation_float_type=None):
         """Create a new archive object. """
-        self.hypervolume_final_float_type = hypervolume_final_float_type
-        self.hypervolume_computation_float_type = hypervolume_computation_float_type
 
-        if list_of_f_vals is not None and len(list_of_f_vals):
-            try:
-                list_of_f_vals = list_of_f_vals.tolist()
-            except:
-                pass
-            list_of_f_vals = [list(f_vals) for f_vals in list_of_f_vals]
-            if len(list_of_f_vals[0]) != n_obj:
-                raise ValueError(f"need elements of length {n_obj}, got {list_of_f_vals[0]}"
-                                 " as first element")
-        else:
-            list_of_f_vals = []
-        self.n_obj = n_obj
+        MOArchiveBase.__init__(self, reference_point=reference_point, ideal_point=ideal_point, weights=weights,
+                               n_obj=n_obj, hypervolume_final_float_type=hypervolume_final_float_type,
+                               hypervolume_computation_float_type=hypervolume_computation_float_type)
+
         self._length = 0
 
         if infos is None:
             infos = [None] * len(list_of_f_vals)
 
-        if reference_point is not None:
-            self.reference_point = list(reference_point)
+        if self.reference_point is not None:
             self.head = setup_cdllist(self.n_obj, list_of_f_vals, self.reference_point, infos)
         else:
-            self.reference_point = None
             self.head = setup_cdllist(self.n_obj, list_of_f_vals, [inf] * self.n_obj, infos)
         self._kink_points = None
 
@@ -119,42 +107,9 @@ class MOArchiveParent:
                 break
         return dominators
 
-    def in_domain(self, f_vals, reference_point=None):
-        """return `True` if `f_vals` is dominating the reference point,
-        `False` otherwise. `True` means that `f_vals` contributes to
-        the hypervolume if not dominated by other elements.
-
-        >>> from moarchiving.get_archive import get_mo_archive
-        >>> archive3obj = get_mo_archive(reference_point=[3, 3, 3])
-        >>> archive3obj.in_domain([2, 2, 2])
-        True
-        >>> archive3obj.in_domain([0, 0, 3])
-        False
-        >>> archive4obj = get_mo_archive(reference_point=[3, 3, 3, 3])
-        >>> archive4obj.in_domain([2, 2, 2, 2])
-        True
-        >>> archive4obj.in_domain([0, 0, 0, 3])
-        False
-        """
-
-        try:
-            if len(f_vals) != self.n_obj:
-                raise ValueError(f"argument `f_vals` must be of length {self.n_obj}, "
-                                 f"was ``{f_vals}``")
-        except TypeError:
-            raise TypeError(f"argument `f_vals` must be a list, was ``{f_vals}``")
-
-        if reference_point is None:
-            reference_point = self.reference_point
-        if reference_point is None:
-            return True
-
-        if any(f_vals[i] >= reference_point[i] for i in range(self.n_obj)):
-            return False
-        return True
-
     def _points_generator(self, include_head=False):
         """returns the points in the archive in a form of a python generator
+
         instead of a circular doubly linked list """
         first_iter = True
         di = self.n_obj - 1
@@ -173,8 +128,7 @@ class MOArchiveParent:
 
     @property
     def infos(self):
-        """`list` of complementary information corresponding to each archive entry,
-        corresponding to each of the points in the archive
+        """`list` of complementary information corresponding to each archive entry
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive([[1, 2, 3], [3, 2, 1], [2, 2, 2]], infos=["a", "b", "c"])
@@ -185,19 +139,22 @@ class MOArchiveParent:
 
     @property
     def hypervolume(self):
-        """Return the hypervolume of the archive """
+        """return the hypervolume of the archive """
         if self.reference_point is None:
             raise ValueError("to compute the hypervolume indicator a reference"
                              " point is needed (must be given initially)")
-        return self._hypervolume
+        return self._hypervolume * self._hv_factor
 
     @property
     def hypervolume_plus(self):
-        """Return the hypervolume_plus of the archive """
+        """return the hypervolume_plus of the archive """
         if self.reference_point is None:
             raise ValueError("to compute the hypervolume_plus indicator a reference"
                              " point is needed (must be given initially)")
-        return self._hypervolume_plus
+        if self._hypervolume_plus < 0:
+            return self._hypervolume_plus
+        else:
+            return self._hypervolume_plus * self._hv_factor
 
     @property
     def contributing_hypervolumes(self):
@@ -205,7 +162,7 @@ class MOArchiveParent:
         return [self.contributing_hypervolume(point[:self.n_obj]) for point in self]
 
     def contributing_hypervolume(self, f_vals):
-        """Return the hypervolume contribution of a point in the archive
+        """return the hypervolume contribution of a point in the archive
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> get_mo_archive.hypervolume_final_float_type = float
@@ -225,9 +182,9 @@ class MOArchiveParent:
             raise TypeError(f"argument `f_vals` must be a list, was ``{f_vals}``")
 
         if f_vals in self:
-            hv_before = self._hypervolume
+            hv_before = self.hypervolume
             removed_info = self.remove(f_vals)
-            hv_after = self._hypervolume
+            hv_after = self.hypervolume
             self.add(f_vals, info=removed_info)
             return hv_before - hv_after
         else:
@@ -237,8 +194,9 @@ class MOArchiveParent:
         raise NotImplementedError("This method should be implemented in the child class")
 
     def distance_to_pareto_front(self, f_vals, ref_factor=1):
-        """Return the distance to the Pareto front of the archive,
-        by calculating the distances to the kink points
+        """return the distance to the Pareto front of the archive,
+
+        by calculating the minimum distance to the kink points
 
         >>> from moarchiving.get_archive import get_mo_archive
         >>> moa = get_mo_archive([[1, 2, 3], [3, 2, 1], [2, 2, 2]], reference_point=[5, 5, 5])
@@ -260,47 +218,22 @@ class MOArchiveParent:
             ref_di = [0] * self.n_obj
 
         if len(self) == 0:
-            return sum([ref_di[i] ** 2 for i in range(self.n_obj)]) ** 0.5
+            return sum([(r_di * w * w_ip) ** 2 for r_di, w, w_ip in
+                        zip(ref_di, self._weights, self._weights_ideal_point)]) ** 0.5
 
         if self._kink_points is None:
             self._kink_points = self._get_kink_points()
-        distances_squared = []
+        dist_squared = []
 
         for point in self._kink_points:
-            distances_squared.append(sum([max((0, f_vals[i] - point[i])) ** 2
-                                          for i in range(self.n_obj)]))
-        return min(distances_squared) ** 0.5
-
-    def distance_to_hypervolume_area(self, f_vals):
-        """Return the distance to the hypervolume area of the archive
-
-        >>> from moarchiving.get_archive import get_mo_archive
-        >>> moa = get_mo_archive(reference_point=[1, 1, 1])
-        >>> moa.distance_to_hypervolume_area([1, 2, 1])
-        1.0
-        >>> moa.distance_to_hypervolume_area([1, 1, 1])
-        0.0
-        >>> moa.distance_to_hypervolume_area([0, 0, 0])
-        0.0
-        >>> moa.distance_to_hypervolume_area([4, 5, 1])
-        5.0
-        """
-        if self.reference_point is None:
-            return 0
-        return sum([max((0, f_vals[i] - self.reference_point[i])) ** 2
-                    for i in range(self.n_obj)])**0.5
+            distances = [ref_di[i] if self.reference_point and point[i] == self.reference_point[i]
+                         else max(0, f_vals[i] - point[i]) for i in range(self.n_obj)]
+            dist_squared.append(sum([(d * w * w_ip) ** 2 for d, w, w_ip in
+                                     zip(distances, self._weights, self._weights_ideal_point)]))
+        return min(dist_squared) ** 0.5
 
     def hypervolume_improvement(self, f_vals):
         raise NotImplementedError("This method should be implemented in the child class")
-
-    def _set_HV(self):
-        """Set the hypervolume of the archive """
-        if self.reference_point is None:
-            return None
-        self._hypervolume = self.hypervolume_final_float_type(self.compute_hypervolume())
-        if self._hypervolume > 0:
-            self._hypervolume_plus = self._hypervolume
-        return self._hypervolume
 
     def compute_hypervolume(self):
         raise NotImplementedError("This method should be implemented in the child class")

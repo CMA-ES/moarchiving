@@ -148,6 +148,19 @@ class TestMOArchiving4obj(unittest.TestCase):
         self.assertFalse(moa.dominates([5, 3, 3, 2]))
         self.assertFalse(moa.dominates([0, 5, 5, 5]))
 
+    def test_prune(self):
+        """ Test the prune function """
+        ref_point = [6, 6, 6, 6]
+        points = [[1, 2, 3, 4], [5, 2, 1, 4], [4, 4, 4, 4], [1, 2, 3, 4]]
+        moa_ref = MOArchive4obj(points, ref_point)
+        moa_no_ref = MOArchive4obj(points)
+
+        self.assertEqual(len(list(moa_ref)), 2)
+        self.assertEqual(len(list(moa_no_ref)), 2)
+
+        self.assertEqual(list_to_set(list(moa_ref)), {(1, 2, 3, 4), (5, 2, 1, 4)})
+        self.assertEqual(list_to_set(list(moa_no_ref)), {(1, 2, 3, 4), (5, 2, 1, 4)})
+
     def test_dominators(self):
         """ test the dominators function """
         moa = get_small_test_archive()

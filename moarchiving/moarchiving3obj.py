@@ -86,6 +86,8 @@ class MOArchive3obj(MOArchiveParent):
 
         self._removed = []
         self.preprocessing()
+        if self.reference_point is None:
+            self.prune()
         hv = self._set_HV()
         self._length = len(list(self))
         if hv is not None and hv > 0:
@@ -463,6 +465,29 @@ class MOArchive3obj(MOArchiveParent):
             p = p.next[2]
 
         return self.hypervolume_final_float_type(volume)
+
+    def prune(self):
+        """Prune the archive when the reference point is not given.
+        Otherwise the archive is pruned in the compute_hypervolume method."""
+
+        p = self.head
+
+        restart_list_y(self.head)
+        p = p.next[2].next[2]
+        stop = self.head.prev[2]
+
+        while p != stop:
+            if p.ndomr < 1:
+                p.cnext[0] = p.closest[0]
+                p.cnext[1] = p.closest[1]
+
+                p.cnext[0].cnext[1] = p
+                p.cnext[1].cnext[0] = p
+            else:
+                remove_from_z(p, archive_dim=self.n_obj)
+
+            p = p.next[2]
+
 
     def preprocessing(self):
         """ Preprocessing step to determine the closest points in x and y directions,

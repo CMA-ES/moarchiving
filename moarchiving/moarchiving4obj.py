@@ -299,8 +299,7 @@ class MOArchive4obj(MOArchiveParent):
         while current != stop:
             dominated = False
             for node in non_dominated_points:
-                if node != current and all(node.x[i] <= current.x[i] for i in range(3)) and any(
-                        node.x[i] < current.x[i] for i in range(3)):
+                if node != current and all(node.x[i] <= current.x[i] for i in range(3)):
                     dominated = True
                     break
             if dominated:

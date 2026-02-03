@@ -336,7 +336,9 @@ class MOArchive3obj(MOArchiveParent):
                 self.add(f_val, info=info, update_hypervolume=False)
             self._set_HV()
         elif add_method == "reinit":
-            self.__init__(list(self) + list_of_f_vals, self.reference_point, self.infos + infos)
+            self.__init__(list(self) + list_of_f_vals, self.reference_point, self.infos + infos,
+                    hypervolume_computation_float_type=self.hypervolume_computation_float_type,
+                    hypervolume_final_float_type=self.hypervolume_final_float_type)
         else:
             raise ValueError(f"Unknown add method: {add_method}, "
                              f"should be one of: 'compare', 'one_by_one', 'reinit'")
@@ -359,7 +361,9 @@ class MOArchive3obj(MOArchiveParent):
         >>> list(moa), moa.infos
         ([[3, 2, 1], [1, 2, 3]], ['C', 'A'])
         """
-        return MOArchive3obj(list(self), self.reference_point, self.infos)
+        return MOArchive3obj(list(self), self.reference_point, self.infos,
+                    hypervolume_computation_float_type=self.hypervolume_computation_float_type,
+                    hypervolume_final_float_type=self.hypervolume_final_float_type)
 
     def _get_kink_points(self):
         """ Function that returns the kink points of the archive.

@@ -128,7 +128,9 @@ class MOArchive4obj(MOArchiveParent):
                 self._hypervolume_plus = -dist_to_hv_area
             return False
 
-        self.__init__(list(self) + [f_vals], self.reference_point, self.infos + [info])
+        self.__init__(list(self) + [f_vals], self.reference_point, self.infos + [info],
+                      hypervolume_computation_float_type=self.hypervolume_computation_float_type,
+                      hypervolume_final_float_type=self.hypervolume_final_float_type)
         return True
 
     def remove(self, f_vals):
@@ -154,7 +156,9 @@ class MOArchive4obj(MOArchiveParent):
         point_idx = points_list.index(f_vals)
         point_info = self.infos[point_idx]
         self.__init__([p for p in points_list if p != f_vals], self.reference_point,
-                      [info for p, info in zip(points_list, self.infos) if p != f_vals])
+                      [info for p, info in zip(points_list, self.infos) if p != f_vals],
+                      hypervolume_computation_float_type=self.hypervolume_computation_float_type,
+                      hypervolume_final_float_type=self.hypervolume_final_float_type)
         return point_info
 
     def add_list(self, list_of_f_vals, infos=None):
@@ -175,7 +179,9 @@ class MOArchive4obj(MOArchiveParent):
         if infos is None:
             infos = [None] * len(list_of_f_vals)
 
-        self.__init__(list(self) + list_of_f_vals, self.reference_point, self.infos + infos)
+        self.__init__(list(self) + list_of_f_vals, self.reference_point, self.infos + infos,
+                      hypervolume_computation_float_type=self.hypervolume_computation_float_type,
+                      hypervolume_final_float_type=self.hypervolume_final_float_type)
 
     def copy(self):
         """ Return a copy of the archive.
@@ -195,7 +201,9 @@ class MOArchive4obj(MOArchiveParent):
         >>> list(moa), moa.infos
         ([[4, 3, 2, 1], [1, 2, 3, 4]], ['C', 'A'])
         """
-        return MOArchive4obj(list(self), self.reference_point, self.infos)
+        return MOArchive4obj(list(self), self.reference_point, self.infos,
+                      hypervolume_computation_float_type=self.hypervolume_computation_float_type,
+                      hypervolume_final_float_type=self.hypervolume_final_float_type)
 
     def _get_kink_points(self):
         """ Function that returns the kink points of the archive.

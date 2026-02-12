@@ -4,6 +4,9 @@
 implemented as sorted list and with incremental update in logarithmic time.
 """
 from __future__ import division, print_function, unicode_literals
+__author__ = "Nikolaus Hansen"  # recovering from 612c3a5
+__license__ = "BSD 3-clause"
+
 import warnings as _warnings
 # from collections import deque  # does not support deletion of slices!?
 import bisect as _bisect # to find the insertion index efficiently
@@ -12,7 +15,7 @@ try:
 except ImportError:
     _warnings.warn(
     '`fractions` module not installed, arbitrary precision hypervolume computation not available')
-del division, print_function, unicode_literals
+del division, print_function, unicode_literals  # ruff wants that after all imports
 
 inf = float('inf')
 
@@ -26,7 +29,6 @@ def _debug_trace(*args, **kwargs):
     else:
         s = ''.join(traceback.format_stack(*args, **kwargs))
     return s
-
 
 def true_fraction(val, copy=False):
     """return a `fractions.Fraction` object from `val`.
@@ -147,6 +149,7 @@ class BiobjectiveNondominatedSortedList(list):
         CAVEAT: the interface, in particular the positional interface
         may change in future versions.
         """
+        self.make_expensive_asserts = BiobjectiveNondominatedSortedList.make_expensive_asserts
         if hypervolume_final_float_type is None:
             self.hypervolume_final_float_type = BiobjectiveNondominatedSortedList.hypervolume_final_float_type
         else:
@@ -157,43 +160,53 @@ class BiobjectiveNondominatedSortedList(list):
         else:
             self.hypervolume_computation_float_type = hypervolume_computation_float_type
 
-        self.make_expensive_asserts = BiobjectiveNondominatedSortedList.make_expensive_asserts
         self.maintain_contributing_hypervolumes = BiobjectiveNondominatedSortedList.maintain_contributing_hypervolumes
         self.n_obj = 2
 
-        if list_of_f_pairs is not None and len(list_of_f_pairs):
-            try:
+        if infos is not None and len(infos) and len(infos) != len(list_of_f_pairs):
+            raise ValueError(f"need as many infos as f_pairs, got "
+                            f"{len(infos)} infos and {len(list_of_f_pairs)} f_pairs")
+
+        # recovering from 612c3a5
+        self.reference_point = None
+        if reference_point is not None:
+            self.reference_point = list(reference_point)  # use objectives_type?
+        self._infos = None
+        self._removed = []  # should not be necessary but is needed for some tests,
+                            # see discarded property
+        if list_of_f_pairs is not None and len(list_of_f_pairs) > 0:
+            try:  # prevent `sorted` to bail when `list_of_f_pairs` is an np.array
                 list_of_f_pairs = list_of_f_pairs.tolist()
-            except:
+            except Exception:
                 pass
             if len(list_of_f_pairs[0]) != 2:
                 raise ValueError("need elements of len 2, got %s"
                                  " as first element" % str(list_of_f_pairs[0]))
-            if sort is None:
-                list.__init__(self, list_of_f_pairs)
-            else:
-                if infos is not None:
+            if infos is not None:
+                self._infos = []
+                if sort:
+                    # create a dict to find later the correct info for each entry
+                    # TODO: should we avoid tuple called twice
                     f_pair2info = dict(zip([tuple(f_pair) for f_pair in list_of_f_pairs], infos))
-                    list.__init__(self, sort(list_of_f_pairs))
-                    infos = [f_pair2info[tuple(f_pair)] for f_pair in self]
+            # recovering from 612c3a5
+            objectives_type = list  # TODO: tuple fails tests because `.add` and other
+                                    # places use `list` which can't be compared with tuple,
+                                    # this should become a class instance variable!?
+            for i, f_pair in enumerate(sort(list_of_f_pairs) if sort else list_of_f_pairs):
+                if not isinstance(f_pair, objectives_type):
+                    f_pair = objectives_type(f_pair)  # tuple is needed with infos, was list
+                if self.in_domain(f_pair) and not self.dominates_with(len(self) - 1,
+                                                                      f_pair):
+                    self.append(f_pair)  # this is O(1) whereas prune is O(n) for each pruned element
+                    if infos is not None:
+                        if sort:
+                            self._infos.append(f_pair2info[tuple(f_pair)])
+                        else:
+                            self._infos.append(infos[i])
                 else:
-                    list.__init__(self, sort(list_of_f_pairs))
+                    self._removed.append(f_pair)  # see also discarded property
+            # self.prune()  # remove dominated entries, uses in_domain, hence ref-point
 
-            # super(BiobjectiveNondominatedSortedList, self).__init__(sort(list_of_f_pairs))
-        if reference_point is not None:
-            self.reference_point = list(reference_point)
-        else:
-            self.reference_point = reference_point
-
-        if infos is not None:
-            if len(infos) != len(list_of_f_pairs):
-                raise ValueError(f"need as many infos as f_pairs, got "
-                                 f"{len(infos)} infos and {len(list_of_f_pairs)} f_pairs")
-            self._infos = infos
-        else:
-            self._infos = None
-
-        self.prune()  # remove dominated entries, uses in_domain, hence ref-point
         if self.maintain_contributing_hypervolumes:
             self._contributing_hypervolumes = self.contributing_hypervolumes
             raise NotImplementedError('update of _contributing_hypervolumes in _add_HV and _subtract_HV not implemented')
@@ -208,6 +221,7 @@ class BiobjectiveNondominatedSortedList(list):
                 if list_of_f_pairs is None or len(list_of_f_pairs) == 0:
                     self._hypervolume_plus = -inf
                 else:
+                    # TODO: this could probably be made faster when the list is sorted
                     self._hypervolume_plus = -min([self.distance_to_hypervolume_area(f)
                                                    for f in list_of_f_pairs])
         else:
@@ -1105,6 +1119,9 @@ class BiobjectiveNondominatedSortedList(list):
     @property
     def discarded(self):
         """`list` of f-pairs discarded in the last relevant method call.
+
+        This property seems not of any particular use and may be removed in
+        future.
 
         Methods covered are `__init__`, `prune`, `add`, and `add_list`.
         Removed duplicates are not element of the discarded list except with

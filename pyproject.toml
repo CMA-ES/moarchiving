@@ -2,7 +2,7 @@
 
 [build-system]
 requires = [
-    "setuptools >=70.1",
+    "setuptools >=79",
     # "setuptools-scm",   # if we want to use git versions for versioning
     # "wheel",  # setuptools doesn't need wheel anymore, see https://pypi.org/project/wheel/
 ]
@@ -15,8 +15,10 @@ dynamic = ["version",  # see tool.setuptools.dynamic below
            # "readme",
           ]
 readme = "README.md"  # manually copied and cut
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
 authors = [
-    { name = "Nikolaus Hansen", email = "authors_firstname.lastname@inria.fr" },
+    { name = "Nikolaus Hansen"},
     { name = "Nace Sever" },
     { name = "Mila Nedic" },
     { name = "Tea Tusar" },
@@ -24,6 +26,9 @@ authors = [
 keywords = [
     "multi-objective",
     "optimization",
+]
+maintainers = [
+    {name = "Nikolaus Hansen", email = "authors_firstname.lastname@inria.fr"},
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -39,7 +44,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Mathematics",
 ]
 dependencies = [
-    "sortedcontainers >=2.4.0",
+    "sortedcontainers >=2.3.0",
 ]
 
 [project.optional-dependencies]

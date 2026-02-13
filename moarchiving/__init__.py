@@ -18,7 +18,7 @@ License: BSD 3-Clause, see LICENSE file.
 
 __author__ = "Nikolaus Hansen, Nace Sever, Mila Nedic, Tea Tusar"
 __license__ = "BSD 3-clause"
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 
 from .get_archive import get_mo_archive

@@ -5,6 +5,8 @@ To update the files, make changes in the notebook, and then run the following co
 
 ```bash
 jupyter nbconvert --to html --output index  moarchiving.ipynb 
- jupyter nbconvert --to markdown --output README  moarchiving.ipynb
+jupyter nbconvert --to markdown --output README  moarchiving.ipynb
 python -c "s = open('README.md', 'r').read().split('### 11')[0]; open('README.md', 'w').write(s)"
 ```
+
+Note: using `nbconvert` currently requires ``pip install "notebook<7" jupyter``.

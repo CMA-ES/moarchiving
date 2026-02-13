@@ -1,3 +1,7 @@
+Starting:
+
+merge development branch to master if necessary
+
 Testing:
 
 ```sh
@@ -9,12 +13,36 @@ Final final changes to version numbers etc.:
 
 ```sh
     __init__.py  # edit version number
-    # not applicable: tools/conda.recipe/meta.yaml  # edit version number
     moarchiving.ipynb  # add release description
-    README.md + .html  # created from moarchiving.ipynb, see howto/update_readme.md
-    merge development branch to master if necessary
+    README.md + .html  # created from moarchiving.ipynb
+        # from howto/update_readme.md:
+        jupyter nbconvert --to html --output index  moarchiving.ipynb
+        jupyter nbconvert --to markdown --output README  moarchiving.ipynb
+        python -c "s = open('README.md', 'r').read().split('### 11')[0]; open('README.md', 'w').write(s)"
 ```
 
+Create a distribution, assuming the folder `moarchiving` is linked as `src/moarchiving`.
+
+```sh
+    python -m build > dist_call_output.txt
+    less dist_call_output.txt  # not very informative
+    ll dist  # just checking creation date
+    tar -tf dist/moarchiving-1.1.0.tar.gz | tree --fromfile | less  # check that the distribution folders are clean
+```
+
+Check distribution
+
+```sh
+    twine check dist/*1.1.*  # install/update/upgrade pkginfo if this fails
+```
+
+Finally, upload the distribution:
+
+```sh
+    twine upload dist/*1.1.x*  # to not upload outdated stuff
+```
+
+### Previous Way
 To prepare a distribution from a dirty code folder:
 
 ```sh

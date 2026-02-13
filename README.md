@@ -1,4 +1,4 @@
-# Introduction
+# The `moarchiving` Python package
 
 [This package](https://cma-es.github.io/moarchiving/moarchiving-apidocs/index.html) implements a multi-objective 
  non-dominated archive for 2, 3 or 4 objectives, providing easy and fast access to multiple hypervolume indicators:
@@ -16,37 +16,37 @@ The source code is available [on GitHub](https://github.com/CMA-ES/moarchiving).
 ## Installation
 
 On a system shell, either like
-```
+```sh
 pip install moarchiving
 ```
 
 or from GitHub, for example
-```
+```sh
 pip install git+https://github.com/CMA-ES/moarchiving.git@development
 ```
 installing from the `development` branch.
 
 ## Testing
 
-```
+```sh
 python -m moarchiving.test
 ```
 
 on a system shell should output something like
 
 ```
-doctest.testmod(<module 'moarchiving.moarchiving2obj' from '...\\moarchiving\\moarchiving2obj.py'>)
-TestResults(failed=0, attempted=90)
-
+doctest.testmod(<module 'moarchiving.moarchiving'...)
+TestResults(failed=0, attempted=96, skipped=1)
 ...
 
 OK
-unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromModule(<module 'moarchiving.tests.test_sorted_list' from '...\\moarchiving\\tests\\test_sorted_list.py'>))
+unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromModule(<module 'moarchiving.tests.test_sorted_list' from ...>))
 .......
 ----------------------------------------------------------------------
-Ran 7 tests in 0.001s
-```
+Ran 7 tests in 0.000s
 
+OK
+```
 
 ## Links
 
@@ -54,22 +54,23 @@ Ran 7 tests in 0.001s
 - [This page including performance test examples](https://cma-es.github.io/moarchiving/)
 - [Code on Github](https://github.com/CMA-ES/moarchiving)
 
-
 ## Details
 
 `moarchiving` with 2 objectives uses the [`fractions.Fraction`](https://docs.python.org/3/library/fractions.html) type to avoid rounding errors when computing hypervolume differences, but its usage can also be easily switched off by assigning the respective class attributes `hypervolume_computation_float_type` and `hypervolume_final_float_type`. The Fraction type can become prohibitively computationally expensive with increasing precision.
 
 The implementation of the two-objective archive is heavily based on the [`bisect`](https://docs.python.org/3/library/bisect.html) module, while in three and four objectives it is based on the [`sortedcontainers`](https://pypi.org/project/sortedcontainers/) module.
 
-
 ## Releases
+
+- [1.1.0](https://github.com/CMA-ES/moarchiving/releases/tag/r1.1.0) a few bug fixes and speed improvements.
 - [1.0.0](https://github.com/CMA-ES/moarchiving/releases/tag/r1.0.0) addition of MOArchive classes for 3 and 4 objectives, as well as a class for handling solutions to constrained problems
 - 0.7.0 reimplementation of `BiobjectiveNondominatedSortedList.hypervolume_improvement` by extracting a sublist first.
 - 0.6.0 the `infos` attribute is a `list` with corresponding (arbitrary) information, e.g. for keeping the respective solutions.
 - 0.5.3 fixed assertion error when not using `fractions.Fraction`
 - 0.5.2 first published version
 
-# Usage examples
+## Usage examples
+
 1. [Initialization](#1-initialization)
 2. [Constrained MOArchive](#2-constrained-moarchive)
 3. [Accessing solution information](#3-accessing-solution-information)
@@ -301,4 +302,212 @@ print(moa3_nofr.hypervolume)
     161245156349030777798724819133399/10141204801825835211973625643008
     15.899999999999999
 
+
+### 11. Additional functions
+MOArchive also implements additional functions to check whether a given point is in the archive:
+- `in_domain`: Is the point in the domain?
+- `dominates`: Is the point dominated by the archive?
+- `dominators`: Which points (and how many) dominate the given point?
+
+
+```python
+points_list = [[5, 5, 0], [2, 2, 3], [0, 2, 3]]
+print("archive:", list(moa), "\n")
+print("point     | in domain | dominates | num of dominators | dominators")
+print("----------|-----------|-----------|-------------------|-----------")
+for point in points_list:
+    print(f"{point} | {moa.in_domain(point):9} | {moa.dominates(point):9} | "
+          f"{moa.dominators(point, number_only=True):17} | {moa.dominators(point)}")
+```
+
+    archive: [[1, 3, 0], [3, 2, 1], [2, 2, 2], [1, 2, 3]] 
+    
+    point     | in domain | dominates | num of dominators | dominators
+    ----------|-----------|-----------|-------------------|-----------
+    [5, 5, 0] |         0 |         1 |                 1 | [[1, 3, 0]]
+    [2, 2, 3] |         1 |         1 |                 2 | [[2, 2, 2], [1, 2, 3]]
+    [0, 2, 3] |         1 |         0 |                 0 | []
+
+
+### 12. Visualization of indicator values
+By saving the values of indicators for each solution added to the archive, we can visualize their change over time.
+
+
+```python
+import matplotlib.pyplot as plt
+import random
+
+n_obj = 3
+
+indicators_cmoa = []
+indicators_moa = []
+cmoa = get_cmo_archive(reference_point=[0.5] * n_obj, n_obj=n_obj, tau=0.2)
+moa = get_mo_archive(reference_point=[0.1] * n_obj, n_obj=n_obj)
+
+for i in range(2000):
+    objectives = [random.random() for _ in range(n_obj)]
+    constraints = [max(random.random() - 0.1, 0), max(random.random() - 0.1, 0)]
+    
+    cmoa.add(objectives, constraints, info=f"point_{i}")
+    moa.add(objectives, info=f"point_{i}")
+    
+    indicators_cmoa.append((cmoa.hypervolume_plus_constr, cmoa.hypervolume_plus, cmoa.hypervolume))
+    indicators_moa.append((moa.hypervolume_plus, moa.hypervolume))
+    
+```
+
+
+```python
+fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+axs[0].plot([x[2] for x in indicators_cmoa], label="hypervolume")
+axs[0].plot([x[1] for x in indicators_cmoa], label="hypervolume_plus")
+axs[0].plot([x[0] for x in indicators_cmoa], label="hypervolume_plus_constr")
+axs[0].axhline(0, color="black", linestyle="--", zorder=0)
+axs[0].axhline(-cmoa.tau, color="black", linestyle="--", zorder=0)
+axs[0].set_title("Constrained MOArchive")
+axs[0].legend()
+
+axs[1].plot([x[1] for x in indicators_moa], label="hypervolume")
+axs[1].plot([x[0] for x in indicators_moa], label="hypervolume_plus")
+axs[1].set_title("MOArchive")
+axs[1].axhline(0, color="black", linestyle="--", zorder=0)
+axs[1].legend()
+plt.show()
+```
+
+
+    
+![png](README_files/README_31_0.png)
+    
+
+
+### 13. Performance tests
+
+
+```python
+import time
+from moarchiving.tests.point_sampling import get_non_dominated_points
+test_archive_sizes = [0] + [2 ** i for i in range(21)]
+
+get_mo_archive.hypervolume_computation_float_type = fractions.Fraction
+get_mo_archive.hypervolume_final_float_type = fractions.Fraction
+```
+
+#### 13.1. Initializing the archive
+
+
+```python
+n_repeats = 100
+time_limit = 10
+
+for n_obj in [2, 3, 4]:
+    print(f"Testing {n_obj} objectives")
+    times_ini = []
+    times_hv = []
+    archive_sizes = []
+    
+    for archive_size in test_archive_sizes:
+        points = get_non_dominated_points(archive_size, n_dim=n_obj)
+        t0 = time.time()
+        moa = [get_mo_archive(points, [1] * n_obj, n_obj=n_obj)
+               for _ in range(n_repeats)]
+        t1 = time.time()
+        hv = [m.hypervolume for m in moa]
+        t2 = time.time()
+        
+        times_ini.append(max((t1 - t0) / n_repeats, 1e-11))
+        times_hv.append(max((t2 - t1) / n_repeats, 1e-11))
+        print(".", end="")
+        archive_sizes.append(archive_size)
+        
+        if t2 - t0 > time_limit:
+            break
+    print()
+    
+    plt.plot(archive_sizes, times_ini, '-o', clip_on=False,
+             label=f"init {n_obj} objectives")
+    plt.plot(archive_sizes, times_hv, '--x', clip_on=False,
+             label=f"hv {n_obj} objectives", color=plt.gca().lines[-1].get_color())
+
+plt.title("Initialization and hypervolume computation")
+plt.xlabel("Archive size")
+plt.ylabel("Time [s]")
+plt.yscale("log")
+plt.xscale("log")
+plt.axis('tight')
+plt.grid(True, which='both')
+plt.legend()
+plt.show()
+```
+
+    Testing 2 objectives
+    ...............
+    Testing 3 objectives
+    .............
+    Testing 4 objectives
+    .........
+
+
+
+    
+![png](README_files/README_35_1.png)
+    
+
+
+#### 13.2. Adding a solution to an existing archive
+
+
+```python
+n_repeats = 10
+time_limit = 10
+
+for n_obj in [2, 3, 4]:
+    print(f"Testing {n_obj} objectives")
+    times = []
+    archive_sizes = []
+
+    for archive_size in test_archive_sizes:
+        
+        points = get_non_dominated_points(archive_size, n_dim=n_obj)
+        add_points = get_non_dominated_points(n_repeats, n_dim=n_obj)
+        moa = [get_mo_archive(points, [1] * n_obj, n_obj=n_obj) for _ in range(n_repeats)]
+        
+        t0 = time.time()
+        for i, m in enumerate(moa):
+            m.add(add_points[i])
+        t1 = time.time()
+
+        times.append(max((t1 - t0) / n_repeats, 10e-4))
+        print(".", end="")
+        archive_sizes.append(archive_size)
+
+        if t1 - t0 > time_limit:
+            break
+    print()
+    time.sleep(1)
+
+    plt.plot(archive_sizes, times, '-o', label=f"{n_obj} objectives")
+
+plt.title("Adding a point to the archive")
+plt.xlabel("Archive size")
+plt.ylabel("Time [s]")
+plt.yscale("log")
+plt.xscale("log")
+plt.grid(True)
+plt.legend()
+plt.show()
+```
+
+    Testing 2 objectives
+    ......................
+    Testing 3 objectives
+    ................
+    Testing 4 objectives
+    ...........
+
+
+
+    
+![png](README_files/README_37_1.png)
+    
 

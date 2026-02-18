@@ -460,6 +460,28 @@ class BiobjectiveNondominatedSortedList(list):
             f_pair = list(f_pair)
         return _bisect.bisect_left(self, f_pair, lowest_index)
 
+    def _index(self, f_pair):
+        """like list.index but O(log(n)) instead of O(n).
+
+        >>> from moarchiving import BiobjectiveNondominatedSortedList as NDA
+        >>> a = NDA([[0.339, 0.075], [0.00087, 0.124]])
+        >>> a._index([0.00087, 0.124]) == a.index([0.00087, 0.124])
+        True
+        >>> try:
+        ...     a._index([1,2])
+        ... except ValueError:
+        ...     pass
+        ... else:
+        ...     print('should raise a ValueError but did not')
+
+        """
+        if len(self):
+            i = self.bisect_left(f_pair)
+            if i < len(self) and (f_pair == self[i] or (
+                len(f_pair) == 2 and f_pair[0] == self[i][0] and f_pair[1] == self[i][1])):
+                return i
+        raise ValueError('{0} is not in self'.format(f_pair))
+
     def dominates(self, f_pair):
         """return `True` if any element of `self` dominates or is equal to `f_pair`.
 
@@ -692,9 +714,9 @@ class BiobjectiveNondominatedSortedList(list):
         except TypeError:
             pass
         else:  # idx is a pair
-            if idx in self:
-                idx = self.index(idx)
-            else:
+            try:
+                idx = self._index(idx)
+            except ValueError:
                 return self.hypervolume_improvement(idx)
         if idx == 0:
             y = self.reference_point[1] if self.reference_point else inf
@@ -844,6 +866,7 @@ class BiobjectiveNondominatedSortedList(list):
         to circumentvent to compute small differences between large
         hypervolumes.
         """
+        objective_type = list
         dist = self.distance_to_pareto_front(f_pair)
         if dist:
             return -dist
@@ -852,6 +875,8 @@ class BiobjectiveNondominatedSortedList(list):
                 return inf
         # find sublist that suffices to get the contributing volume
         i0 = self.bisect_left(f_pair)
+        if i0 < len(self) and self[i0] == objective_type(f_pair):
+            return 0
         i1 = i0
         while i1 < len(self) and f_pair[1] <= self[i1][1]:
             # f_pair also dominates self[i1]

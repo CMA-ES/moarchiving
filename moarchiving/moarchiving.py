@@ -203,7 +203,7 @@ class BiobjectiveNondominatedSortedList(list):
                             self._infos.append(f_pair2info[tuple(f_pair)])
                         else:
                             self._infos.append(infos[i])
-                else:
+                else:  # TODO: skip this?
                     self._removed.append(f_pair)  # see also discarded property
             # self.prune()  # remove dominated entries, uses in_domain, hence ref-point
 
@@ -411,7 +411,7 @@ class BiobjectiveNondominatedSortedList(list):
         # should we better create a non-dominated list and do a merge?
         for f_pair, info in zip(list_of_f_pairs, infos):
             if self.add(f_pair, info=info) is not None:
-                removed += [self._removed]  # slightly faster than .extend
+                removed.extend(self._removed)
         self._removed = removed  # could contain elements of `list_of_f_pairs`
         self.make_expensive_asserts and self._asserts()
 
@@ -1123,17 +1123,18 @@ class BiobjectiveNondominatedSortedList(list):
         This property seems not of any particular use and may be removed in
         future.
 
-        Methods covered are `__init__`, `prune`, `add`, and `add_list`.
-        Removed duplicates are not element of the discarded list except with
-        `__init__`. When not inserted and not already in `self` also the
-        input argument(s) show(s) up in `discarded`.
+        Methods covered are `__init__`, `prune`, `add`, and `add_list`. Removed
+        duplicates are not element of the discarded list except with `__init__`.
+        Input argument(s) show(s) up in `discarded` when not inserted and not
+        already in `self`, and the dropped dominated f-pairs.
 
         Example to create a list of rank-k-non-dominated fronts:
 
         >>> from moarchiving import BiobjectiveNondominatedSortedList as NDA
         >>> all_ = [[0.1, 1], [-2, 3], [-4, 5], [-4, 5], [-4, 4.9]]
-        >>> nda_list = NDA(all_)  # rank-0-non-dominated
-        >>> assert nda_list.discarded == [[-4, 5], [-4, 5]]
+        >>> nda_list = NDA()
+        >>> nda_list.add_list(all_)  # rank-0-non-dominated
+        >>> assert nda_list.discarded == [[-4, 5]]
 
         """
         try:
